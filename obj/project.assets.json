@@ -12078,11 +12078,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/cody/Lizst/Lizst.csproj",
-      "projectName": "Lizst",
-      "projectPath": "/home/cody/Lizst/Lizst.csproj",
+      "projectUniqueName": "/home/cody/LizstMVC/LizstMVC.csproj",
+      "projectName": "LizstMVC",
+      "projectPath": "/home/cody/LizstMVC/LizstMVC.csproj",
       "packagesPath": "/home/cody/.nuget/packages/",
-      "outputPath": "/home/cody/Lizst/obj/",
+      "outputPath": "/home/cody/LizstMVC/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
