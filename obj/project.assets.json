@@ -12072,28 +12072,30 @@
     ]
   },
   "packageFolders": {
-    "/home/cody/.nuget/packages/": {},
-    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\mchry\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/cody/LizstMVC/LizstMVC.csproj",
-      "projectName": "LizstMVC",
-      "projectPath": "/home/cody/LizstMVC/LizstMVC.csproj",
-      "packagesPath": "/home/cody/.nuget/packages/",
-      "outputPath": "/home/cody/LizstMVC/obj/",
+      "projectUniqueName": "C:\\Users\\mchry\\Desktop\\Capstone\\Lizst.csproj",
+      "projectName": "Lizst",
+      "projectPath": "C:\\Users\\mchry\\Desktop\\Capstone\\Lizst.csproj",
+      "packagesPath": "C:\\Users\\mchry\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mchry\\Desktop\\Capstone\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/cody/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\mchry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
