@@ -1,6 +1,52 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <style>
+        .sidenav {
+          height: 100%;
+          width: 0;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #111;
+          overflow-x: hidden;
+          transition: 0.5s;
+          padding-top: 60px;
+        }
+
+        .sidenav a, .dropdown-btn{
+          padding: 8px 8px 8px 32px;
+          text-decoration: none;
+          font-size: 16px;
+          color: #818181;
+          display: block;
+          transition: 0.3s;
+        }
+        .fa-caret-down {
+            padding-right: 8px;
+        }
+       
+        .sidenav a:hover {
+          color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            margin-left: 50px;
+        }
+        .dropdown-container {
+            display: none;
+            background-color: #262626;
+            padding-left: 8px;
+        }
+        .navbar{
+            position:center;
+            font-size:40px;
+        }
+    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - UNO Music Library</title>
@@ -13,63 +59,64 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE="/>
+              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <header>
-
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">UNO Music Library</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            Genres
-                            <ul>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Medieval</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Renaissance</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Baroque</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Classical</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Romantic</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Early 20th Century</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Modern</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Add Piece</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Add Ensemble</a>
-                        </li>
-                    </ul>
-                </div>
+    <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" style="font-size: 40px" class="closebtn" onclick="closeNav();dropdown()">&times;</a>
+            <form style="padding:10px" class="form-inline">
+                <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+                <i class="fa fa-search" style="color: #818181; padding-left:8px;" aria-hidden="true"></i>
+            </form>
+            <a href="#">Home</a>
+            <a href="#" class="dropdown-btn">
+                Genres
+                <i class="fa fa-caret-down"></i>
+            </a>
+            <div class="dropdown-container">
+                <a href="#">Medieval</a>
+                <a href="#">Renaissance</a>
+                <a href="#">Baroque</a>
+                <a href="#">Classical</a>
+                <a href="#">Romantic</a>
+                <a href="#">Early 20th Century</a>
+                <a href="#">Modern</a>
             </div>
-        </nav>
+            <a href="#">Add Piece</a>
+            <a href="#">Add Ensemble</a>
+        </div>
+        <span style="font-size:35px;cursor:pointer; padding-left:20px" onclick="openNav();dropdown()">&#9776;</span>
 
-    </header>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        function dropdown(){
+
+            var dropdown = document.getElementsByClassName("dropdown-btn");
+            var i;
+
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+                });
+        }
+}
+    </script>
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
@@ -77,7 +124,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted text-center">
         <div class="container">
             &copy; 2019 - <a asp-area="" asp-controller="Home" asp-action="">Lizst</a>
         </div>
