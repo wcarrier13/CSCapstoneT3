@@ -1,21 +1,29 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.Entity;
 
-namespace LizstMVC.Models
+namespace Lizst.Models
 {
-        public class Score
-        {
-            public string Title { get; set; }
-            public string Composer { get; set; }
-            public string Genre { get; set; }
-            public DateTime DateCheckedOut { get; set; }
-            public DateTime DueDate { get; set; }
-            public int NumberOfParts { get; set; }
-            public int ID { get; set; }
-        }
+    public class Score
+    {
+        public int ID { get; set; }
+        public string Title { get; set; }
+        public string Composer { get; set; }
+        public string Genre { get; set; }
+        public DateTime DateCheckedOut { get; set; }
+        public DateTime DueDate { get; set; }
+        public int NumberOfParts { get; set; }
 
+        public virtual ICollection<Piece> Pieces { get; set; }
+    }
+
+
+    public class ScoreDBContext : DbContext
+    {
+        public Microsoft.EntityFrameworkCore.DbSet<Score> scores { get; set; }
+    }
 
 }

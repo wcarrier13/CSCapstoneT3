@@ -1,53 +1,152 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LizstMVC.Data;
 using Microsoft.AspNetCore.Mvc;
-using LizstMVC.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Lizst.Models;
 
-namespace LizstMVC.Controllers
+namespace Lizst.Controllers
 {
     public class ScoreController : Controller
     {
-        private LibraryContext dbc = new LibraryContext();
+        private readonly LizstContext _context;
 
-        [HttpPost]
-        public IActionResult Add(string title, string composer, string genre, DateTime dateCheckedOut, DateTime dueDate, int numberOfParts)
+        public ScoreController(LizstContext context)
         {
-            Score newScore = new Score
+            _context = context;
+        }
+
+        // GET: Scores
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Score.ToListAsync());
+        }
+
+        // GET: Scores/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
             {
-                Title = title,
-                Composer = composer,
-                Genre = genre,
-                DateCheckedOut = dateCheckedOut,
-                DueDate = dueDate,
-                NumberOfParts = numberOfParts
-            };
-            dbc.Score.Add(newScore);
-            dbc.SaveChanges();
+                return NotFound();
+            }
 
-            return View();
+            var score = await _context.Score
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (score == null)
+            {
+                return NotFound();
+            }
 
+            return View(score);
         }
-        // GET: Score
-        public ActionResult Index()
+
+        // GET: Scores/Create
+        public IActionResult Create()
         {
             return View();
         }
 
-        //public ActionResult Edit(int id)
-        //{
-            //return View();
-       // }
-       /*
-        public ActionResult Delete(Score score)
+        // POST: Scores/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("ID","Genre", "Title", "Composer", "NumberOfParts")] Score score)
         {
-            var dbScore = dbc.Score.find(score.id);
-            dbc.Scores.remove(dbScore);
-            dbc.saveChanges();
-            return View();
+            if (ModelState.IsValid)
+            {
+                _context.Add(score);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(score);
         }
-*/
+
+        // GET: Scores/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var score = await _context.Score.FindAsync(id);
+            if (score == null)
+            {
+                return NotFound();
+            }
+            return View(score);
+        }
+
+        // POST: Scores/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("ID")] Score score)
+        {
+            if (id != score.ID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(score);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ScoreExists(score.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(score);
+        }
+
+        // GET: Scores/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var score = await _context.Score
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (score == null)
+            {
+                return NotFound();
+            }
+
+            return View(score);
+        }
+
+        // POST: Scores/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var score = await _context.Score.FindAsync(id);
+            _context.Score.Remove(score);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool ScoreExists(int id)
+        {
+            return _context.Score.Any(e => e.ID == id);
+        }
     }
 }

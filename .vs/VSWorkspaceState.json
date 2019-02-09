@@ -3,13 +3,11 @@
     "\\bin",
     "\\bin\\Debug",
     "\\bin\\Debug\\netcoreapp2.2",
-    "\\bin\\Release",
-    "\\bin\\Release\\netcoreapp2.2",
     "\\Controllers",
+    "\\Data",
+    "\\Models",
     "\\obj",
-    "\\obj\\Debug",
-    "\\obj\\Release",
-    "\\Properties"
+    "\\Views"
   ],
-  "PreviewInSolutionExplorer": false
+  "PreviewInSolutionExplorer": true
 }

@@ -16,5 +16,6 @@ namespace Lizst.Models
         }
 
         public DbSet<Lizst.Models.Test> Test { get; set; }
+        public DbSet<Lizst.Models.Score> Score { get; set; }
     }
 }
