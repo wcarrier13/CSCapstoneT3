@@ -2,14 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using LizstMVC.Data;
 using Microsoft.AspNetCore.Mvc;
-using static LizstMVC.Models.LibraryModel;
+using LizstMVC.Models;
 
 namespace LizstMVC.Controllers
 {
     public class ScoreController : Controller
     {
+        private LibraryContext dbc = new LibraryContext();
+
         [HttpPost]
         public IActionResult Add(string title, string composer, string genre, DateTime dateCheckedOut, DateTime dueDate, int numberOfParts)
         {
@@ -17,13 +19,15 @@ namespace LizstMVC.Controllers
             {
                 Title = title,
                 Composer = composer,
-                genre = genre,
+                Genre = genre,
                 DateCheckedOut = dateCheckedOut,
                 DueDate = dueDate,
-                numberOfParts = numberOfParts
+                NumberOfParts = numberOfParts
             };
             dbc.Score.Add(newScore);
             dbc.SaveChanges();
+
+            return View();
 
         }
         // GET: Score
@@ -32,18 +36,18 @@ namespace LizstMVC.Controllers
             return View();
         }
 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
+        //public ActionResult Edit(int id)
+        //{
+            //return View();
+       // }
+       /*
         public ActionResult Delete(Score score)
         {
-            var dbScore = dbc.Scores.find(score.id);
+            var dbScore = dbc.Score.find(score.id);
             dbc.Scores.remove(dbScore);
             dbc.saveChanges();
             return View();
         }
-
+*/
     }
 }

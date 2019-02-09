@@ -12078,11 +12078,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mchry\\Desktop\\Capstone\\Lizst.csproj",
+      "projectUniqueName": "C:\\Users\\mchry\\source\\repos\\wcarrier13\\CSCapstoneT3\\Lizst.csproj",
       "projectName": "Lizst",
-      "projectPath": "C:\\Users\\mchry\\Desktop\\Capstone\\Lizst.csproj",
+      "projectPath": "C:\\Users\\mchry\\source\\repos\\wcarrier13\\CSCapstoneT3\\Lizst.csproj",
       "packagesPath": "C:\\Users\\mchry\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mchry\\Desktop\\Capstone\\obj\\",
+      "outputPath": "C:\\Users\\mchry\\source\\repos\\wcarrier13\\CSCapstoneT3\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
