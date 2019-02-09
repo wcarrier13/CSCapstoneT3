@@ -21,6 +21,13 @@ namespace Lizst.Controllers
         // GET: Tests
         public async Task<IActionResult> Index()
         {
+            await _context.Test.ToListAsync();
+            System.Diagnostics.Debug.WriteLine("Testing");
+            //Console.WriteLine("Testing");
+            foreach (Test var in _context.Test)
+            {
+                System.Diagnostics.Debug.WriteLine("Tested ID is "+var.ID);
+            }
             return View(await _context.Test.ToListAsync());
         }
 
