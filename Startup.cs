@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,11 +10,14 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.EntityFrameworkCore;
+using Lizst.Models;
+using MySql.Data;
 namespace LizstMVC
 {
     public class Startup
     {
+        private const string ConnectionString = "server=ec2-3-16-188-153.us-east-2.compute.amazonaws.com;database=Lizst;user id=lizst;Password=BirdCabinet;";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,6 +37,11 @@ namespace LizstMVC
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings["DbContext"];
+            services.AddDbContext<LizstContext>(options => 
+            options.UseMySQL(ConnectionString));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
