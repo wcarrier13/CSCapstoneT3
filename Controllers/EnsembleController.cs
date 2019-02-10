@@ -9,23 +9,22 @@ using Lizst.Models;
 
 namespace Lizst.Controllers
 {
-    public class ScoreController : Controller
+    public class EnsembleController : Controller
     {
         private readonly LizstContext _context;
-     
 
-        public ScoreController(LizstContext context)
+        public EnsembleController(LizstContext context)
         {
             _context = context;
         }
 
-        // GET: Scores
+        // GET: Ensembles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Score.ToListAsync());
+            return View(await _context.Ensemble.ToListAsync());
         }
 
-        // GET: Scores/Details/5
+        // GET: Tests/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +32,39 @@ namespace Lizst.Controllers
                 return NotFound();
             }
 
-            var score = await _context.Score
+            var ensemble = await _context.Ensemble
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (score == null)
+            if (ensemble == null)
             {
                 return NotFound();
             }
 
-            return View(score);
+            return View(ensemble);
         }
 
-        // GET: Scores/Create
+        // GET: Tests/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Scores/Create
+        // POST: Tests/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID","Genre", "Title", "Composer", "NumberOfParts")] Score score)
+        public async Task<IActionResult> Create([Bind("ID")] Ensemble ensemble)
         {
             if (ModelState.IsValid)
             {
-                _context.Score.Add(score);
+                _context.Add(ensemble);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(score);
+            return View(ensemble);
         }
 
-        // GET: Scores/Edit/5
+        // GET: Tests/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +72,22 @@ namespace Lizst.Controllers
                 return NotFound();
             }
 
-            var score = await _context.Score.FindAsync(id);
-            if (score == null)
+            var ensemble = await _context.Ensemble.FindAsync(id);
+            if (ensemble == null)
             {
                 return NotFound();
             }
-            return View(score);
+            return View(ensemble);
         }
 
-        // POST: Scores/Edit/5
+        // POST: Tests/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID")] Score score)
+        public async Task<IActionResult> Edit(int id, [Bind("ID")] Ensemble ensemble)
         {
-            if (id != score.ID)
+            if (id != ensemble.ID)
             {
                 return NotFound();
             }
@@ -97,12 +96,12 @@ namespace Lizst.Controllers
             {
                 try
                 {
-                    _context.Score.Update(score);
+                    _context.Update(ensemble);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ScoreExists(score.ID))
+                    if (!EnsembleExists(ensemble.ID))
                     {
                         return NotFound();
                     }
@@ -113,10 +112,10 @@ namespace Lizst.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(score);
+            return View(ensemble);
         }
 
-        // GET: Scores/Delete/5
+        // GET: Tests/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +123,30 @@ namespace Lizst.Controllers
                 return NotFound();
             }
 
-            var score = await _context.Score
+            var ensemble = await _context.Ensemble
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (score == null)
+            if (ensemble == null)
             {
                 return NotFound();
             }
 
-            return View(score);
+            return View(ensemble);
         }
 
-        // POST: Scores/Delete/5
+        // POST: Tests/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var score = await _context.Score.FindAsync(id);
-            _context.Score.Remove(score);
+            var ensemble = await _context.Ensemble.FindAsync(id);
+            _context.Ensemble.Remove(ensemble);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ScoreExists(int id)
+        private bool EnsembleExists(int id)
         {
-            return _context.Score.Any(e => e.ID == id);
+            return _context.Ensemble.Any(e => e.ID == id);
         }
     }
 }
