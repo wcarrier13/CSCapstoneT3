@@ -9,12 +9,10 @@ namespace Lizst.Models
 {
     public class Piece
     {
-        public int ID { get; set; }
-        public string Instrument { get; set; }
-        public string Number { get; set; }
-        public DateTime DateCheckedOut { get; set; }
-        public DateTime DueDate { get; set; }
-        public string EnsembleMember { get; set; }
+        public int PieceId { get; set; }
+        public string Part { get; set; }
+        public string Condition { get; set; }
+        public int ScoreId { get; set; }
 
     }
 

@@ -34,7 +34,7 @@ namespace Lizst.Controllers
             }
 
             var score = await _context.Score
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ScoreId == id);
             if (score == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace Lizst.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID")] Score score)
         {
-            if (id != score.ID)
+            if (id != score.ScoreId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Lizst.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ScoreExists(score.ID))
+                    if (!ScoreExists(score.ScoreId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Lizst.Controllers
             }
 
             var score = await _context.Score
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ScoreId == id);
             if (score == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace Lizst.Controllers
 
         private bool ScoreExists(int id)
         {
-            return _context.Score.Any(e => e.ID == id);
+            return _context.Score.Any(e => e.ScoreId == id);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Lizst.Controllers
             }
 
             var ensemble = await _context.Ensemble
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.EnsembleId == id);
             if (ensemble == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace Lizst.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID")] Ensemble ensemble)
         {
-            if (id != ensemble.ID)
+            if (id != ensemble.EnsembleId)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace Lizst.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EnsembleExists(ensemble.ID))
+                    if (!EnsembleExists(ensemble.EnsembleId))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace Lizst.Controllers
             }
 
             var ensemble = await _context.Ensemble
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.EnsembleId == id);
             if (ensemble == null)
             {
                 return NotFound();
@@ -146,7 +146,7 @@ namespace Lizst.Controllers
 
         private bool EnsembleExists(int id)
         {
-            return _context.Ensemble.Any(e => e.ID == id);
+            return _context.Ensemble.Any(e => e.EnsembleId == id);
         }
     }
 }

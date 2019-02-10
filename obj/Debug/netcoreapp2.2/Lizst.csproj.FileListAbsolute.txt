@@ -58,7 +58,6 @@ C:\Users\mchry\Desktop\Capstone\obj\Debug\netcoreapp2.2\Lizst.Views.pdb
 C:\Users\mchry\Desktop\Capstone\obj\Debug\netcoreapp2.2\Lizst.dll
 C:\Users\mchry\Desktop\Capstone\obj\Debug\netcoreapp2.2\Lizst.pdb
 C:\Users\mchry\Desktop\Capstone\obj\Debug\netcoreapp2.2\Lizst.csproj.CopyComplete
-C:\Users\mchry\Source\Repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Lizst.csprojAssemblyReference.cache
 C:\Users\mchry\Source\Repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Lizst.csproj.CoreCompileInputs.cache
 C:\Users\mchry\Source\Repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Lizst.RazorAssemblyInfo.cache
 C:\Users\mchry\Source\Repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Lizst.RazorAssemblyInfo.cs
