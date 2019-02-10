@@ -54,7 +54,7 @@ namespace Lizst.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID","Genre", "Title", "Composer", "NumberOfParts")] Score score)
+        public async Task<IActionResult> Create(Score score)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,6 @@ namespace Lizst.Controllers
             return View(score);
         }
 
-        // GET: Scores/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,7 +72,7 @@ namespace Lizst.Controllers
                 return NotFound();
             }
 
-            var score = await _context.Score.FindAsync(id);
+            var  score = await _context.Score.FindAsync(id);
             if (score == null)
             {
                 return NotFound();
@@ -81,12 +80,12 @@ namespace Lizst.Controllers
             return View(score);
         }
 
-        // POST: Scores/Edit/5
+        // POST: Tests/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID")] Score score)
+        public async Task<IActionResult> Edit(int id, [Bind("ScoreId", "Title", "Composer", "Genre", "NumberOfParts")] Score score)
         {
             if (id != score.ScoreId)
             {
@@ -97,7 +96,7 @@ namespace Lizst.Controllers
             {
                 try
                 {
-                    _context.Score.Update(score);
+                    _context.Update(score);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

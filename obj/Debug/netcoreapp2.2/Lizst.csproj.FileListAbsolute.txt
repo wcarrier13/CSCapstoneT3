@@ -95,3 +95,9 @@ C:\Users\mchry\source\repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Razo
 C:\Users\mchry\source\repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Razor\Views\Tests\Index.g.cshtml.cs
 C:\Users\mchry\source\repos\wcarrier13\CSCapstoneT3\bin\Debug\netcoreapp2.2\MySql.Data.EntityFramework.dll
 C:\Users\mchry\source\repos\wcarrier13\CSCapstoneT3\bin\Debug\netcoreapp2.2\MySql.Data.EntityFramework.xml
+C:\Users\mchry\source\repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Razor\Views\Score\Create.g.cshtml.cs
+C:\Users\mchry\source\repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Razor\Views\Score\Delete.g.cshtml.cs
+C:\Users\mchry\source\repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Razor\Views\Score\Index.g.cshtml.cs
+C:\Users\mchry\source\repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Razor\Views\Score\View.g.cshtml.cs
+C:\Users\mchry\source\repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Razor\Views\Score\Details.g.cshtml.cs
+C:\Users\mchry\source\repos\wcarrier13\CSCapstoneT3\obj\Debug\netcoreapp2.2\Razor\Views\Score\Edit.g.cshtml.cs

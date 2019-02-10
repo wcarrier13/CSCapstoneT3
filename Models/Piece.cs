@@ -13,7 +13,7 @@ namespace Lizst.Models
         public string Part { get; set; }
         public string Condition { get; set; }
         public int ScoreId { get; set; }
-
+        public string Edition { get; set; }
     }
 
 

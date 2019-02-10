@@ -13,6 +13,5 @@ namespace Lizst.Models
         public string Part { get; set; }
         public string Email { get; set; }
 
-
     }
 }
