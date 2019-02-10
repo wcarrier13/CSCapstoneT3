@@ -9,23 +9,29 @@ using Lizst.Models;
 
 namespace Lizst.Controllers
 {
-    public class ScoreController : Controller
+    public class TestsController : Controller
     {
         private readonly LizstContext _context;
-     
 
-        public ScoreController(LizstContext context)
+        public TestsController(LizstContext context)
         {
             _context = context;
         }
 
-        // GET: Scores
+        // GET: Tests
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Score.ToListAsync());
+            await _context.Test.ToListAsync();
+            System.Diagnostics.Debug.WriteLine("Testing");
+            //Console.WriteLine("Testing");
+            foreach (Test var in _context.Test)
+            {
+                System.Diagnostics.Debug.WriteLine("Tested ID is "+var.ID);
+            }
+            return View(await _context.Test.ToListAsync());
         }
 
-        // GET: Scores/Details/5
+        // GET: Tests/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,38 +39,39 @@ namespace Lizst.Controllers
                 return NotFound();
             }
 
-            var score = await _context.Score
-                .FirstOrDefaultAsync(m => m.ScoreId == id);
-            if (score == null)
+            var test = await _context.Test
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (test == null)
             {
                 return NotFound();
             }
 
-            return View(score);
+            return View(test);
         }
 
-        // GET: Scores/Create
+        // GET: Tests/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Scores/Create
+        // POST: Tests/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Score score)
+        public async Task<IActionResult> Create([Bind("ID")] Test test)
         {
             if (ModelState.IsValid)
             {
-                _context.Score.Add(score);
+                _context.Add(test);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(score);
+            return View(test);
         }
 
+        // GET: Tests/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,12 +79,12 @@ namespace Lizst.Controllers
                 return NotFound();
             }
 
-            var  score = await _context.Score.FindAsync(id);
-            if (score == null)
+            var test = await _context.Test.FindAsync(id);
+            if (test == null)
             {
                 return NotFound();
             }
-            return View(score);
+            return View(test);
         }
 
         // POST: Tests/Edit/5
@@ -85,9 +92,9 @@ namespace Lizst.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ScoreId", "Title", "Composer", "Genre", "NumberOfParts")] Score score)
+        public async Task<IActionResult> Edit(int id, [Bind("ID")] Test test)
         {
-            if (id != score.ScoreId)
+            if (id != test.ID)
             {
                 return NotFound();
             }
@@ -96,12 +103,12 @@ namespace Lizst.Controllers
             {
                 try
                 {
-                    _context.Update(score);
+                    _context.Update(test);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ScoreExists(score.ScoreId))
+                    if (!TestExists(test.ID))
                     {
                         return NotFound();
                     }
@@ -112,10 +119,10 @@ namespace Lizst.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(score);
+            return View(test);
         }
 
-        // GET: Scores/Delete/5
+        // GET: Tests/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +130,30 @@ namespace Lizst.Controllers
                 return NotFound();
             }
 
-            var score = await _context.Score
-                .FirstOrDefaultAsync(m => m.ScoreId == id);
-            if (score == null)
+            var test = await _context.Test
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (test == null)
             {
                 return NotFound();
             }
 
-            return View(score);
+            return View(test);
         }
 
-        // POST: Scores/Delete/5
+        // POST: Tests/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var score = await _context.Score.FindAsync(id);
-            _context.Score.Remove(score);
+            var test = await _context.Test.FindAsync(id);
+            _context.Test.Remove(test);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ScoreExists(int id)
+        private bool TestExists(int id)
         {
-            return _context.Score.Any(e => e.ScoreId == id);
+            return _context.Test.Any(e => e.ID == id);
         }
     }
 }
