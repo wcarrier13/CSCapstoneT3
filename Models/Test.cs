@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data;
 using System.Data.Entity;
 
 namespace Lizst.Models
@@ -12,8 +13,10 @@ namespace Lizst.Models
 
     }
 
+    
     public class TestDBContext : DbContext
     {
-        public DbSet<Test> tests { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Test> tests { get; set; }
     }
+    
 }
