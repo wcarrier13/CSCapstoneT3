@@ -19,23 +19,26 @@ namespace Lizst.Controllers
         }
 
         // GET: /Results/
-        public IActionResult Index(string id)
+        public IActionResult Index(string search)
         {
+            search = search.ToLower();
+
             IEnumerable<Score> scores;
             //No information passed, return all results.
-            if (id.Equals(""))
+            if (search == null)
             {
                 scores =
                     from score in _context.Score
                     where true
                     select score;
+
+                return View(scores);
             }
 
             //Select relevant scores from the score database context.
-            //Currently selecting everything.
             scores =
                 from score in _context.Score
-                where true
+                where Search.Relevant(score, search)
                 select score;
 
             return View(scores);
