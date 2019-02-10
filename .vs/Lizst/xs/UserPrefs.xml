@@ -1,0 +1,18 @@
+﻿<Properties StartupConfiguration="{47469F00-38E8-4BB6-94FE-42BD8EA5F101}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="wwwroot/css/site.css">
+    <Files>
+      <File FileName="Views/Ensemble/AddEnsemble.cshtml" Line="4" Column="7" />
+      <File FileName="Controllers/EnsembleController.cs" Line="20" Column="27" />
+      <File FileName="Views/Ensemble/EditEnsemble.cshtml" Line="20" Column="8" />
+      <File FileName="Views/Shared/_Layout.cshtml" Line="1" Column="1" />
+      <File FileName="wwwroot/css/site.css" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Lizst PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

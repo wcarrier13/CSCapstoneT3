@@ -12,5 +12,10 @@
 
   <ItemGroup>
     <Folder Include="Views\Results\" />
+    <Folder Include="Views\Piece\" />
+    <Folder Include="Views\Ensemble\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\EnsembleController %28copy%29.cs" />
   </ItemGroup>
 </Project>

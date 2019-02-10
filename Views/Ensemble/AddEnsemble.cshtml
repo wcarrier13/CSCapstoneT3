@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Add Ensemble";
+}
+<form style="padding-top:20px; padding-bottom:20px;">
+    <fieldset>
+        <legend><b>Add Ensemble</b></legend>
+        <div class="form-group">
+            <label for="ensembleName">Ensemble Name: </label>
+            <textarea class="form-control" id="ensembleName" rows="1"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="ensembleYear">Year: </label>
+            <textarea class="form-control" id="ensembleYear" rows="1"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="conductor">Conductor / Director: </label>
+            <textarea class="form-control" id="conductor" rows="1"></textarea>
+        </div>
+    </fieldset>
+</form>
+<form style="padding-top:20px; padding-bottom:20px;">
+    <fieldset>
+        <legend><b>Add Instrument</b></legend>
+        <div class="form-group">
+            <label for="instrumentSelect">Select Instrument: </label>
+            <select class="form-control" id="instrumentSelect">
+                <option>"Violin 1"</option>
+                <option>"Violin 2"</option>
+                <option>"Viola"</option>
+                <option>"Cello"</option>
+                <option>"Bass"</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="musicianName">Musician Name: </label>
+            <textarea class="form-control" id="musicianName" rows="1"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="musicianEmail">Musician Email: </label>
+            <textarea class="form-control" id="musicianEmail" rows="1"></textarea>
+        </div>
+    </fieldset>
+</form>
+
+<div class="text-center">
+    <button type="save" class="btn btn-primary btn-md" style="width: 180px;">Save</button>
+</div>
