@@ -14,14 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
-    <Folder Include="Views\Results\" />
-    <Folder Include="Views\Piece\" />
-    <Folder Include="Views\Ensemble\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Controllers\EnsembleController %28copy%29.cs" />
-=======
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\..\Program Files (x86)\MySQL\Connector NET 8.0\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
     </Reference>
@@ -31,6 +23,5 @@
     <Reference Include="MySql.Data.EntityFrameworkCore">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 8.0.15\Assemblies\v4.5.2\MySQL.Data.EntityFrameworkCore.dll</HintPath>
     </Reference>
->>>>>>> 23e99d11763f87b51b988c179e472bc2deb6c5e4
   </ItemGroup>
 </Project>

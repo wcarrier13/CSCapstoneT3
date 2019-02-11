@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Lizst.Models.Ensemble>
+
+@{
+    ViewData["Title"] = "Ensembles";
+}
+
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ensembles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Lizst.Models.Ensemble ensemble in Model)
+            {
+                <tr>
+                    <td>
+                        @ensemble.EnsembleName
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

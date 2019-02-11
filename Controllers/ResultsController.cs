@@ -21,7 +21,6 @@ namespace Lizst.Controllers
         // GET: /Results/
         public IActionResult Index(string search)
         {
-            search = search.ToLower();
 
             IEnumerable<Score> scores;
             //No information passed, return all results.
@@ -34,6 +33,8 @@ namespace Lizst.Controllers
 
                 return View(scores);
             }
+
+            search = search.ToLower();
 
             //Select relevant scores from the score database context.
             scores =
