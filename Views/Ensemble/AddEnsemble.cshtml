@@ -1,24 +1,29 @@
-﻿@{
+﻿@model Lizst.Models.Ensemble
+
+@{
     ViewData["Title"] = "Add Ensemble";
 }
-<form style="padding-top:20px; padding-bottom:20px;">
+<form asp-action="Create" style="padding-top:20px; padding-bottom:20px;">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <fieldset>
         <legend><b>Add Ensemble</b></legend>
         <div class="form-group">
-            <label for="ensembleName">Ensemble Name: </label>
-            <textarea class="form-control" id="ensembleName" rows="1"></textarea>
+            <label for="EnsembleName">Ensemble Name: </label>
+            <input asp-for="EnsembleName" class="form-control" />
+            <span asp-validation-for="EnsembleName" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label for="ensembleYear">Year: </label>
-            <textarea class="form-control" id="ensembleYear" rows="1"></textarea>
+            <input asp-for="Year" class="form-control" />
+            <span asp-validation-for="Year" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label for="conductor">Conductor / Director: </label>
-            <textarea class="form-control" id="conductor" rows="1"></textarea>
+            <input asp-for="Conductor" class="form-control" />
+            <span asp-validation-for="Conductor" class="text-danger"></span>
         </div>
     </fieldset>
-</form>
-<form style="padding-top:20px; padding-bottom:20px;">
+
     <fieldset>
         <legend><b>Add Instrument</b></legend>
         <div class="form-group">
@@ -40,8 +45,12 @@
             <textarea class="form-control" id="musicianEmail" rows="1"></textarea>
         </div>
     </fieldset>
+    <div class="text-center">
+        <input type="submit" value="Save" class="btn btn-primary" style="width: 180px;" />
+    </div>
 </form>
 
-<div class="text-center">
-    <button type="save" class="btn btn-primary btn-md" style="width: 180px;">Save</button>
-</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -20,16 +20,34 @@ namespace Lizst.Controllers
 
 
 
-        // GET: /<controller>/
+        // GET: Ensemble/
         public IActionResult Index()
         {
-
             return View(_context.Ensemble);
         }
+
+        // GET: Ensemble/AddEnsemble
         public IActionResult AddEnsemble()
         {
             return View();
         }
+
+        // POST :Ensemble/AddEnsemble
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddEnsemble(Ensemble ensemble)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Ensemble.Add(ensemble);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(ensemble);
+        }
+
+        // GET: Ensemble/EditEnsemble
         public IActionResult EditEnsemble()
         {
             return View();

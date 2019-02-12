@@ -11,7 +11,10 @@ namespace Lizst.Models
     {
         public int EnsembleId { get; set; }
         public string EnsembleName { get; set; }
-       
+        public string Conductor { get; set; }
+        public string Year { get; set; }
+        public IEnumerable<EnsemblePlayers> playerLink;
+        public IEnumerable<Musician> players;
     }
 
     public class EnsembleContext : DbContext
