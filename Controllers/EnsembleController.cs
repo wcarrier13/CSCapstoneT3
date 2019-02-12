@@ -71,7 +71,6 @@ namespace Lizst.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditEnsemble(string id, [Bind("EnsembleId","EnsembleName","Year","Conductor")] Ensemble ensemble )
         {
-            System.Diagnostics.Debug.WriteLine("\n\n"+id+"\n\n");
             if (id != null)
             {
                 if (id.Equals("Delete"))
