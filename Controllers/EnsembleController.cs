@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Lizst.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -48,9 +50,66 @@ namespace Lizst.Controllers
         }
 
         // GET: Ensemble/EditEnsemble
-        public IActionResult EditEnsemble()
+        public async Task<IActionResult> EditEnsemble(int? id)
         {
-            return View();
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var ensemble = await _context.Ensemble.FindAsync(id);
+            if(ensemble == null)
+            {
+                return NotFound();
+            }
+
+            return View(ensemble);
+        }
+
+        //POST: Ensemble/EditEnsemble/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditEnsemble(string id, [Bind("EnsembleId","EnsembleName","Year","Conductor")] Ensemble ensemble )
+        {
+            System.Diagnostics.Debug.WriteLine("\n\n"+id+"\n\n");
+            if (id != null)
+            {
+                if (id.Equals("Delete"))
+                {
+                    IEnumerable<Ensemble> find =
+                        from ens in _context.Ensemble
+                        where ens.EnsembleId == ensemble.EnsembleId
+                        select ens;
+                    _context.Ensemble.RemoveRange(find);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(ensemble);
+                    await (_context.SaveChangesAsync());
+                } catch (DbUpdateConcurrencyException)
+                {
+                    if (!EnsembleExists(ensemble.EnsembleId))
+                    {
+                        return NotFound();
+                    } else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(ensemble);
+        }
+
+        private bool EnsembleExists(int id)
+        {
+            return _context.Ensemble.Any(e => e.EnsembleId == id);
         }
     }
 }
