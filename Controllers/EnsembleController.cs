@@ -37,16 +37,43 @@ namespace Lizst.Controllers
         // POST :Ensemble/AddEnsemble
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddEnsemble(Ensemble ensemble)
+        public async Task<IActionResult> AddEnsemble(string add, EnsembleAndMusician model)
         {
             if (ModelState.IsValid)
             {
-                _context.Ensemble.Add(ensemble);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //User saving Ensemble to database.
+                if (add.Equals("Save"))
+                {
+                    //Ensemble record not yet in database, add it.
+                    if (!_context.Ensemble.Any(e => e.EnsembleId == model.Ensemble.EnsembleId))
+                    {
+                        _context.Ensemble.Add(model.Ensemble);
+                    }
+                    //Ensemble was temporarily added to allow for inclusion of musicians.
+                    //Update DB to include all ensemble information.
+                    else
+                    {
+                        _context.Ensemble.Update(model.Ensemble);
+                    }
+                    _context.Ensemble.Add(model.Ensemble);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else if (add.Equals("Add Musician"))
+                {
+                    if (!_context.Ensemble.Any(e => e.EnsembleId == model.Ensemble.EnsembleId))
+                    {
+                        _context.Ensemble.Add(model.Ensemble);
+                    }
+
+
+                    _context.Musician.Add(model.Musician);
+                    model.Ensemble.AddPlayer(model.Musician, _context);
+                    await _context.SaveChangesAsync();
+                }
             }
 
-            return View(ensemble);
+            return View(model);
         }
 
         // GET: Ensemble/EditEnsemble
@@ -69,12 +96,14 @@ namespace Lizst.Controllers
         //POST: Ensemble/EditEnsemble/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditEnsemble(string id, [Bind("EnsembleId","EnsembleName","Year","Conductor")] Ensemble ensemble )
+        public async Task<IActionResult> EditEnsemble(int id, string button, [Bind("EnsembleId","EnsembleName","Year","Conductor")] Ensemble ensemble )
         {
-            if (id != null)
+            if (button != null)
             {
-                if (id.Equals("Delete"))
+                //Delete the ensemble from the database.
+                if (button.Equals("Delete"))
                 {
+                    //Just want the ID match, incase the of feilds changed.
                     IEnumerable<Ensemble> find =
                         from ens in _context.Ensemble
                         where ens.EnsembleId == ensemble.EnsembleId
@@ -85,6 +114,7 @@ namespace Lizst.Controllers
                 }
             }
 
+            //Update the ensemble
             if (ModelState.IsValid)
             {
                 try
@@ -101,10 +131,27 @@ namespace Lizst.Controllers
                         throw;
                     }
                 }
+                //Success
                 return RedirectToAction(nameof(Index));
             }
             return View(ensemble);
         }
+
+
+
+        public PartialViewResult Ensemble()
+        {
+            return PartialView("Ensemble", new Ensemble());
+        }
+
+        public PartialViewResult Musician()
+        {
+            return PartialView("Musician", new Musician());
+        }
+
+
+
+
 
         private bool EnsembleExists(int id)
         {

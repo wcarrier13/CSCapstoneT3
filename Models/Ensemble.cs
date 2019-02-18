@@ -13,12 +13,24 @@ namespace Lizst.Models
         public string EnsembleName { get; set; }
         public string Conductor { get; set; }
         public string Year { get; set; }
-        public IEnumerable<EnsemblePlayers> playerLink;
-        public IEnumerable<Musician> players;
+
+        public ICollection<EnsemblePlayers> Players { get; } = new List<EnsemblePlayers>();
+
+
+        public void AddPlayer(Musician musician, LizstContext context)
+        {
+            EnsemblePlayers pair = new EnsemblePlayers
+            {
+                EnsembleId = EnsembleId,
+                MusicianId = musician.MusicianId
+            };
+            Players.Add(pair);
+            context.EnsemblePlayers.Add(pair);
+        }
     }
 
     public class EnsembleContext : DbContext
     {
-        public Microsoft.EntityFrameworkCore.DbSet<Ensemble> ensembles { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Ensemble> Ensembles { get; set; }
     }
 }

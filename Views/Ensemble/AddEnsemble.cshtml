@@ -1,56 +1,55 @@
-﻿@model Lizst.Models.Ensemble
+﻿@model Lizst.Models.EnsembleAndMusician
 
 @{
     ViewData["Title"] = "Add Ensemble";
 }
-<form asp-action="Create" style="padding-top:20px; padding-bottom:20px;">
+<form asp-action="AddEnsemble" style="padding-top:20px; padding-bottom:20px;">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <fieldset>
         <legend><b>Add Ensemble</b></legend>
         <div class="form-group">
             <label for="EnsembleName">Ensemble Name: </label>
-            <input asp-for="EnsembleName" class="form-control" />
-            <span asp-validation-for="EnsembleName" class="text-danger"></span>
+            <input asp-for="Ensemble.EnsembleName" class="form-control" />
+            <span asp-validation-for="Ensemble.EnsembleName" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label for="ensembleYear">Year: </label>
-            <input asp-for="Year" class="form-control" />
-            <span asp-validation-for="Year" class="text-danger"></span>
+            <input asp-for="Ensemble.Year" class="form-control" />
+            <span asp-validation-for="Ensemble.Year" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label for="conductor">Conductor / Director: </label>
-            <input asp-for="Conductor" class="form-control" />
-            <span asp-validation-for="Conductor" class="text-danger"></span>
-        </div>
-    </fieldset>
-
-    <fieldset>
-        <legend><b>Add Instrument</b></legend>
-        <div class="form-group">
-            <label for="instrumentSelect">Select Instrument: </label>
-            <select class="form-control" id="instrumentSelect">
-                <option>"Violin 1"</option>
-                <option>"Violin 2"</option>
-                <option>"Viola"</option>
-                <option>"Cello"</option>
-                <option>"Bass"</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="musicianName">Musician Name: </label>
-            <textarea class="form-control" id="musicianName" rows="1"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="musicianEmail">Musician Email: </label>
-            <textarea class="form-control" id="musicianEmail" rows="1"></textarea>
+            <input asp-for="Ensemble.Conductor" class="form-control" />
+            <span asp-validation-for="Ensemble.Conductor" class="text-danger"></span>
         </div>
     </fieldset>
     <div class="text-center">
-        <input type="submit" value="Save" class="btn btn-primary" style="width: 180px;" />
+        <input type="submit" name="add" value="Save" class="btn btn-primary" style="width: 180px;" />
     </div>
+
+    <div class="MusicianEditor">
+        @using (Html.BeginForm())
+        {
+            @Html.EditorFor(m=>m.Musician)
+        }
+    </div>
+        <button type="button" id="addnewrow">Add Row</button>
+        <input type="submit" class="btn btn-md" style="width:180px;" name="add" value="Add Musician" />
 </form>
 
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script type="text/javascript">var newRow, firstIdx, currIdx;
+        $(document).ready(function () {
+            newRow = $('#MusicianEditor').children().last().clone();
+            firstIdx = /\[(\d)\]/g.exec($('input', newRow).first().attr('name'))[1];
+            currIdx = firstIdx;
+        })
+        $('#addnewrow').click(function () {
+            var row = $(newRow).clone();
+            currIdx++;
+            $('input', row).each(function (i, e) { $(e).attr('name', $(e).attr('name').replace('[' + firstIdx + ']', '[' + currIdx + ']')); });
+            $('#childeditors').append(row);
+        });</script>
 }

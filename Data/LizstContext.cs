@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.EntityFrameworkCore.Extensions;
 using System.Configuration;
+using Lizst.Models;
 
 namespace Lizst.Models
 {
@@ -15,8 +16,19 @@ namespace Lizst.Models
         {
         }
 
-        public DbSet<Lizst.Models.Test> Test { get; set; }
-        public DbSet<Lizst.Models.Score> Score { get; set; }
-        public DbSet<Lizst.Models.Ensemble> Ensemble { get; set; }
+        //Configure EnsemblePlayers to use the pair ensembleid and musicianid
+        //as primary key, rather than using either on their own.
+        //Allows a many to many relationship.
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<EnsemblePlayers>()
+                .HasKey(ep => new { ep.EnsembleId, ep.MusicianId });
+        }
+
+        public DbSet<Test> Test { get; set; }
+        public DbSet<Score> Score { get; set; }
+        public DbSet<Ensemble> Ensemble { get; set; }
+        public DbSet<EnsemblePlayers> EnsemblePlayers { get; set; }
+        public DbSet<Musician> Musician { get; set; }
     }
 }

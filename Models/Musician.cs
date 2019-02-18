@@ -9,9 +9,15 @@ namespace Lizst.Models
     {
         public int MusicianId { get; set; }
         public int StudentId { get; set; }
-        public string MusicanName { get; set; }
+        public string MusicianName { get; set; }
         public string Part { get; set; }
         public string Email { get; set; }
 
+        public ICollection<EnsemblePlayers> Ensembles { get; } = new List<EnsemblePlayers>();
+
+        public void AddEnsemble(Ensemble ensemble)
+        {
+            //Ensembles.Add(ensemble);
+        }
     }
 }
