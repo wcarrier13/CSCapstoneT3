@@ -25,7 +25,6 @@ namespace Lizst.Models
                 .HasKey(ep => new { ep.EnsembleId, ep.MusicianId });
         }
 
-        public DbSet<Test> Test { get; set; }
         public DbSet<Score> Score { get; set; }
         public DbSet<Ensemble> Ensemble { get; set; }
         public DbSet<EnsemblePlayers> EnsemblePlayers { get; set; }

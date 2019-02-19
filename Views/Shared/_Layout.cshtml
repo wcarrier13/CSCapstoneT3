@@ -83,13 +83,13 @@
                         <i class="fa fa-caret-down"></i>
                     </a>
                     <div class="dropdown-container">
-                        <a href="Results/?Genre=Medieval"   >Medieval</a>
-                        <a href="Results/?Genre=Renaissance">Renaissance</a>
-                        <a href="Results/?Genre=Baroque"    >Baroque</a>
-                        <a href="Results/?Genre=Classical"  >Classical</a>
-                        <a href="Results/?Genre=Romantic"   >Romantic</a>
-                        <a href="Results/?Genre=Early20thCentury">Early 20th Century</a>
-                        <a href="Results/?Genre=Modern"     >Modern</a>
+                        <a href="/Results/?Genre=Medieval"   >Medieval</a>
+                        <a href="/Results/?Genre=Renaissance">Renaissance</a>
+                        <a href="/Results/?Genre=Baroque"    >Baroque</a>
+                        <a href="/Results/?Genre=Classical"  >Classical</a>
+                        <a href="/Results/?Genre=Romantic"   >Romantic</a>
+                        <a href="/Results/?Genre=Early20thCentury">Early 20th Century</a>
+                        <a href="/Results/?Genre=Modern"     >Modern</a>
                     </div>
                     <a asp-controller="Score" asp-action="AddScore">Add Score</a>
                     <a asp-controller="Ensemble" asp-action="AddEnsemble">Add Ensemble</a>
@@ -126,7 +126,6 @@
     </script>
 
     <div class="container">
-        <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

@@ -1,6 +1,6 @@
 using System;
 
-namespace LizstMVC.Models
+namespace Lizst.Models
 {
     public class ErrorViewModel
     {

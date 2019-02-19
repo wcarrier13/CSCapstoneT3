@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using LizstMVC.Models;
+using Lizst.Models;
 
-namespace LizstMVC.Controllers
+namespace Lizst.Controllers
 {
     public class HomeController : Controller
     {
