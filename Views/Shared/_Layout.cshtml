@@ -74,7 +74,7 @@
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" style="font-size: 40px" class="closebtn" onclick="closeNav();dropdown()">&times;</a>
                     <form style="padding:10px" class="form-inline" method="post" action="/Results/">
-                        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="search">
+                        <input class="form-control form-control-sm ml-3 w-75 col-8" type="text" placeholder="Search" aria-label="Search" name="search">
                         <button type="submit"><i class="fa fa-search" style="color: #818181; padding-left:8px; font-size:16px" aria-hidden="true"></i></button>
                     </form>
                     <a asp-controller="Home" asp-action="Index">Home</a>
@@ -83,13 +83,13 @@
                         <i class="fa fa-caret-down"></i>
                     </a>
                     <div class="dropdown-container">
-                        <a href="#">Medieval</a>
-                        <a href="#">Renaissance</a>
-                        <a href="#">Baroque</a>
-                        <a href="#">Classical</a>
-                        <a href="#">Romantic</a>
-                        <a href="#">Early 20th Century</a>
-                        <a href="#">Modern</a>
+                        <a href="Results/?Genre=Medieval"   >Medieval</a>
+                        <a href="Results/?Genre=Renaissance">Renaissance</a>
+                        <a href="Results/?Genre=Baroque"    >Baroque</a>
+                        <a href="Results/?Genre=Classical"  >Classical</a>
+                        <a href="Results/?Genre=Romantic"   >Romantic</a>
+                        <a href="Results/?Genre=Early20thCentury">Early 20th Century</a>
+                        <a href="Results/?Genre=Modern"     >Modern</a>
                     </div>
                     <a asp-controller="Score" asp-action="AddScore">Add Score</a>
                     <a asp-controller="Ensemble" asp-action="AddEnsemble">Add Ensemble</a>
