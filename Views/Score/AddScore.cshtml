@@ -1,33 +1,42 @@
-﻿@{
+﻿@model Lizst.Models.Score
+
+@{
     ViewData["Title"] = "Add Score";
 }
 
-<form style="padding-top:20px; padding-bottom:20px;">
+<form asp-action="AddEnsemble" style="padding-top:20px; padding-bottom:20px;">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <fieldset>
         <legend><b>Add Score</b></legend>
         <div class="form-group">
-            <label for=“title”>Title: </label>
-            <textarea class="form-control" id=“title” rows="1"></textarea>
+            <label asp-for="Title">Title: </label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label for=“composer”>Composer: </label>
-            <textarea class="form-control" id=“composer” rows="1"></textarea>
+            <label asp-for="Composer">Composer: </label>
+            <input asp-for="Composer" class="form-control" />
+            <span asp-validation-for="Composer" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label for=“genre”>Genre: </label>
-            <textarea class="form-control" id=“genre” rows="1"></textarea>
+            <label asp-for="Genre">Genre: </label>
+            <input asp-for="Genre" class="form-control" />
+            <span asp-validation-for="Genre" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label for=“publisher”>Publisher: </label>
-            <textarea class="form-control" id=“publisher” rows="1"></textarea>
+            <label asp-for="Publisher">Publisher: </label>
+            <input asp-for="Publisher" class="form-control" />
+            <span asp-validation-for="Publisher" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label for=“secondaryClassification”>Secondary Classification: </label>
-            <textarea class="form-control" id=“secondaryClassification” rows="1"></textarea>
+            <label asp-for="SecondaryClassification">Secondary Classification: </label>
+            <input asp-for="SecondaryClassification" class="form-control" />
+            <span asp-validation-for="SecondaryClassification" class="text-danger"></span>
         </div>
     </fieldset>
-</form>
-<form style="padding-top:20px; padding-bottom:20px;">
+
+    <!-- Not connected yet. -->
+
     <fieldset>
         <legend><b>Add Instrument</b></legend>
         <div class="form-group">
@@ -46,8 +55,7 @@
         </div>
 
     </fieldset>
+    <div class="text-center">
+        <input type="submit" class="btn btn-primary btn-md" style="width: 180px;" value="Save" />
+    </div>
 </form>
-
-<div class="text-center">
-    <button type="save" class="btn btn-primary btn-md" style="width: 180px;">Save</button>
-</div>

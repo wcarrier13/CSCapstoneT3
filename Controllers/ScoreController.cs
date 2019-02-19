@@ -12,7 +12,7 @@ namespace Lizst.Controllers
     public class ScoreController : Controller
     {
         private readonly LizstContext _context;
-     
+
 
         public ScoreController(LizstContext context)
         {
@@ -57,7 +57,7 @@ namespace Lizst.Controllers
                 return NotFound();
             }
 
-            var  score = await _context.Score.FindAsync(id);
+            var score = await _context.Score.FindAsync(id);
             if (score == null)
             {
                 return NotFound();
@@ -69,11 +69,21 @@ namespace Lizst.Controllers
         // Revised version of score has been posted. Update the database.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditScore(int id, [Bind("ScoreId", "Title", "Composer", "Genre", "NumberOfParts")] Score score)
+        public async Task<IActionResult> EditScore(int id, string button, [Bind("ScoreId", "Title", "Composer", "Genre", "NumberOfParts")] Score score)
         {
-            if (id != score.ScoreId)
+            if (button != null)
             {
-                return NotFound();
+                if (button.Equals("Delete"))
+                {
+                    //Just want to match ID, incase the fields change.
+                    IEnumerable<Score> find =
+                        from sco in _context.Score
+                        where sco.ScoreId == score.ScoreId
+                        select sco;
+                    _context.Score.RemoveRange(find);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
 
             if (ModelState.IsValid)
@@ -96,6 +106,7 @@ namespace Lizst.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(score);
         }
 

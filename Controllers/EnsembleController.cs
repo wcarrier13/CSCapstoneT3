@@ -23,18 +23,21 @@ namespace Lizst.Controllers
 
 
         // GET: Ensemble/
+        // Merely display a list of all ensembles.
         public IActionResult Index()
         {
             return View(_context.Ensemble);
         }
 
         // GET: Ensemble/AddEnsemble
+        // Returns an empty form to add a new ensemble.
         public IActionResult AddEnsemble()
         {
             return View();
         }
 
         // POST :Ensemble/AddEnsemble
+        // Details of new ensemble are given, update the database.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddEnsemble(string add, EnsembleAndMusician model)
@@ -77,6 +80,7 @@ namespace Lizst.Controllers
         }
 
         // GET: Ensemble/EditEnsemble
+        // If ensemble is in the database, return edit page with relevant details.
         public async Task<IActionResult> EditEnsemble(int? id)
         {
             if(id == null)
@@ -93,7 +97,8 @@ namespace Lizst.Controllers
             return View(ensemble);
         }
 
-        //POST: Ensemble/EditEnsemble/5
+        // POST: Ensemble/EditEnsemble/5
+        // Ensemble has been modified, update the database with the new information.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditEnsemble(int id, string button, [Bind("EnsembleId","EnsembleName","Year","Conductor")] Ensemble ensemble )
@@ -120,13 +125,15 @@ namespace Lizst.Controllers
                 try
                 {
                     _context.Update(ensemble);
-                    await (_context.SaveChangesAsync());
-                } catch (DbUpdateConcurrencyException)
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
                 {
                     if (!EnsembleExists(ensemble.EnsembleId))
                     {
                         return NotFound();
-                    } else
+                    }
+                    else
                     {
                         throw;
                     }
@@ -136,22 +143,6 @@ namespace Lizst.Controllers
             }
             return View(ensemble);
         }
-
-
-
-        public PartialViewResult Ensemble()
-        {
-            return PartialView("Ensemble", new Ensemble());
-        }
-
-        public PartialViewResult Musician()
-        {
-            return PartialView("Musician", new Musician());
-        }
-
-
-
-
 
         private bool EnsembleExists(int id)
         {
