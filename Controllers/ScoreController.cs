@@ -29,8 +29,11 @@ namespace Lizst.Controllers
         {
             return View();
         }
-
-        public IActionResult EditEnsemble()
+        public IActionResult EditScore()
+        {
+            return View();
+        }
+            public IActionResult EditEnsemble()
         {
             return View();
         }
