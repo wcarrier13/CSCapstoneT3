@@ -1,0 +1,22 @@
+﻿<Properties StartupConfiguration="{47469F00-38E8-4BB6-94FE-42BD8EA5F101}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ScoreController.cs">
+    <Files>
+      <File FileName="Views/Score/Create.cshtml" Line="30" Column="1" />
+      <File FileName="Views/Score/Delete.cshtml" Line="1" Column="1" />
+      <File FileName="Views/Score/Details.cshtml" Line="1" Column="1" />
+      <File FileName="Views/Score/Edit.cshtml" Line="1" Column="1" />
+      <File FileName="Views/Score/Index.cshtml" Line="53" Column="18" />
+      <File FileName="Views/Score/View.cshtml" Line="43" Column="30" />
+      <File FileName="Views/Score/AddScore.cshtml" Line="18" Column="75" />
+      <File FileName="Views/Score/EditScore.cshtml" Line="1" Column="1" />
+      <File FileName="Controllers/ScoreController.cs" Line="28" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Lizst PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
