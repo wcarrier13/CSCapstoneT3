@@ -3,32 +3,33 @@
 <head>
     <style>
         .sidenav {
-          height: 100%;
-          width: 0;
-          position: fixed;
-          z-index: 1;
-          top: 0;
-          left: 0;
-          background-color: #111;
-          overflow-x: hidden;
-          transition: 0.5s;
-          padding-top: 60px;
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
         }
 
-        .sidenav a, .dropdown-btn{
-          padding: 8px 8px 8px 32px;
-          text-decoration: none;
-          font-size: 16px;
-          color: #818181;
-          display: block;
-          transition: 0.3s;
-        }
+            .sidenav a, .dropdown-btn {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 16px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+            }
+
         .fa-caret-down {
             padding-right: 8px;
         }
-       
+
         .sidenav a:hover {
-          color: #f1f1f1;
+            color: #f1f1f1;
         }
 
         .sidenav .closebtn {
@@ -37,14 +38,16 @@
             right: 25px;
             margin-left: 50px;
         }
+
         .dropdown-container {
             display: none;
             background-color: #262626;
             padding-left: 8px;
         }
-        .navbar{
-            position:center;
-            font-size:40px;
+
+        .navbar {
+            position: center;
+            font-size: 40px;
         }
     </style>
     <meta charset="utf-8" />
@@ -80,13 +83,13 @@
                         <i class="fa fa-caret-down"></i>
                     </a>
                     <div class="dropdown-container">
-                        <a href="/Results/?genre=Medieval"       >Medieval</a>
-                        <a href="/Results/?genre=Renaissance"    >Renaissance</a>
-                        <a href="/Results/?genre=Baroque1"       >Baroque</a>
-                        <a href="/Results/?genre=Classical"      >Classical</a>
-                        <a href="/Results/?genre=Romantic"       >Romantic</a>
-                        <a href="/Results/?genre=Early 20th Century" >Early 20th Century</a>
-                        <a href="/Results/?genre=Modern"         >Modern</a>
+                        <a href="#">Medieval</a>
+                        <a href="#">Renaissance</a>
+                        <a href="#">Baroque</a>
+                        <a href="#">Classical</a>
+                        <a href="#">Romantic</a>
+                        <a href="#">Early 20th Century</a>
+                        <a href="#">Modern</a>
                     </div>
                     <a asp-controller="Score" asp-action="AddScore">Add Score</a>
                     <a asp-controller="Ensemble" asp-action="AddEnsemble">Add Ensemble</a>
@@ -102,15 +105,12 @@
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
         }
-
         function closeNav() {
             document.getElementById("mySidenav").style.width = "0";
         }
         function dropdown() {
-
             var dropdown = document.getElementsByClassName("dropdown-btn");
             var i;
-
             for (i = 0; i < dropdown.length; i++) {
                 dropdown[i].addEventListener("click", function () {
                     this.classList.toggle("active");
@@ -124,6 +124,13 @@
             }
         }
     </script>
+
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
     <footer class="border-top footer text-muted text-center">
         <div class="container">
