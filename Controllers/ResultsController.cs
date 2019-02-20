@@ -30,13 +30,8 @@ namespace Lizst.Controllers
             }
             else
             {
+                scores = Search.FindRelevant(search, _context);
                 search = search.ToLower();
-
-                //Select relevant scores from the score database context.
-                scores =
-                    from score in _context.Score
-                    where Search.Relevant(score, search)
-                    select score;
             }
 
             if (genre != null)

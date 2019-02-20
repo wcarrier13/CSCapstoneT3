@@ -1,13 +1,59 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Lizst.Models
 {
     public static class Search
     {
+        public const int StringDistance = 4;
+
+        public static IEnumerable<Score> FindRelevant(String search, LizstContext context)
+        {
+            search = search.ToLower();
+
+            //Search by title
+            IEnumerable<Score> scores =
+                from score in context.Score
+                where score.Title.Contains(search)
+                select score;
+
+            //Search by composer
+            IEnumerable<Score> byComposer =
+                from score in context.Score
+                where score.Composer.Contains(search)
+                select score;
+            scores = scores.Concat(byComposer);
+
+            //Search by genre
+            IEnumerable<Score> byGenre =
+                from score in context.Score
+                where score.Genre.Contains(search)
+                select score;
+            scores = scores.Concat(byGenre);
+
+            //Search by secondary classification
+            IEnumerable<Score> byClass =
+                from score in context.Score
+                where score.SecondaryClassification.Contains(search)
+                select score;
+            scores = scores.Concat(byClass);
+
+            //No scores found, lower strictness to fuzzy string matching.
+            if (!scores.Any())
+            {
+                scores =
+                    from score in context.Score
+                    where Compare(score.Title, search) < StringDistance
+                    select score;
+            }
+            return scores;
+        }
+
         //Implements the Levenshtein Distance between two strings
         //Takes two strings and returns an integer that is their
         //distance. This function ignores case.
-        public static int compare(string a, string b)
+        public static int Compare(string a, string b)
         {
             a.ToLower();
             b.ToLower();
@@ -55,21 +101,6 @@ namespace Lizst.Models
             }
 
             return distanceMatrix[a.Length, b.Length];
-        }
-
-
-        //Takes a score and a search string, determines relevancy.
-        //Currently only looks for title contains text.
-        public static bool Relevant(Score score, string search)
-        {
-            string title = score.Title.ToLower();
-            string composer = score.Composer.ToLower();
-            if (title.Contains(search))
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }
