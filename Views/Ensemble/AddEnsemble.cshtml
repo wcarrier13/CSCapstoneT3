@@ -1,4 +1,4 @@
-﻿@model Lizst.Models.EnsembleAndMusician
+﻿@model Lizst.Models.Ensemble
 
 @{
     ViewData["Title"] = "Add Ensemble";
@@ -9,19 +9,19 @@
     <fieldset>
         <legend><b>Add Ensemble</b></legend>
         <div class="form-group">
-            <label asp-for="Ensemble.EnsembleName">Ensemble Name: </label>
-            <input asp-for="Ensemble.EnsembleName" class="form-control" />
-            <span asp-validation-for="Ensemble.EnsembleName" class="text-danger"></span>
+            <label asp-for="EnsembleName">Ensemble Name: </label>
+            <input asp-for="EnsembleName" class="form-control" />
+            <span asp-validation-for="EnsembleName" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Ensemble.Year">Year: </label>
-            <input asp-for="Ensemble.Year" class="form-control" />
-            <span asp-validation-for="Ensemble.Year" class="text-danger"></span>
+            <label asp-for="Year">Year: </label>
+            <input asp-for="Year" class="form-control" />
+            <span asp-validation-for="Year" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Ensemble.Conductor">Conductor / Director: </label>
-            <input asp-for="Ensemble.Conductor" class="form-control" />
-            <span asp-validation-for="Ensemble.Conductor" class="text-danger"></span>
+            <label asp-for="Conductor">Conductor / Director: </label>
+            <input asp-for="Conductor" class="form-control" />
+            <span asp-validation-for="Conductor" class="text-danger"></span>
         </div>
     </fieldset>
     <div class="text-center">

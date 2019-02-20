@@ -13,12 +13,12 @@ namespace Lizst.Models
         public string EnsembleName { get; set; }
         public string Conductor { get; set; }
         public string Year { get; set; }
-
         public ICollection<EnsemblePlayers> Players { get; } = new List<EnsemblePlayers>();
 
-
+        //Link ensemble and musician. The two may have a many to many relationship.
         public void AddPlayer(Musician musician, LizstContext context)
         {
+            // New database record for the link.
             EnsemblePlayers pair = new EnsemblePlayers
             {
                 EnsembleId = EnsembleId,
@@ -26,6 +26,7 @@ namespace Lizst.Models
             };
             Players.Add(pair);
             context.EnsemblePlayers.Add(pair);
+            context.SaveChanges();
         }
     }
 

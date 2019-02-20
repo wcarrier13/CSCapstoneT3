@@ -40,7 +40,7 @@ namespace Lizst.Controllers
         // Details of new ensemble are given, update the database.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddEnsemble(string add, EnsembleAndMusician model)
+        public async Task<IActionResult> AddEnsemble(string add, Ensemble model)
         {
             if (ModelState.IsValid)
             {
@@ -48,31 +48,19 @@ namespace Lizst.Controllers
                 if (add.Equals("Save"))
                 {
                     //Ensemble record not yet in database, add it.
-                    if (!_context.Ensemble.Any(e => e.EnsembleId == model.Ensemble.EnsembleId))
+                    if (!_context.Ensemble.Any(e => e.EnsembleId == model.EnsembleId))
                     {
-                        _context.Ensemble.Add(model.Ensemble);
+                        _context.Ensemble.Add(model);
                     }
                     //Ensemble was temporarily added to allow for inclusion of musicians.
                     //Update DB to include all ensemble information.
                     else
                     {
-                        _context.Ensemble.Update(model.Ensemble);
+                        _context.Ensemble.Update(model);
                     }
-                    _context.Ensemble.Add(model.Ensemble);
+                    _context.Ensemble.Add(model);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
-                }
-                else if (add.Equals("Add Musician"))
-                {
-                    if (!_context.Ensemble.Any(e => e.EnsembleId == model.Ensemble.EnsembleId))
-                    {
-                        _context.Ensemble.Add(model.Ensemble);
-                    }
-
-
-                    _context.Musician.Add(model.Musician);
-                    model.Ensemble.AddPlayer(model.Musician, _context);
-                    await _context.SaveChangesAsync();
                 }
             }
 

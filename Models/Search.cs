@@ -63,6 +63,7 @@ namespace Lizst.Models
         public static bool Relevant(Score score, string search)
         {
             string title = score.Title.ToLower();
+            string composer = score.Composer.ToLower();
             if (title.Contains(search))
             {
                 return true;
