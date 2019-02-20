@@ -42,12 +42,33 @@ namespace Lizst.Models
             //No scores found, lower strictness to fuzzy string matching.
             if (!scores.Any())
             {
+                String[] pieces = search.Split(" ");
                 scores =
                     from score in context.Score
-                    where Compare(score.Title, search) < StringDistance
+                    where FuzzyTitles(pieces, score)
                     select score;
             }
             return scores;
+        }
+
+        // Goes through the array of search terms and the array of title terms.
+        // If any pair have a Levenshtein distance of less than StringDistance,
+        // this will return true
+        public static Boolean FuzzyTitles(String[] search, Score score)
+        {
+            String[] title = score.Title.Split(" ");
+            foreach (String str1 in title)
+            {
+                foreach (String str2 in search)
+                {
+                    if(Compare(str1, str2) < StringDistance)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         //Implements the Levenshtein Distance between two strings
