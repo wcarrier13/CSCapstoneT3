@@ -71,25 +71,24 @@ namespace Lizst.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditScore(int id, string button, [Bind("ScoreId", "Title", "Composer", "Genre", "NumberOfParts")] Score score)
         {
-            if (button != null)
-            {
-                if (button.Equals("Delete"))
-                {
-                    //Just want to match ID, incase the fields change.
-                    IEnumerable<Score> find =
-                        from sco in _context.Score
-                        where sco.ScoreId == score.ScoreId
-                        select sco;
-                    _context.Score.RemoveRange(find);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-            }
-
             if (ModelState.IsValid)
             {
+                if (button != null)
+                {
+                    if (button.Equals("Delete"))
+                    {
+                        var toDelete = await _context.Score.FindAsync(id);
+
+                        _context.Score.Remove(toDelete);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+
+                //Update the record.
                 try
                 {
+                    score.ScoreId = id;
                     _context.Update(score);
                     await _context.SaveChangesAsync();
                 }
@@ -104,9 +103,28 @@ namespace Lizst.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
 
+            return View(score);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var toDelete = await _context.Score.FindAsync(id);
+            _context.Remove(toDelete);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            Score score = await _context.Score.FindAsync(id);
+            if (score == null)
+            {
+                return NotFound();
+            }
             return View(score);
         }
 
