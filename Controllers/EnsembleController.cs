@@ -47,17 +47,6 @@ namespace Lizst.Controllers
                 //User saving Ensemble to database.
                 if (add.Equals("Save"))
                 {
-                    //Ensemble record not yet in database, add it.
-                    if (!_context.Ensemble.Any(e => e.EnsembleId == model.EnsembleId))
-                    {
-                        _context.Ensemble.Add(model);
-                    }
-                    //Ensemble was temporarily added to allow for inclusion of musicians.
-                    //Update DB to include all ensemble information.
-                    else
-                    {
-                        _context.Ensemble.Update(model);
-                    }
                     _context.Ensemble.Add(model);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -96,12 +85,8 @@ namespace Lizst.Controllers
                 //Delete the ensemble from the database.
                 if (button.Equals("Delete"))
                 {
-                    //Just want the ID match, incase the of feilds changed.
-                    IEnumerable<Ensemble> find =
-                        from ens in _context.Ensemble
-                        where ens.EnsembleId == ensemble.EnsembleId
-                        select ens;
-                    _context.Ensemble.RemoveRange(find);
+                    var toDelete = await _context.Ensemble.FindAsync(id);
+                    _context.Remove(toDelete);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
@@ -112,6 +97,7 @@ namespace Lizst.Controllers
             {
                 try
                 {
+                    ensemble.EnsembleId = id;
                     _context.Update(ensemble);
                     await _context.SaveChangesAsync();
                 }
