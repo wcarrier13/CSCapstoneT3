@@ -29,7 +29,7 @@
         }
 
         .sidenav a:hover {
-            color: #f1f1f1;
+            color: #17a2b8;
         }
 
         .sidenav .closebtn {
@@ -68,14 +68,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-default" style="border-bottom:solid 1px black">
+    <nav class="navbar navbar-default" style="border-bottom:solid 5px #17a2b8; background-color: #111">
         <div class="container-fluid">
             <div class="navbar-header">
                 <div id="mySidenav" class="sidenav">
-                    <a href="javascript:void(0)" style="font-size: 40px" class="closebtn" onclick="closeNav();dropdown()">&times;</a>
-                    <form style="padding:10px" class="form-inline" method="post" action="/Results/">
-                        <input class="form-control form-control-sm ml-3 w-75 col-8" type="text" placeholder="Search" aria-label="Search" name="search">
-                        <button type="submit"><i class="fa fa-search" style="color: #818181; padding-left:8px; font-size:16px" aria-hidden="true"></i></button>
+                    <a href="javascript:void(0)" style="font-size: 40px;" class="closebtn" onclick="closeNav();dropdown()">&times;</a>
+                    <form class="form-inline my-2 my-lg-0" style="padding-top:10px; padding-left:20px; padding-bottom:10px" method="post" action="/Results/">
+                        <input class="form-control mr-sm-2" style="border:#17a2b8" type="text" placeholder="Search" aria-label="Search">
+                        <button class="btn my-sm-0 btn-outline-info" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                     <a asp-controller="Home" asp-action="Index">Home</a>
                     <a href="#" class="dropdown-btn">
@@ -94,16 +94,16 @@
                     <a asp-controller="Score" asp-action="Index">Scores</a>
                     <a asp-controller="Ensemble" asp-action="Index">Ensembles</a>
                 </div>
-                <span style="font-size:35px;cursor:pointer; padding-left:20px" onclick="openNav();dropdown()">&#9776;</span>
+                <span style="font-size:35px;cursor:pointer; padding-left:20px; color:white" onclick="openNav();dropdown()">&#9776;</span>
             </div>
             <div style="padding-bottom:30px">
-                <h2 style="position:absolute; left: 50%; transform:translatex(-50%); padding-bottom:10px">UNO Music Library</h2>
+                <h2 style="position:absolute; left: 50%; transform:translatex(-50%); padding-bottom:10px; color:white;">UNO Music Library</h2>
             </div>
         </div>
     </nav>
     <script>
         function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("mySidenav").style.width = "300px";
         }
         function closeNav() {
             document.getElementById("mySidenav").style.width = "0";
@@ -132,8 +132,8 @@
     </div>
 
     <footer class="border-top footer text-muted text-center">
-        <div class="container">
-            &copy; 2019 - <a asp-area="" asp-controller="Home" asp-action="Index">Lizst</a>
+        <div class="container" style="color:#111">
+            &copy; 2019 - <a style="color:#111" asp-area="" asp-controller="Home" asp-action="Index">Lizst</a>
         </div>
     </footer>
 

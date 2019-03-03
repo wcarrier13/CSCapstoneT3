@@ -6,11 +6,13 @@
     <img src="~/Liszt.jpg" width="175" /><br />
     <div style="width:700px; margin:auto">
         <form style="display:inline-block; width:100%; padding:25px" class="form-inline" method="post" action="/Results/">
-            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search" name="search">
-            <button type="submit"> <i class="fa fa-search" aria-hidden="true"></i></button>
-            <input type="submit" name="genre" value="Baroque"   class="btn btn-md" style="width: 160px;" />
-            <input type="submit" name="genre" value="Classical" class="btn btn-md" style="width: 160px;" />
-            <input type="submit" name="genre" value="Modern"    class="btn btn-md" style="width: 160px;" />
+            <input class="form-control mr-sm-2 w-75" type="text" placeholder="Search" aria-label="Search" name="search">
+            <button type="submit" class="btn my-sm-0 btn-outline-secondary"> <i class="fa fa-search" aria-hidden="true"></i></button>
         </form>
+        <div>
+            <a class="btn btn-info" href="http://ec2-3-16-188-153.us-east-2.compute.amazonaws.com/Results/?Genre=Modern" role="button">Modern</a>
+            <a class="btn btn-info" href="http://ec2-3-16-188-153.us-east-2.compute.amazonaws.com/Results/?Genre=Baroque" role="button">Baroque</a>
+            <a class="btn btn-info" href="http://ec2-3-16-188-153.us-east-2.compute.amazonaws.com/Results/?Genre=Classical" role="button">Classical</a>
+        </div>
     </div>
 </div>
