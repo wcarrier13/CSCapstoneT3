@@ -17,6 +17,7 @@ namespace Lizst.Models
         public string Publisher { get; set; }
         public string SecondaryClassification { get; set; }
         public string InStock { get; set; }
+        public DateTime RentalDueDate { get; set; }
     }
 
 
