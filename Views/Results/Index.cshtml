@@ -22,16 +22,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Lizst.Models.Score score in Model)
+            @if (Model.Any())
             {
-                <tr>
-                    <td>@score.Title</td>
-                    <td>@score.Composer</td>
-                    <td>@score.Genre</td>
-                    <td>@score.Publisher</td>
-                    <td>@score.SecondaryClassification</td>
-                    <td>@score.InStock</td>
-                </tr>
+                @foreach (Lizst.Models.Score score in Model)
+                {
+                    <tr>
+                        <td>@score.Title</td>
+                        <td>@score.Composer</td>
+                        <td>@score.Genre</td>
+                        <td>@score.Publisher</td>
+                        <td>@score.SecondaryClassification</td>
+                        <td>@score.InStock</td>
+                    </tr>
+                }
             }
         </tbody>
     </table>

@@ -28,12 +28,14 @@ namespace Lizst.Controllers
                     where true
                     select score;
             }
+            //Perform the search.
             else
             {
                 scores = Search.FindRelevant(search, _context);
                 search = search.ToLower();
             }
 
+            //Limit search to genre.
             if (genre != null)
             {
                 scores =
