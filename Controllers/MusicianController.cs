@@ -3,99 +3,96 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Lizst.Models;
 
 namespace Lizst.Controllers
 {
-    public class ScoreController : Controller
+    public class MusicianController : Controller
     {
         private readonly LizstContext _context;
 
-
-        public ScoreController(LizstContext context)
+        public MusicianController(LizstContext context)
         {
             _context = context;
         }
 
-        // GET: Score
-        // Index page merely displays all scores.
+        // GET: Musician
+        //Index page merely displays all musicians.
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Score.ToListAsync());
+            return View(await _context.Musician.ToListAsync());
         }
 
-        // GET: Score/AddScore
+        //GET: Musician/AddMusician
         // Blank template for the addition of a new score.
-        public IActionResult AddScore()
+        public IActionResult AddMusician()
         {
             return View();
         }
 
-        // POST: Score/AddScore
-        // New score is posted, add it to database.
+        //POST: Musician/AddMusician
+        //New musician is posted, add it to the database.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddScore(Score score)
+        public async Task<IActionResult> AddMusician(Musician musician)
         {
             if (ModelState.IsValid)
             {
-                _context.Score.Add(score);
+                _context.Musician.Add(musician);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(score);
+            return View(musician);
         }
 
-        // GET: Score/EditScore
-        // If score is in database, give edit page with relevant details.
-        public async Task<IActionResult> EditScore(int? id)
+        //GET: Musician/EditMusician
+        //If musician is in database, return an edit page with the relevant details.
+        public async Task<IActionResult> EditMusician(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return NotFound();
             }
 
-            var score = await _context.Score.FindAsync(id);
-            if (score == null)
+            var musician = await _context.Musician.FindAsync(id);
+            if(musician == null)
             {
                 return NotFound();
             }
-            return View(score);
+            return View(musician);
         }
 
-        // POST: Score/EditScore/6
-        // Revised version of score has been posted. Update the database.
+        //Post: Musician/EditMusician/
+        // Revised version of the musician has be posted. Update the database.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditScore(int id, string button, [Bind("ScoreId", "Title", "Composer", "Genre", "NumberOfParts", "RentalDueDate")] Score score)
+        public async Task<IActionResult> EditMusician(int id, string button, Musician musician)
         {
             if (ModelState.IsValid)
             {
-                if (button != null)
+                if(button != null)
                 {
                     //Delete button was selected, attempt to delete the record.
                     if (button.Equals("Delete"))
                     {
-                        var toDelete = await _context.Score.FindAsync(id);
-
-                        _context.Score.Remove(toDelete);
+                        var toDelete = await _context.Musician.FindAsync(id);
+                        _context.Musician.Remove(toDelete);
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Index));
                     }
                 }
 
-                //Update the record.
+                //Attempt to update the record.
                 try
                 {
-                    score.ScoreId = id;
-                    _context.Update(score);
+                    musician.MusicianId = id;
+                    _context.Update(musician);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ScoreExists(score.ScoreId))
+                    if (!MusicianExists(musician.MusicianId))
                     {
                         return NotFound();
                     }
@@ -108,35 +105,34 @@ namespace Lizst.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(score);
+            return View(musician);
         }
 
-        //Simply delete a score by id.
+        //Simply delete a musician by id.
         public async Task<IActionResult> Delete(int id)
         {
-            var toDelete = await _context.Score.FindAsync(id);
+            var toDelete = await _context.Musician.FindAsync(id);
             _context.Remove(toDelete);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        //GET: Score/Details
-        //Returns a page displaying all the information about a score.
+        //GET: Musician/Details
+        //Returns a page displaying all the information about a musician.
         public async Task<IActionResult> Details(int id)
         {
-            Score score = await _context.Score.FindAsync(id);
-            if (score == null)
+            Musician musician = await _context.Musician.FindAsync(id);
+            if(musician == null)
             {
                 return NotFound();
             }
-            return View(score);
+            return View(musician);
         }
 
-
-        //Takes an id, and returns true if any score has that id.
-        private bool ScoreExists(int id)
+        //Takes an id and returns true if any musician has that id.
+        private bool MusicianExists(int id)
         {
-            return _context.Score.Any(e => e.ScoreId == id);
+            return _context.Musician.Any(e => e.MusicianId == id);
         }
     }
 }
