@@ -10,10 +10,11 @@ namespace Lizst.Models
     public class Piece
     {
         public int PieceId { get; set; }
-        public string Part { get; set; }
-        public string Condition { get; set; }
+        public int NumberofParts { get; set; }
+        public string Instrument { get; set; }
         public int ScoreId { get; set; }
         public string Edition { get; set; }
+        public int AggregateRating { get; set; }
     }
 
 

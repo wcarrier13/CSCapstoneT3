@@ -29,5 +29,6 @@ namespace Lizst.Models
         public DbSet<Ensemble> Ensemble { get; set; }
         public DbSet<EnsemblePlayers> EnsemblePlayers { get; set; }
         public DbSet<Musician> Musician { get; set; }
+        public DbSet<Piece> Piece { get; set; }
     }
 }
