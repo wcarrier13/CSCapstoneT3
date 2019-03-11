@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 style="padding-bottom:10px; padding-top:10px;">Scores</h1>
 
 <p>
-    <a asp-action="AddScore">Create New</a>
+    <a class="btn btn-info" asp-action="AddScore">Add Score</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -27,36 +27,41 @@
             <th>
                 @Html.DisplayNameFor(model => model.SecondaryClassification)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfParts)
+            </th>
             <th></th>
+
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Composer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Publisher)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondaryClassification)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfParts)
-            </td>
-            <td>
-                <a asp-action="EditScore" asp-route-id="@item.ScoreId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ScoreId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ScoreId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Composer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publisher)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondaryClassification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfParts)
+                </td>
+                <td>
+                    <a style="color:#17a2b8;" asp-action="EditScore" asp-route-id="@item.ScoreId">Edit</a> |
+                    <a style="color:#17a2b8;" asp-action="Details" asp-route-id="@item.ScoreId">Details</a> |
+                    <a style="color:#17a2b8;" asp-action="Delete" asp-route-id="@item.ScoreId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
