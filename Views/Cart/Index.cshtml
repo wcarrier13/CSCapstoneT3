@@ -1,0 +1,25 @@
+﻿@model ICollection<Lizst.Models.Score>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<table>
+    <thead>
+        <tr>
+            <td>
+                Title
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Lizst.Models.Score score in Model)
+        {
+            <tr>
+                <td>
+                    @score.Title
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
