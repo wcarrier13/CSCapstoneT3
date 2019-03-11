@@ -25,14 +25,11 @@ namespace Lizst.Controllers
 
         public IActionResult AddToCart(int id)
         {
-            System.Diagnostics.Debug.WriteLine("\n\n" + id + "\n\n");
             Score score = _context.Score.Find(id);
             if(score == null)
             {
-                System.Diagnostics.Debug.WriteLine("Not Found");
                 return NotFound();
             }
-            System.Diagnostics.Debug.WriteLine(score.Title);
             ShoppingCart.Add(score);
 
 

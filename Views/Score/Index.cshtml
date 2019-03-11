@@ -54,7 +54,8 @@
             <td>
                 <a asp-action="EditScore" asp-route-id="@item.ScoreId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ScoreId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ScoreId">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.ScoreId">Delete</a> |
+                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.ScoreId">Add to Cart</a>
             </td>
         </tr>
 }

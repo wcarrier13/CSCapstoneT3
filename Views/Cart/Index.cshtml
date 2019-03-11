@@ -4,11 +4,16 @@
     ViewData["Title"] = "Shopping Cart";
 }
 
+<h1>Shopping Cart</h1>
+
 <table>
     <thead>
         <tr>
             <td>
                 Title
+            </td>
+            <td>
+
             </td>
         </tr>
     </thead>
@@ -19,7 +24,11 @@
                 <td>
                     @score.Title
                 </td>
+                <td>
+                    <a asp-action="RemoveFromCart" asp-route-id="@score.ScoreId">Remove</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+<a asp-action="Checkout">Check Out</a>
