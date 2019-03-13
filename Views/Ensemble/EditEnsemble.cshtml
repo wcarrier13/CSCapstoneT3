@@ -7,6 +7,7 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="EnsembleId" />
     <fieldset>
+
         <legend><b>Edit Ensemble</b></legend>
         <div class="form-group">
             <label for="EnsembleName">Ensemble Name: </label>
@@ -26,8 +27,8 @@
     </fieldset>
     <div class="text-center" style="padding-top: 10px">
         <div class="form-group">
+            <input type="submit" name="button" value="Save" class="btn btn-info btn-md" style="width: 180px;" />
             <input type="submit" name="button" value="Delete"   class="btn btn-danger btn-md" style="width: 180px;" />
-            <input type="submit" name="button" value="Save"     class="btn btn-danger btn-md" style="width: 180px;"/>
         </div>
     </div>
 

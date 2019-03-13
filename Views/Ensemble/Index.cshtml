@@ -4,7 +4,10 @@
     ViewData["Title"] = "Ensembles";
 }
 
-<a asp-action="AddEnsemble">Add Ensemble</a>
+<h1 style="padding-bottom:10px; padding-top:10px;">Ensembles</h1>
+<p>
+    <a class="btn btn-info" asp-action="AddEnsemble">Add Ensemble</a>
+</p>
 
 <div>
     <table class="table table-striped">
@@ -13,6 +16,7 @@
                 <th>Ensembles</th>
                 <th>Conductor</th>
                 <th>Year</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -29,7 +33,7 @@
                         @ensemble.Year
                     </td>
                     <td>
-                        <a asp-action="EditEnsemble" asp-route-id="@ensemble.EnsembleId">Edit</a>
+                        <a style="color:#17a2b8;" asp-action="EditEnsemble" asp-route-id="@ensemble.EnsembleId">Edit</a>
                     </td>
                 </tr>
             }

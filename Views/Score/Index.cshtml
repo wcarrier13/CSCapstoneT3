@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 style="padding-bottom:10px; padding-top:10px;">Scores</h1>
 
 <p>
-    <a asp-action="AddScore">Create New</a>
+    <a class="btn btn-info" asp-action="AddScore">Add Score</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -27,7 +27,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.SecondaryClassification)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfParts)
+            </th>
             <th></th>
+
         </tr>
     </thead>
     <tbody>
