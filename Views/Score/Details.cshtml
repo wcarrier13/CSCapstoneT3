@@ -4,39 +4,20 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 style="padding-bottom:20px; padding-top:20px;">Details</h1>
+<div class="card border-info">
+    <h3 class="card-header bg-info" style="color:white;">@Model.Title</h3>
+    <div class="card-body">
+        <h5>Composer:</h5>
+        <p class="card-text">@Model.Composer</p>
+        <h5>Genre:</h5>
+        <p class="card-text">@Model.Genre</p>
+        <h5>Number of Parts:</h5>
+        <p class="card-text">@Model.NumberOfParts</p>
 
-<div>
-    <h4>Score</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Composer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Composer)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumberOfParts)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumberOfParts)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ScoreId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+        <div class="text-center">
+            <a style="width:120px;" asp-action="Edit" asp-route-id="@Model.ScoreId" class="btn btn-info">Edit</a>
+            <a style="width:120px;" class="btn btn-info" asp-action="Index">Back to List</a>
+        </div>
+    </div>
 </div>

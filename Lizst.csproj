@@ -31,4 +31,7 @@
       <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 8.0.15\Assemblies\v4.5.2\MySQL.Data.EntityFrameworkCore.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Score\Edit.cshtml" />
+  </ItemGroup>
 </Project>
