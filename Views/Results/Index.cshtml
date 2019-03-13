@@ -19,6 +19,7 @@
                 <th>Publisher</th>
                 <th>Secondary Classification</th>
                 <th>In Stock</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
                         <td>@score.Publisher</td>
                         <td>@score.SecondaryClassification</td>
                         <td>@score.InStock</td>
+                        <td><a style="color:#17a2b8;" asp-controller="Score" asp-action="Details" asp-route-id="@score.ScoreId">Details</a></td>
                     </tr>
                 }
             }
