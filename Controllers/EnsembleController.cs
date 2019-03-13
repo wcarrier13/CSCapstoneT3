@@ -118,6 +118,27 @@ namespace Lizst.Controllers
             return View(ensemble);
         }
 
+        //Simply delete a score by id.
+        public async Task<IActionResult> Delete(int id)
+        {
+            var toDelete = await _context.Ensemble.FindAsync(id);
+            _context.Remove(toDelete);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        //GET: Score/Details
+        //Returns a page displaying all the information about a score.
+        public async Task<IActionResult> Details(int id)
+        {
+            Ensemble ensemble = await _context.Ensemble.FindAsync(id);
+            if (ensemble == null)
+            {
+                return NotFound();
+            }
+            return View(ensemble);
+        }
+
         private bool EnsembleExists(int id)
         {
             return _context.Ensemble.Any(e => e.EnsembleId == id);
