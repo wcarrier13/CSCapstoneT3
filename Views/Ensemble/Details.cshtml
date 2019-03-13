@@ -1,4 +1,4 @@
-﻿@model Lizst.Models.Score
+﻿@model Lizst.Models.Ensemble
 
 @{
     ViewData["Title"] = "Details";
@@ -9,14 +9,14 @@
     <h3 class="card-header bg-info" style="color:white;">@Model.Title</h3>
     <div class="card-body">
         <h5>Composer:</h5>
-        <p class="card-text">@Model.Composer</p>
+        <p class="card-text">@Model.EnsembleName</p>
         <h5>Genre:</h5>
-        <p class="card-text">@Model.Genre</p>
+        <p class="card-text">@Model.Year</p>
         <h5>Number of Parts:</h5>
-        <p class="card-text">@Model.NumberOfParts</p>
+        <p class="card-text">@Model.Conductor</p>
 
         <div class="text-center">
-            <a style="width:120px;" asp-action="EditScore" asp-route-id="@Model.ScoreId" class="btn btn-info">Edit</a>
+            <a style="width:120px;" asp-action="EditEnsemble" asp-route-id="@Model.EnsembleId" class="btn btn-info">Edit</a>
             <a style="width:120px;" class="btn btn-info" asp-action="Index">Back to List</a>
         </div>
     </div>
