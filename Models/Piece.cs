@@ -15,11 +15,6 @@ namespace Lizst.Models
         public int ScoreId { get; set; }
         public string Edition { get; set; }
         public int AggregateRating { get; set; }
-
-        public void AddScore(Score score, LizstContext context)
-        {
-            score.AddPiece(this, context);
-        }
     }
 
 
