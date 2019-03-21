@@ -23,14 +23,7 @@ namespace Lizst.Models
         {
             modelBuilder.Entity<EnsemblePlayers>()
                 .HasKey(ep => new { ep.EnsembleId, ep.MusicianId });
-
-            //Uses ScoreId as the primary key, one to many
-            //This might be wrong
-            modelBuilder.Entity<ScorePieces>()
-                .HasKey(sp => new { sp.ScoreId });
         }
-
-        
 
         public DbSet<Score> Score { get; set; }
         public DbSet<Ensemble> Ensemble { get; set; }
