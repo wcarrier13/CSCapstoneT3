@@ -1,0 +1,108 @@
+﻿@model Lizst.Models.Musician
+
+@{
+    ViewData["Title"] = "Edit Musician";
+}
+
+<form asp-action="EditPlayer" style="padding-top:20px; padding-bottom:20px;">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <fieldset>
+        <legend><b>Edit Musician</b></legend>
+        <div class="form-group">
+            <label asp-for="MusicianName">Musician Name: </label>
+            <input asp-for="MusicianName" class="form-control" />
+            <span asp-validation-for="MusicianName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">Email: </label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Part">Instrument</label>
+            <select multiple="" class="form-control" id="Part">
+                <option>Violin 1</option>
+                <option>Violin 2</option>
+                <option>Violin 3</option>
+                <option>Viola</option>
+                <option>Cello</option>
+                <option>Double Bass</option>
+                <option>Harp</option>
+                <option>Other String</option>
+                <option>Flute 1</option>
+                <option>Flute 2</option>
+                <option>Flute 3</option>
+                <option>Flute 4</option>
+                <option>Piccolo 1</option>
+                <option>Piccolo 2</option>
+                <option>Clarinet 1</option>
+                <option>Clarinet 2</option>
+                <option>Clarinet 3</option>
+                <option>Oboe 1</option>
+                <option>Oboe 2</option>
+                <option>Oboe 3</option>
+                <option>Horn 1</option>
+                <option>Horn 2</option>
+                <option>Horn 3</option>
+                <option>Horn 4</option>
+                <option>Trumpet 1</option>
+                <option>Trumpet 2</option>
+                <option>Trumpet 3</option>
+                <option>Trombone 1</option>
+                <option>Trombone 2</option>
+                <option>Trombone 3</option>
+                <option>Tuba 1</option>
+                <option>Tuba 2</option>
+                <option>Other Brass</option>
+                <option>Timpani 1</option>
+                <option>Timpani 2</option>
+                <option>Timpani 3</option>
+                <option>Timpani 4</option>
+                <option>Timpani 5</option>
+                <option>Snare Drum</option>
+                <option>Tenor Drum</option>
+                <option>Bass Drum</option>
+                <option>Cymbals</option>
+                <option>Triangle</option>
+                <option>Tam-tam</option>
+                <option>Tambourine</option>
+                <option>Wood Block</option>
+                <option>Glockenspiel</option>
+                <option>Xylophone</option>
+                <option>Vibraphone</option>
+                <option>Marimba</option>
+                <option>Crotales</option>
+                <option>Tubular Bells</option>
+                <option>Mark Tree</option>
+                <option>Drum Kit</option>
+                <option>Other Percussion</option>
+                <option>Piano</option>
+                <option>Celesta</option>
+                <option>Pipe Organ</option>
+                <option>Harpsichord</option>
+                <option>Accordion</option>
+                <option>Claviharp</option>
+                <option>Other Keyboard</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Ensembles">Ensemble: </label>
+            <input asp-for="Ensembles" class="form-control" />
+            <span asp-validation-for="Ensembles" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MusicianId">Musician Id: </label>
+            <input asp-for="MusicianId" class="form-control" />
+            <span asp-validation-for="MusicianId" class="text-danger"></span>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <input type="submit" name="add" class="btn btn-info btn-md" style="width: 180px;" value="Save" />
+        <input type="submit" name="button" value="Delete" class="btn btn-danger btn-md" style="width: 180px;" />
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

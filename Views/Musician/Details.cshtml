@@ -1,0 +1,28 @@
+﻿@model Lizst.Models.Musician
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1 style="padding-bottom:20px; padding-top:20px;">Details</h1>
+<div class="card border-info">
+    <h3 class="card-header bg-info" style="color:white;">@Model.MusicianName</h3>
+    <div class="card-body">
+        <h5>Name:</h5>
+        <p class="card-text">@Model.MusicianName</p>
+        <h5>Instrument:</h5>
+        <p class="card-text">@Model.Part</p>
+        <h5>Email:</h5>
+        <p class="card-text">@Model.Email</p>
+        <h5>Musician Id:</h5>
+        <p class="card-text">@Model.MusicianId</p>
+        <h5>Ensemble(s):</h5>
+        <p class="card-text">@Model.Ensembles</p>
+
+        <div class="text-center">
+            <a style="width:120px;" asp-action="EditMusician" asp-route-id="@Model.MusicianId" class="btn btn-info">Edit</a>
+            <a style="width:120px;" class="btn btn-info" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>

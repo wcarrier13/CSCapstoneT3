@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Lizst.Models.Musician>
+
+@{
+    ViewData["Title"] = "Musicians";
+}
+
+<h1 style="padding-bottom:10px; padding-top:10px;">Musicians</h1>
+<p>
+    <a class="btn btn-info" asp-action="AddMusician">Add Musician</a>
+</p>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Musician Name</th>
+                <th>Instrument</th>
+                <th>Email</th>
+                <th>Musician Id</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Lizst.Models.Musician musician in Model)
+            {
+            <tr>
+                <td>
+                    @musician.MusicianName
+                </td>
+                <td>
+                    @musician.Part
+                </td>
+                <td>
+                    @musician.Email
+                </td>
+                <td>
+                    @musician.MusicianId
+                </td>
+                <td>
+                    <a style="color:#17a2b8;" asp-action="EditMusician" asp-route-id="@musician.MusicianId">Edit</a> |
+                    <a style="color:#17a2b8;" asp-action="Details" asp-route-id="@musician.MusicianId">Details</a> |
+                    <a style="color:#17a2b8;" asp-action="Delete" asp-route-id="@musician.MusicianId">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

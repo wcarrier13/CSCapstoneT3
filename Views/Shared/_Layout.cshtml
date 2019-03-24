@@ -74,7 +74,7 @@
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" style="font-size: 40px;" class="closebtn" onclick="closeNav();dropdown()">&times;</a>
                     <form class="form-inline my-2 my-lg-0" style="padding-top:10px; padding-left:20px; padding-bottom:10px" method="post" action="/Results/">
-                        <input class="form-control mr-sm-2" style="border:#17a2b8" type="text" placeholder="Search" aria-label="Search"  name="search">
+                        <input class="form-control mr-sm-2" style="border:#17a2b8" type="text" placeholder="Search" aria-label="Search" name="search">
                         <button class="btn my-sm-0 btn-outline-info" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                     <a asp-controller="Home" asp-action="Index">Home</a>
@@ -83,16 +83,17 @@
                         <i class="fa fa-caret-down"></i>
                     </a>
                     <div class="dropdown-container">
-                        <a href="/Results/?Genre=Medieval"   >Medieval</a>
+                        <a href="/Results/?Genre=Medieval">Medieval</a>
                         <a href="/Results/?Genre=Renaissance">Renaissance</a>
-                        <a href="/Results/?Genre=Baroque"    >Baroque</a>
-                        <a href="/Results/?Genre=Classical"  >Classical</a>
-                        <a href="/Results/?Genre=Romantic"   >Romantic</a>
+                        <a href="/Results/?Genre=Baroque">Baroque</a>
+                        <a href="/Results/?Genre=Classical">Classical</a>
+                        <a href="/Results/?Genre=Romantic">Romantic</a>
                         <a href="/Results/?Genre=Early20thCentury">Early 20th Century</a>
-                        <a href="/Results/?Genre=Modern"     >Modern</a>
+                        <a href="/Results/?Genre=Modern">Modern</a>
                     </div>
                     <a asp-controller="Score" asp-action="Index">Scores</a>
                     <a asp-controller="Ensemble" asp-action="Index">Ensembles</a>
+                    <a asp-controller="Musician" asp-action="Musician">Musicians</a>
                 </div>
                 <span style="font-size:35px;cursor:pointer; padding-left:20px; color:white" onclick="openNav();dropdown()">&#9776;</span>
             </div>

@@ -1,0 +1,24 @@
+﻿<Properties StartupConfiguration="{47469F00-38E8-4BB6-94FE-42BD8EA5F101}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Shared/_Layout.cshtml">
+    <Files>
+      <File FileName="Views/Ensemble/AddEnsemble.cshtml" Line="9" Column="15" />
+      <File FileName="Views/Score/AddScore.cshtml" Line="1" Column="1" />
+      <File FileName="Views/Score/Details.cshtml" Line="1" Column="1" />
+      <File FileName="Models/Musician.cs" Line="21" Column="47" />
+      <File FileName="Views/Musician/AddMusician.cshtml" Line="91" Column="48" />
+      <File FileName="Views/Musician/Index.cshtml" Line="36" Column="21" />
+      <File FileName="Views/Musician/Details.cshtml" Line="21" Column="50" />
+      <File FileName="Views/Musician/EditMusician.cshtml" Line="91" Column="48" />
+      <File FileName="Models/EnsemblePlayers.cs" Line="1" Column="1" />
+      <File FileName="Models/Search.cs" Line="1" Column="1" />
+      <File FileName="Views/Shared/_Layout.cshtml" Line="96" Column="85" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Lizst PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
