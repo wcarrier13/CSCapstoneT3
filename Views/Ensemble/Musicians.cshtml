@@ -1,10 +1,16 @@
-﻿@model IEnumerable<Lizst.Models.Musician>
+﻿@model Lizst.Models.EnsembleAndMusicians
 @{
     ViewData["Title"] = "Musicians";
 }
 
 <h1>Musicians</h1>
-@foreach (Musician musician in Model)
+<a asp-action="Details" asp-route-id="@Model.Ensemble.EnsembleId">Back to @Model.Ensemble.EnsembleName</a>
+@foreach (Musician musician in Model.Musicians)
 {
     <p>@musician.MusicianName</p>
+    <form asp-action="RemoveFrom" style="padding-top:20px; padding-bottom:20px;">
+        <input type="hidden" name="mus" value="@musician.MusicianId" />
+        <input type="hidden" name="ens" value="@Model.Ensemble.EnsembleId" />
+        <input type="submit" value="Remove from Ensemble" />
+    </form>
 }

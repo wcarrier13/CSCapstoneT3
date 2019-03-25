@@ -29,6 +29,27 @@ namespace Lizst.Controllers
             return View(_context.Ensemble);
         }
 
+        // GET: Ensemble/RemoveFrom
+        //Takes an ensemble and musician by id, and removes the musician from
+        //the ensemble.
+        public async Task<IActionResult> RemoveFrom(int ens, int mus)
+        {
+
+            System.Diagnostics.Debug.WriteLine("\n\n" + ens + "\n\n");
+            EnsemblePlayers ensemblePlayer;
+            try
+            {
+                ensemblePlayer = _context.EnsemblePlayers.First(e => e.EnsembleId == ens && e.MusicianId == mus);
+            } catch
+            {
+                return NotFound();
+            }
+
+            _context.Remove(ensemblePlayer);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Musicians", new { id = ens });
+        }
+
         // GET: Ensemble/AddEnsemble
         // Returns an empty form to add a new ensemble.
         public IActionResult AddEnsemble()
@@ -46,8 +67,9 @@ namespace Lizst.Controllers
                                                      where ensemblePlayer.EnsembleId == id
                                                      select ensemblePlayer).Any(e => e.MusicianId == musician.MusicianId)
                                               select musician;
-
-            return View(musicians);
+            Ensemble ensemble = _context.Ensemble.Find(id);
+            EnsembleAndMusicians eAndM = new EnsembleAndMusicians(ensemble, musicians);
+            return View(eAndM);
         }
 
         // POST :Ensemble/AddEnsemble
