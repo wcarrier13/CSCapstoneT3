@@ -36,6 +36,20 @@ namespace Lizst.Controllers
             return View();
         }
 
+        // GET: Ensemble/Musicians
+        //Given an ensemble id, return a list of all musicians who play in that ensemble.
+        public IActionResult Musicians(int id)
+        {
+            //Nested query. Select any musician whose id is in an ensemble player record where the ensemble id for that record matches id.
+            IEnumerable<Musician> musicians = from musician in _context.Musician
+                                              where (from ensemblePlayer in _context.EnsemblePlayers
+                                                     where ensemblePlayer.EnsembleId == id
+                                                     select ensemblePlayer).Any(e => e.MusicianId == musician.MusicianId)
+                                              select musician;
+
+            return View(musicians);
+        }
+
         // POST :Ensemble/AddEnsemble
         // Details of new ensemble are given, update the database.
         [HttpPost]

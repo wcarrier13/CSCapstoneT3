@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Lizst.Models.Musician>
+@{
+    ViewData["Title"] = "Musicians";
+}
+
+<h1>Musicians</h1>
+@foreach (Musician musician in Model)
+{
+    <p>@musician.MusicianName</p>
+}

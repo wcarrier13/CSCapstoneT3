@@ -17,6 +17,9 @@
         <div class="text-center">
             <a style="width:120px;" asp-action="EditEnsemble" asp-route-id="@Model.EnsembleId" class="btn btn-info">Edit</a>
             <a style="width:120px;" class="btn btn-info" asp-action="Index">Back to List</a>
+            <a style="width:120px;" class="btn btn-info" asp-controller="Musician" asp-action="Index" asp-route-id="@Model.EnsembleId">Add Musicians</a>
+            <a style="width:120px;" class="btn btn-info" asp-action="Musicians" asp-route-id="@Model.EnsembleId">Musicians</a>
+
         </div>
     </div>
 </div>

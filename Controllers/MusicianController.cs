@@ -18,10 +18,38 @@ namespace Lizst.Controllers
         }
 
         // GET: Musician
-        //Index page merely displays all musicians.
-        public async Task<IActionResult> Index()
+        //Index page, if no id is given, the page will simply display all musicians.
+        //If an id is given, the page will include a button to add any player to the
+        //ensemble, and a button to goto the details page for the ensemble.
+        public async Task<IActionResult> Index(int? id)
         {
-            return View(await _context.Musician.ToListAsync());
+            EnsembleAndMusicians eAndM;
+            if(id == null)
+            {
+                eAndM = new EnsembleAndMusicians(null, _context.Musician);
+            } else
+            {
+                Ensemble ensemble = await _context.Ensemble.FindAsync(id);
+
+                if (ensemble == null)
+                {
+                    return NotFound();
+                }
+
+                eAndM = new EnsembleAndMusicians(ensemble, _context.Musician);
+            }
+            return View(eAndM);
+        }
+
+        //GET: Musician/AddTo
+        //Takes a musician and an ensemble by id, and add the musician as a player in the ensemble.
+        //Then returns to the index page with the ensemble being passed.
+        public async Task<IActionResult> AddTo(int mus, int ens)
+        {
+            EnsemblePlayers ensemblePlayer = new EnsemblePlayers { EnsembleId = ens, MusicianId = mus };
+            await _context.EnsemblePlayers.AddAsync(ensemblePlayer);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", new { id = ens });
         }
 
         //GET: Musician/AddMusician
