@@ -4,15 +4,20 @@
     ViewData["Title"] = "Musicians";
 }
 
-<h1 style="padding-bottom:10px; padding-top:10px;">Musicians</h1>
 <p>
-    <a class="btn btn-info" asp-action="AddMusician">Add Musician</a>
     @if (Model.Ensemble != null)
     {
+        <h1 style="padding-bottom:10px; padding-top:10px;">Add Musicians</h1>
+        <a class="btn btn-info" asp-action="AddMusician">Add Musician</a>
         <a class="btn btn-info" asp-controller="Ensemble" asp-action="Details" asp-route-id="@Model.Ensemble.EnsembleId">Back to Ensemble</a>
     }
-</p>
+    else
+    {
+        <h1 style="padding-bottom:10px; padding-top:10px;">Musicians</h1>
+        <a class="btn btn-info" asp-action="AddMusician">Add Musician</a>
 
+    }
+</p>
 <div>
     <table class="table table-striped">
         <thead>
@@ -37,16 +42,21 @@
                     @musician.Email
                 </td>
                 <td>
-                    <a style="color:#17a2b8;" asp-action="EditMusician" asp-route-id="@musician.MusicianId">Edit</a> |
-                    <a style="color:#17a2b8;" asp-action="Details" asp-route-id="@musician.MusicianId">Details</a> |
-                    <a style="color:#17a2b8;" asp-action="Delete" asp-route-id="@musician.MusicianId">Delete</a>
                     @if (Model.Ensemble != null)
                     {
-                    <form asp-action="AddTo" style="padding-top:20px; padding-bottom:20px;">
-                        <input type="hidden" name="mus" value="@musician.MusicianId" />
-                        <input type="hidden" name="ens" value="@Model.Ensemble.EnsembleId" />
-                        <input type="submit" value="Add To @Model.Ensemble.EnsembleName" />
-                    </form>
+                        <form asp-action="AddTo" style="padding-top:10px; padding-bottom:10px;">
+                            <input type="hidden" name="mus" value="@musician.MusicianId" />
+                            <input type="hidden" name="ens" value="@Model.Ensemble.EnsembleId" />
+                            <input type="submit" class="btn btn-info btn-sm" value="Add To @Model.Ensemble.EnsembleName" />
+                        </form>
+                    }
+                    else
+                    {
+                        <div>
+                            <a style="color:#17a2b8;" asp-action="EditMusician" asp-route-id="@musician.MusicianId">Edit</a> |
+                            <a style="color:#17a2b8;" asp-action="Details" asp-route-id="@musician.MusicianId">Details</a> |
+                            <a style="color:#17a2b8;" asp-action="Delete" asp-route-id="@musician.MusicianId">Delete</a>
+                        </div>
                     }
                 </td>
             </tr>

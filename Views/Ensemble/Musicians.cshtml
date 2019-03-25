@@ -3,14 +3,45 @@
     ViewData["Title"] = "Musicians";
 }
 
-<h1>Musicians</h1>
-<a asp-action="Details" asp-route-id="@Model.Ensemble.EnsembleId">Back to @Model.Ensemble.EnsembleName</a>
-@foreach (Musician musician in Model.Musicians)
-{
-    <p>@musician.MusicianName</p>
-    <form asp-action="RemoveFrom" style="padding-top:20px; padding-bottom:20px;">
-        <input type="hidden" name="mus" value="@musician.MusicianId" />
-        <input type="hidden" name="ens" value="@Model.Ensemble.EnsembleId" />
-        <input type="submit" value="Remove from Ensemble" />
-    </form>
-}
+<h1 style="padding-bottom:10px; padding-top:10px" >Musicians</h1>
+<p>
+    <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.Ensemble.EnsembleId">Back to @Model.Ensemble.EnsembleName</a>
+</p>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Instrument</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Musician musician in Model.Musicians)
+            {
+                <tr>
+                    <td>
+                        @musician.MusicianName
+                    </td>
+                    <td>
+                        @musician.Part
+                    </td>
+                    <td>
+                        @musician.Email
+                    </td>
+                    <td>
+                        <form asp-action="RemoveFrom" style="padding-top:10px; padding-bottom:10px;">
+                            <input type="hidden" name="mus" value="@musician.MusicianId" />
+                            <input type="hidden" name="ens" value="@Model.Ensemble.EnsembleId" />
+                            <input type="submit" class="btn btn-info btn-sm" value="Remove from Ensemble" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
