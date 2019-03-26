@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Lizst.Models.MusicianAndPieces>
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h1>Checkout</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Musician
+            </th>
+            <th>
+                Scores
+            </th>
+            <th>
+                Pieces
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (MusicianAndPieces musicianAndPieces in Model)
+        {
+            <tr>
+                <td>
+                    @musicianAndPieces.Musician.MusicianName
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            for(int i = 0; i < musicianAndPieces.Pieces.Count(); i++)
+            {
+                <tr>
+                    <td></td>
+                    <td>@musicianAndPieces.Scores[i].Title</td>
+                    <td>@musicianAndPieces.Pieces[i].Instrument</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<a asp-action="Confirm">Confirm</a>

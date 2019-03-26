@@ -25,7 +25,7 @@ namespace Lizst.Models
 
     public class PieceDBContext : DbContext
     {
-        public Microsoft.EntityFrameworkCore.DbSet<Piece> piece { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Piece> Piece { get; set; }
     }
 
 }

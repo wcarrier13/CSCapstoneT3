@@ -34,8 +34,6 @@ namespace Lizst.Controllers
         //the ensemble.
         public async Task<IActionResult> RemoveFrom(int ens, int mus)
         {
-
-            System.Diagnostics.Debug.WriteLine("\n\n" + ens + "\n\n");
             EnsemblePlayers ensemblePlayer;
             try
             {

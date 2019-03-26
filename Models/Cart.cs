@@ -10,6 +10,8 @@ namespace Lizst.Models
     public class Cart
     {
         public static ICollection<Score> ShoppingCart { get; } = new List<Score>();
+        public static Ensemble Ensemble;
+        public static IEnumerable<MusicianAndPieces> MusiciansAndPieces;
 
         public static ICollection<Score> GetCart()
         {

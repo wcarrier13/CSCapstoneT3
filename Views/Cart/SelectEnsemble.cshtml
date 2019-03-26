@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Ensemble>
+@{
+    ViewData["Title"] = "Select Ensemble";
+}
+
+<h1>Select Ensemble</h1>
+
+<table>
+    <thead>
+        <th>Ensemble</th>
+        <th></th>
+    </thead>
+    <tbody>
+        @foreach(Ensemble ensemble in Model)
+        {
+            <tr>
+                <td>
+                    @ensemble.EnsembleName
+                </td>
+                <td>
+                    <a asp-action="Select" asp-route-id="@ensemble.EnsembleId">Select</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

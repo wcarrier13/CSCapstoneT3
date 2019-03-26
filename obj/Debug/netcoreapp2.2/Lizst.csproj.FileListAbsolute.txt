@@ -95,3 +95,7 @@ C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Lizst.RazorTargetAssem
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Lizst.Views.pdb
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Lizst.csproj.CopyComplete
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Ensemble\Musicians.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Cart\SelectEnsemble.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Cart\Checkout.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Cart\Confirm.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\CheckedOut\Index.g.cshtml.cs

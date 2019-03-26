@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MusicianAndPieces>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Musician
+            </th>
+            <th>
+                Pieces Out
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(MusicianAndPieces mAndPs in Model)
+        {
+            <tr>
+                <td>
+                    @mAndPs.Musician.MusicianName
+                </td>
+                <td></td>
+            </tr>
+            for(int i = 0; i < mAndPs.Pieces.Count(); i++)
+            {
+                <tr>
+                    <td></td>
+                    <td>
+                        @mAndPs.Pieces[i].Instrument
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
