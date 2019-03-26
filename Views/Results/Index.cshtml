@@ -34,7 +34,11 @@
                         <td>@score.Publisher</td>
                         <td>@score.SecondaryClassification</td>
                         <td>@score.InStock</td>
-                        <td><a style="color:#17a2b8;" asp-controller="Score" asp-action="Details" asp-route-id="@score.ScoreId">Details</a></td>
+                        <td>
+                            <a style="color:#17a2b8;" asp-controller="Score" asp-action="Details" asp-route-id="@score.ScoreId">Details</a> |
+                            <a style="color:#17a2b8;" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@score.ScoreId">Add to Cart</a>
+                        </td>
+
                     </tr>
                 }
             }
