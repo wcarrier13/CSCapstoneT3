@@ -3,9 +3,9 @@
     ViewData["Title"] = "Select Ensemble";
 }
 
-<h1>Select Ensemble</h1>
+<h1 style="padding-top:10px; padding-bottom:10px;">Select Ensemble</h1>
 
-<table>
+<table class="table table-striped">
     <thead>
         <th>Ensemble</th>
         <th></th>
@@ -18,7 +18,7 @@
                     @ensemble.EnsembleName
                 </td>
                 <td>
-                    <a asp-action="Select" asp-route-id="@ensemble.EnsembleId">Select</a>
+                    <a class="btn btn-info" style="width:120px" asp-action="Select" asp-route-id="@ensemble.EnsembleId">Select</a>
                 </td>
             </tr>
         }

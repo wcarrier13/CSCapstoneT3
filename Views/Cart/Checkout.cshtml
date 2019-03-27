@@ -4,9 +4,9 @@
     ViewData["Title"] = "Checkout";
 }
 
-<h1>Checkout</h1>
+<h1 style="padding-top:10px; padding-bottom:10px;">Checkout</h1>
 
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -41,4 +41,6 @@
         }
     </tbody>
 </table>
-<a asp-action="Confirm">Confirm</a>
+<div style="padding-top:10px;" class="text-center">
+    <a class="btn btn-info" style="width:170px" asp-action="Confirm">Confirm</a>
+</div>

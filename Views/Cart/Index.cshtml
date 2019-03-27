@@ -4,13 +4,19 @@
     ViewData["Title"] = "Shopping Cart";
 }
 
-<h1>Shopping Cart</h1>
+<h1 style="padding-top:10px; padding-bottom:10px;">Shopping Cart</h1>
 
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
             <td>
                 Title
+            </td>
+            <td>
+                Composer
+            </td>
+            <td>
+                Number of Parts
             </td>
             <td>
 
@@ -25,10 +31,18 @@
                     @score.Title
                 </td>
                 <td>
-                    <a asp-action="RemoveFromCart" asp-route-id="@score.ScoreId">Remove</a>
+                    @score.Composer
+                </td>
+                <td>
+                    @score.NumberOfParts
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-action="RemoveFromCart" asp-route-id="@score.ScoreId">Remove</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<a asp-action="SelectEnsemble">Select Ensemble</a>
+<div style="padding-top:10px;" class="text-center">
+    <a style="width:170px" class="btn btn-info" asp-action="SelectEnsemble">Select Ensemble</a>
+</div>
