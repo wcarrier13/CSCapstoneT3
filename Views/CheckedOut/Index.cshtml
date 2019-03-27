@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MusicianAndPieces>
+﻿@model IEnumerable<Musician>
 @{
     ViewData["Title"] = "Index";
 }
@@ -12,28 +12,21 @@
                 Musician
             </th>
             <th>
-                Pieces Out
+                
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach(MusicianAndPieces mAndPs in Model)
+        @foreach(Musician m in Model)
         {
             <tr>
                 <td>
-                    @mAndPs.Musician.MusicianName
+                    @m.MusicianName
                 </td>
-                <td></td>
+                <td>
+                    <a asp-action="Musician" asp-route-id="@m.MusicianId">Checked out details.</a>
+                </td>
             </tr>
-            for(int i = 0; i < mAndPs.Pieces.Count(); i++)
-            {
-                <tr>
-                    <td></td>
-                    <td>
-                        @mAndPs.Pieces[i].Instrument
-                    </td>
-                </tr>
-            }
         }
     </tbody>
 </table>

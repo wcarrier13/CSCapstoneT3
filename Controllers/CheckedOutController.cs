@@ -19,26 +19,10 @@ namespace Lizst.Controllers
         //REFACTOR
         public IActionResult Index()
         {
-            List<MusicianAndPieces> msAndPs = new List<MusicianAndPieces>();
-            IEnumerable<CheckedOut> checkedOut = _context.CheckedOut.ToList();
-            foreach(CheckedOut co in checkedOut)
-            {
-                Musician musician = _context.Musician.Find(co.MusicianId);
-                Piece piece = _context.Piece.Find(co.PartId);
-                try
-                {
-                    MusicianAndPieces mAndPs = msAndPs.Find(m => m.Musician == musician);
-                    List<Piece> pieces = mAndPs.Pieces.ToList();
-                    pieces.Add(piece);
-                    mAndPs.Pieces = pieces.ToArray();
-                }
-                catch
-                {
-                    MusicianAndPieces mAndPs = new MusicianAndPieces { Musician = musician, Pieces = new Piece[] { piece } };
-                    msAndPs.Add(mAndPs);
-                }
-            }
-            return View(msAndPs);
+            IEnumerable<Musician> musicians = from m in _context.Musician
+                                              where _context.CheckedOut.Any(e => e.MusicianId == m.MusicianId)
+                                              select m;
+            return View(musicians);
         }
 
         public IActionResult Musician(int id)
@@ -60,7 +44,6 @@ namespace Lizst.Controllers
             for(int i = 0; i < pieces.Count(); i++)
             {
                 scores[i] = _context.Score.Find(pieces[i].ScoreId);
-                //System.Diagnostics.Debug.WriteLine("\n\n" + scores[i].Title + "\n\n");
             }
 
             //Create a new object storing all of the information.
