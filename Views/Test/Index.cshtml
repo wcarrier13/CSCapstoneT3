@@ -1,0 +1,30 @@
+﻿@model Lizst.Models.Test
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div class="accordion" style="padding-top:20px;padding-bottom:20px;" id="accordionExample">
+    @for (int i = 0; i < Model.Instruments.Count(); i++)
+    {
+        <div class="card" id="@Model.Instruments[i]">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" style="color:#17a2b8;" type="button" data-toggle="collapse" data-target="#@Model.Instruments[i]" aria-expanded="false" aria-controls="@Model.Instruments[i]">
+                    @Model.Instruments[i]
+                </button>
+            </h5>
+        </div>
+
+        <div id="@Model.Instruments[i]" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                @for (int j = 1; j <= Model.Nums[i]; j++)
+                {
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" style="padding:10px;">@Model.Instruments[i] @j:</label>
+                        <input id="numberPicker" style="width:20%" type="number" name="quantity" min="0" max="10">
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
