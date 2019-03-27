@@ -44,5 +44,8 @@
     </tbody>
 </table>
 <div style="padding-top:10px;" class="text-center">
-    <a style="width:170px" class="btn btn-info" asp-action="SelectEnsemble">Select Ensemble</a>
+    @if (Model.Any())
+    {
+        <a style="width:170px" class="btn btn-info" asp-action="SelectEnsemble">Select Ensemble</a>
+    }
 </div>

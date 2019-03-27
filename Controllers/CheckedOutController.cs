@@ -40,5 +40,33 @@ namespace Lizst.Controllers
             }
             return View(msAndPs);
         }
+
+        public IActionResult Musician(int id)
+        {
+            //Find everything checked out by a given musician.
+            CheckedOut[] checkedOut = (from co in _context.CheckedOut
+                                                 where co.MusicianId == id
+                                                 select co).ToArray();
+
+            //Find all the piece information.
+            Piece[] pieces = new Piece[checkedOut.Count()];
+            for(int i = 0; i < checkedOut.Count(); i++)
+            {
+                pieces[i] = _context.Piece.Find(checkedOut[i].PartId);
+            }
+
+            //Find all of the score information.
+            Score[] scores = new Score[pieces.Count()];
+            for(int i = 0; i < pieces.Count(); i++)
+            {
+                scores[i] = _context.Score.Find(pieces[i].ScoreId);
+                //System.Diagnostics.Debug.WriteLine("\n\n" + scores[i].Title + "\n\n");
+            }
+
+            //Create a new object storing all of the information.
+            MusicianAndPieces mAndPs = new MusicianAndPieces { Musician = _context.Musician.Find(id), Pieces = pieces, Scores = scores };
+
+            return View(mAndPs);
+        }
     }
 }

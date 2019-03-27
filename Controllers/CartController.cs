@@ -31,7 +31,10 @@ namespace Lizst.Controllers
             {
                 return NotFound();
             }
-            ShoppingCart.Add(score);
+            if (!ShoppingCart.Any(s => s.ScoreId == id))
+            {
+                ShoppingCart.Add(score);
+            }
 
 
             return RedirectToAction(nameof(Index));
@@ -111,6 +114,7 @@ namespace Lizst.Controllers
                     _context.CheckedOut.Add(checkedOut);
                 }
             }
+            ShoppingCart.Clear();
             await _context.SaveChangesAsync();
             return View();
         }

@@ -99,3 +99,4 @@ C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Cart\Selec
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Cart\Checkout.g.cshtml.cs
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Cart\Confirm.g.cshtml.cs
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\CheckedOut\Index.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\CheckedOut\Musician.g.cshtml.cs
