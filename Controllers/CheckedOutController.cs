@@ -16,7 +16,7 @@ namespace Lizst.Controllers
             _context = context;
         }
 
-        //REFACTOR
+        //Finds all musicians that have something checked out.
         public IActionResult Index()
         {
             IEnumerable<Musician> musicians = from m in _context.Musician
@@ -25,23 +25,24 @@ namespace Lizst.Controllers
             return View(musicians);
         }
 
+        //Finds all pieces that are checked out by a given musician.
         public IActionResult Musician(int id)
         {
             //Find everything checked out by a given musician.
             CheckedOut[] checkedOut = (from co in _context.CheckedOut
-                                                 where co.MusicianId == id
-                                                 select co).ToArray();
+                                       where co.MusicianId == id
+                                       select co).ToArray();
 
             //Find all the piece information.
             Piece[] pieces = new Piece[checkedOut.Count()];
-            for(int i = 0; i < checkedOut.Count(); i++)
+            for (int i = 0; i < checkedOut.Count(); i++)
             {
                 pieces[i] = _context.Piece.Find(checkedOut[i].PartId);
             }
 
             //Find all of the score information.
             Score[] scores = new Score[pieces.Count()];
-            for(int i = 0; i < pieces.Count(); i++)
+            for (int i = 0; i < pieces.Count(); i++)
             {
                 scores[i] = _context.Score.Find(pieces[i].ScoreId);
             }

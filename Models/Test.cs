@@ -7,9 +7,7 @@ namespace Lizst.Models
 {
     public class Test
     {
-        public String[] Instruments = new string[] { "Flute","violin","chello" };
-        public int[] Nums = new int[] { 1, 2, 3 };
-        //public Piece[] pieces = new Piece[] { new Piece(), new Piece(), new Piece(), new Piece(), new Piece(), new Piece() };
-        public int[] results = new int[6];
+        public String[] Instruments = new string[] { "Flute","Violin","Precussion" };
+        public String[][] names = new string[][] { new String[]{ "Flute 1", "Flute 2" }, new String[]{ "Violin 1", "Violin 2" }, new String[]{ "Wood Block", "Xylophone", "Vibraphone" } };
     }
 }
