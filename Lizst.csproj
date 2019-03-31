@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\NewFolder\**" />
+    <Compile Remove="Views\ScorePieces\NewFolder\**" />
+    <Content Remove="Views\NewFolder\**" />
+    <Content Remove="Views\ScorePieces\NewFolder\**" />
+    <EmbeddedResource Remove="Views\NewFolder\**" />
+    <EmbeddedResource Remove="Views\ScorePieces\NewFolder\**" />
+    <None Remove="Views\NewFolder\**" />
+    <None Remove="Views\ScorePieces\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Views\Cart\CheckOut.cshtml.cs" />
     <Compile Remove="Views\Ensemble\mvx.cshtml.cs" />
   </ItemGroup>
