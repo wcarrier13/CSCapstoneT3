@@ -16,11 +16,13 @@ namespace Lizst.Models
         public string Edition { get; set; }
         public int AggregateRating { get; set; }
 
+        /*
 
         public void AddScore(Score score, LizstContext context)
         {
             score.AddPiece(this, context);
         }
+        */
     }
 
     public class PieceDBContext : DbContext
