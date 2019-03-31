@@ -9,10 +9,16 @@
     <thead>
         <tr>
             <th>
+                Musician ID
+            </th>
+            <th>
                 Musician
             </th>
             <th>
-                
+                Email
+            </th>
+            <th>
+
             </th>
         </tr>
     </thead>
@@ -21,10 +27,16 @@
         {
             <tr>
                 <td>
+                    @m.MusicianId
+                </td>
+                <td>
                     @m.MusicianName
                 </td>
                 <td>
-                    <a asp-action="Musician" asp-route-id="@m.MusicianId">Checked out details.</a>
+                    @m.Email
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" style="width:120px" asp-action="Musician" asp-route-id="@m.MusicianId">Details</a>
                 </td>
             </tr>
         }
