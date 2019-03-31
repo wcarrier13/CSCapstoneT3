@@ -9,9 +9,25 @@ namespace Lizst.Controllers
 {
     public class ScorePiecesController : Controller
     {
+
+        private readonly LizstContext _context;
+
+        public ScorePiecesController(LizstContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-            return View(new Test());
+            return View(new ScorePieces());
+        }
+
+        public async Task<IActionResult> AddTo(int p, int s)
+        {
+            ScorePieces piece = new ScorePieces { ScoreId = s, PieceId = p };
+            await _context.ScorePieces.AddAsync(piece);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", new { id = s });
         }
 
         public IActionResult Submit()
@@ -31,7 +47,7 @@ namespace Lizst.Controllers
             }
             System.Diagnostics.Debug.WriteLine("\n\n");
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Score");
         }
     }
 }
