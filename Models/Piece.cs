@@ -14,7 +14,7 @@ namespace Lizst.Models
         public string Instrument { get; set; }
         public int ScoreId { get; set; }
         public string Edition { get; set; }
-        public int AggregateRating { get; set; }
+        public float AggregateRating { get; set; }
 
         /*
 
