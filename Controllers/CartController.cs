@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Lizst.Models;
+using System.Text.RegularExpressions;
 
 namespace Lizst.Controllers
 {
@@ -25,7 +26,7 @@ namespace Lizst.Controllers
             return View(ShoppingCart);
         }
 
-        // GET: Cart/AddToCart
+        // GET: Cart/AddToCart/1
         // Adds a given score to the shopping cart and returns to the cart display.
         public IActionResult AddToCart(int id)
         {
@@ -74,40 +75,25 @@ namespace Lizst.Controllers
             {
                 return NotFound();
             }
-            Cart.Ensemble = ensemble;
-            //Nested query, select all musicians that are in the ensemble music is being checked out to.
-            IEnumerable<Musician> musicians = from musician in _context.Musician
-                                              where (from ensemblePlayer in _context.EnsemblePlayers
-                                                     where ensemblePlayer.EnsembleId == Cart.Ensemble.EnsembleId
-                                                     select ensemblePlayer).Any(e => e.MusicianId == musician.MusicianId)
-                                              select musician;
 
-            //Select any piece that is a part of some score in the cart.
-            IEnumerable<Piece> pieces = from piece in _context.Piece
-                                        where Cart.ShoppingCart.Any(e => e.ScoreId == piece.ScoreId)
-                                        select piece;
+            CheckOutSelect outSelect = new CheckOutSelect();
 
-            //Create records associating each musician with the relevant pieces that they can play.
-            List<MusicianAndPieces> msAndPs = new List<MusicianAndPieces>();
-            foreach (Musician musician in musicians)
-            {
-                IEnumerable<Piece> allowed = from piece in pieces
-                                             where musician.Part != null && musician.Part.Equals(piece.Instrument)
-                                             select piece;
-                IEnumerable<Score> scores = from score in Cart.ShoppingCart
-                                            where allowed.Any(e => e.ScoreId == score.ScoreId)
-                                            select score;
-                MusicianAndPieces mAndPs = new MusicianAndPieces
-                {
-                    Musician = musician,
-                    Pieces = allowed.ToArray(),
-                    Scores = scores.ToArray()
-                };
-                msAndPs.Add(mAndPs);
-            }
-            Cart.MusiciansAndPieces = msAndPs;
+            //Find all musicians that are in the selected ensemble.
+            outSelect.AddAllMusicians(from musician in _context.Musician
+                                      where _context.EnsemblePlayers.Any( e=>e.EnsembleId == id && e.MusicianId == musician.MusicianId)
+                                      select musician);
 
-            return View(msAndPs);
+            //Find all scores that are being checked out.
+            outSelect.AddAllScores(Cart.ShoppingCart);
+
+            //Find all pieces that are in some score being checked out.
+            outSelect.AddAllPieces(from piece in _context.Piece
+                                   where Cart.ShoppingCart.Any(e => e.ScoreId == piece.ScoreId)
+                                   select piece);
+
+            outSelect.MatchMusicians();
+            
+            return View(outSelect);
         }
 
         // GET: Cart/Confirm
@@ -115,24 +101,23 @@ namespace Lizst.Controllers
         // creating a new record of a piece being checked out.
         public async Task<IActionResult> Confirm()
         {
-            foreach(MusicianAndPieces mAndPs in Cart.MusiciansAndPieces)
+            IEnumerable<string> keys = Request.Form.Keys;
+            foreach(String s in keys)
             {
-                foreach(Piece piece in mAndPs.Pieces)
+                string regex = "musician [0-9][0-9]* score [0-9][0-9]*";
+                Match m = Regex.Match(s, regex);
+                if(m.Success)
                 {
-                    CheckedOut checkedOut = new CheckedOut { MusicianId = mAndPs.Musician.MusicianId, PartId = piece.PieceId };
-                    _context.CheckedOut.Add(checkedOut);
+                    string[] split = s.Split(" ");
+                    int musician = Convert.ToInt32(split[1]);
+                    int pieceId = Convert.ToInt32( Request.Form[s]);
+                    CheckedOut co = new CheckedOut { MusicianId = musician, PartId = pieceId };
+                    _context.CheckedOut.Add(co);
                 }
             }
             ShoppingCart.Clear();
             await _context.SaveChangesAsync();
             return View();
-        }
-
-        public IEnumerable<Piece> ValidPieces(Musician musician, IEnumerable<Piece> pieces)
-        {
-            return from piece in pieces
-                   where musician.Part != null && musician.Part.Equals(piece.Instrument)
-                   select piece;
         }
     }
 }

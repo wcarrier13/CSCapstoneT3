@@ -17,6 +17,8 @@ namespace Lizst.Controllers
             _context = context;
         }
 
+        // GET: CheckIn
+        //Displays all the musicians that have at least one piece checked out.
         public IActionResult Index()
         {
             //Nested query to find any musician that has something checked out.
@@ -27,6 +29,10 @@ namespace Lizst.Controllers
             return View(musicians);
         }
 
+        //GET: CheckIn/CheckIn/1
+        //Displays all of the pieces that are checked out by a given musician,
+        //and allows the user to select which pieces are being checked in and
+        //in what condition they are in.
         public IActionResult CheckIn(int id)
         {
             Musician musician = _context.Musician.Find(id);
@@ -52,14 +58,16 @@ namespace Lizst.Controllers
             return View(mAndPs);
         }
 
+        //POST: Checkin/Confirm
+        //Does the logic for checking in a piece and updating the condition
+        //it is in. Returns a confirmation page.
         public async Task<IActionResult> Confirm()
-
         {
-            
+            //Find the id of the musician whose piece is being checked in.
             int musicianId = Convert.ToInt32(Request.Form["musician"]);
+
+            //Find every piece that is being checked in.
             List<int> toReturn = new List<int>();
-            List<Piece> pieces = new List<Piece>();
-            List<String> condition = new List<string>();
             IEnumerable<String> keys = Request.Form.Keys;
             foreach(String k in keys)
             {
@@ -71,8 +79,11 @@ namespace Lizst.Controllers
                 }
             }
 
+            //List<Piece> pieces = new List<Piece>();
+            //List<String> condition = new List<string>();
+
             //For each piece being returned, assess the condition and update the rating.
-            foreach(int i in toReturn)
+            foreach (int i in toReturn)
             {
                 Piece p = _context.Piece.Find(i);
                 String cond = Request.Form["condition " + i];
