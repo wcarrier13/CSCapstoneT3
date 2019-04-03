@@ -43,7 +43,7 @@ namespace Lizst.Controllers
             {
                 _context.Score.Add(score);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "ScorePieces", new { id = score.ScoreId });
             }
             return View(score);
         }
