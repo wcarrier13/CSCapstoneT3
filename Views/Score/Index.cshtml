@@ -1,8 +1,13 @@
-﻿@model IEnumerable<Lizst.Models.Score>
+﻿@model SearchModel
 
 @{
     ViewData["Title"] = "Index";
 }
+
+<form style="display:inline-block; width:100%; padding:25px" class="form-inline" method="post" action="/Score/">
+    <input class="form-control mr-sm-2 w-75" type="text" value="@Model.Search" aria-label="Search" name="search">
+    <button type="submit" class="btn my-sm-0 btn-outline-secondary"> <i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
 
 <h1 style="padding-bottom:10px; padding-top:10px;">Scores</h1>
 <p>
@@ -12,16 +17,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ScoreId)
+                @Html.DisplayNameFor(model => model.Score.ScoreId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Score.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Composer)
+                @Html.DisplayNameFor(model => model.Score.Composer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genre)
+                @Html.DisplayNameFor(model => model.Score.Genre)
             </th>
 
             <th></th>
@@ -29,28 +34,29 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ScoreId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Composer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
+        @foreach (var item in Model.Results)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScoreId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Composer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
 
-            <td>
-                <a style="color:#17a2b8;" asp-action="EditScore" asp-route-id="@item.ScoreId">Edit</a> |
-                <a style="color:#17a2b8;" asp-action="Details" asp-route-id="@item.ScoreId">Details</a> |
-                <a style="color:#17a2b8;" asp-action="Delete" asp-route-id="@item.ScoreId">Delete</a> |
-                <a style="color:#17a2b8;" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.ScoreId">Add to Cart</a>
-            </td>
-        </tr>
-}
+                <td>
+                    <a style="color:#17a2b8;" asp-action="EditScore" asp-route-id="@item.ScoreId" asp-route-search="@Model.Search" asp-route-genre="@Model.Genre">Edit</a> |
+                    <a style="color:#17a2b8;" asp-action="Details" asp-route-id="@item.ScoreId" asp-route-search="@Model.Search" asp-route-genre="@Model.Genre">Details</a> |
+                    <a style="color:#17a2b8;" asp-action="Delete" asp-route-id="@item.ScoreId">Delete</a> |
+                    <a style="color:#17a2b8;" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.ScoreId">Add to Cart</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

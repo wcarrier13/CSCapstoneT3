@@ -23,7 +23,7 @@ namespace Lizst.Controllers
         {
             IEnumerable<Score> scores;
             //No information passed, return all results.
-            if (search == null)
+            if (search == null || search.Equals(""))
             {
                 scores =
                     from score in _context.Score
@@ -34,19 +34,18 @@ namespace Lizst.Controllers
             else
             {
                 scores = Search.FindRelevant(search, _context);
-                search = search.ToLower();
             }
 
             //Limit search to genre.
-            if (genre != null)
+            if (genre != null && !genre.Equals(""))
             {
                 scores =
                     from score in scores
                     where score.Genre.Equals(genre)
                     select score;
             }
-
-            return View(scores);
+            SearchModel sm = new SearchModel { Search = search, Genre = genre, Results = scores };
+            return View(sm);
         }
 
         // GET: Score/AddScore
@@ -73,7 +72,7 @@ namespace Lizst.Controllers
 
         // GET: Score/EditScore
         // If score is in database, give edit page with relevant details.
-        public async Task<IActionResult> EditScore(int? id)
+        public async Task<IActionResult> EditScore(int? id, string search, string genre)
         {
             if (id == null)
             {
@@ -85,14 +84,17 @@ namespace Lizst.Controllers
             {
                 return NotFound();
             }
-            return View(score);
+
+            SearchModel sm = new SearchModel { Score = score, Search = search, Genre = genre };
+
+            return View(sm);
         }
 
         // POST: Score/EditScore/6
         // Revised version of score has been posted. Update the database.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditScore(int id, string button, [Bind("ScoreId", "Title", "Composer", "Genre", "NumberOfParts", "Notes")] Score score)
+        public async Task<IActionResult> EditScore(int id, string search, string genre, string button, [Bind("ScoreId", "Title", "Composer", "Genre", "NumberOfParts", "Notes")] Score score)
         {
             if (ModelState.IsValid)
             {
@@ -130,8 +132,8 @@ namespace Lizst.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-
-            return View(score);
+            SearchModel sm = new SearchModel { Score = score, Search = search, Genre = genre };
+            return View(sm);
         }
 
         //Simply delete a score by id.
@@ -145,14 +147,15 @@ namespace Lizst.Controllers
 
         //GET: Score/Details
         //Returns a page displaying all the information about a score.
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id, string search, string genre)
         {
             Score score = await _context.Score.FindAsync(id);
             if (score == null)
             {
                 return NotFound();
             }
-            return View(score);
+            SearchModel sm = new SearchModel { Score = score, Search = search, Genre = genre };
+            return View(sm);
         }
 
 

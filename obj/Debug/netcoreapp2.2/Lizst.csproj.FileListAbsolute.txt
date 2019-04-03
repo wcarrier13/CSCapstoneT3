@@ -77,7 +77,6 @@ C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Musician\A
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Musician\Details.g.cshtml.cs
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Musician\EditMusician.g.cshtml.cs
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Musician\Index.g.cshtml.cs
-C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Results\Index.g.cshtml.cs
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Score\AddScore.g.cshtml.cs
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Score\Create.g.cshtml.cs
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Score\Delete.g.cshtml.cs
@@ -100,3 +99,10 @@ C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Cart\Check
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Cart\Confirm.g.cshtml.cs
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\CheckedOut\Index.g.cshtml.cs
 C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\CheckedOut\Musician.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Cart\Select.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\CheckIn\CheckIn.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\CheckIn\Confirm.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\CheckIn\Index.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\ScorePieces\Index.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Score\AddPieces.g.cshtml.cs
+C:\Users\Cody Anderson\source\git\obj\Debug\netcoreapp2.2\Razor\Views\Test\Index.g.cshtml.cs

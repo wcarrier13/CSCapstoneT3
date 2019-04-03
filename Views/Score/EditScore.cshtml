@@ -1,26 +1,32 @@
-﻿@model Lizst.Models.Score
+﻿@model SearchModel
 
 @{
     ViewData["Title"] = "Edit Score";
 }
 
-<form asp-action="EditScore" style="padding-top:20px; padding-bottom:20px;">
+<form action="/Score/Index" method="post">
+    <input type="hidden" name="search" value="@Model.Search" />
+    <input type="hidden" name="genre" value="@Model.Genre" />
+    <button class="btn" type="submit">Return to results</button>
+</form>
+
+<form asp-action="EditScore" style="padding-top:20px; padding-bottom:20px;" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <fieldset>
         <legend><b>Edit Score</b></legend>
         <div class="form-group">
-            <label asp-for="Title">Title: </label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
+            <label asp-for="Score.Title">Title: </label>
+            <input asp-for="Score.Title" class="form-control" />
+            <span asp-validation-for="Score.Title" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Composer">Composer: </label>
-            <input asp-for="Composer" class="form-control" />
-            <span asp-validation-for="Composer" class="text-danger"></span>
+            <label asp-for="Score.Composer">Composer: </label>
+            <input asp-for="Score.Composer" class="form-control" />
+            <span asp-validation-for="Score.Composer" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Genre">Genre: </label>
-            <select asp-for="Genre" class="form-control">
+            <label asp-for="Score.Genre">Genre: </label>
+            <select asp-for="Score.Genre" class="form-control">
                 <option>Medieval</option>
                 <option>Renaissance</option>
                 <option>Baroque</option>
@@ -30,17 +36,17 @@
                 <option>Modern</option>
                 <option>Other</option>
             </select>
-            <span asp-validation-for="Genre" class="text-danger"></span>
+            <span asp-validation-for="Score.Genre" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Publisher">Publisher: </label>
-            <input asp-for="Publisher" class="form-control" />
-            <span asp-validation-for="Publisher" class="text-danger"></span>
+            <label asp-for="Score.Publisher">Publisher: </label>
+            <input asp-for="Score.Publisher" class="form-control" />
+            <span asp-validation-for="Score.Publisher" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="SecondaryClassification">Secondary Classification: </label>
-            <input asp-for="SecondaryClassification" class="form-control" />
-            <span asp-validation-for="SecondaryClassification" class="text-danger"></span>
+            <label asp-for="Score.SecondaryClassification">Secondary Classification: </label>
+            <input asp-for="Score.SecondaryClassification" class="form-control" />
+            <span asp-validation-for="Score.SecondaryClassification" class="text-danger"></span>
         </div>
     </fieldset>
     <div class="accordion" style="padding-top:20px;padding-bottom:20px;" id="accordionExample">
