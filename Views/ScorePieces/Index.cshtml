@@ -25,16 +25,16 @@
                     <div class="card-body">
                         @for (int j = 0; j < Model.names[i].Length; j++)
                         {
-                        <div class="form-group">
-                            <label style="padding:10px;">@Model.names[i][j]:</label>
-                            <input id="numberPicker" style="width:20%" type="number" name="results[@count][0]" min="0" max="10" value="0">
-                            <label style="padding:10px;">Edition:</label>
-                            <input id="textbox" style="width:20%" type="text" name="results[@count][1]" value="Default" />
-                            <label style="padding:10px;">Rating:</label>
-                            <input id="numberPicker" style="width:20%" type="number" name="results[@count][2]" min="0" max="5" value="0" />
+                            <div class="form-group">
+                                <label style="padding:10px;">@Model.names[i][j]:</label>
+                                <input id="numberPicker" style="width:20%" type="number" name="results[@count][0]" min="0" max="10" value="0">
+                                <label style="padding:10px;">Edition:</label>
+                                <input id="textbox" style="width:20%" type="text" name="results[@count][1]" value="Default" />
+                                <label style="padding:10px;">Rating:</label>
+                                <input id="numberPicker" style="width:20%" type="number" name="results[@count][2]" min="0" max="5" value="0" />
 
-                            @{count++;}
-                        </div>
+                                @{count++;}
+                            </div>
                         }
                     </div>
                 </div>
@@ -42,5 +42,6 @@
         }
     </div>
 
+    <input type="hidden" value="@Model.ScoreId" name="sid" />
     <input type="submit" class="btn btn-info btn-md" style="width: 180px;" value="Save" />
 </form>
