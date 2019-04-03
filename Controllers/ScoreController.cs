@@ -19,11 +19,34 @@ namespace Lizst.Controllers
             _context = context;
         }
 
-        // GET: Score
-        // Index page merely displays all scores.
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string search, string genre)
         {
-            return View(await _context.Score.ToListAsync());
+            IEnumerable<Score> scores;
+            //No information passed, return all results.
+            if (search == null)
+            {
+                scores =
+                    from score in _context.Score
+                    where true
+                    select score;
+            }
+            //Perform the search.
+            else
+            {
+                scores = Search.FindRelevant(search, _context);
+                search = search.ToLower();
+            }
+
+            //Limit search to genre.
+            if (genre != null)
+            {
+                scores =
+                    from score in scores
+                    where score.Genre.Equals(genre)
+                    select score;
+            }
+
+            return View(scores);
         }
 
         // GET: Score/AddScore
