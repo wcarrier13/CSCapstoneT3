@@ -17,6 +17,7 @@ namespace Lizst.Models
         public string Publisher { get; set; }
         public string SecondaryClassification { get; set; }
         public string InStock { get; set; }
+        public string Notes { get; set; }
         public ICollection<ScorePieces> Pieces { get; } = new List<ScorePieces>();
 
         public void AddPiece(Piece piece, LizstContext context)
