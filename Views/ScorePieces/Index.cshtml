@@ -1,0 +1,46 @@
+﻿@model Lizst.Models.ScorePieces
+@{
+    ViewData["Title"] = "Index";
+}
+@{ 
+    int count = 0;
+}
+
+<h1>Index</h1>
+<form asp-action="Submit" style="padding-top:20px; padding-bottom:20px;">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="accordion" style="padding-top:20px;padding-bottom:20px;" id="accordionExample">
+        @for (int i = 0; i < Model.Instruments.Count(); i++)
+        {
+            <div class="card">
+                <div class="card-header" id="head @Model.Instruments[i]">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" style="color:#17a2b8;" type="button" data-toggle="collapse" data-target="#@Model.Instruments[i]" aria-expanded="false" aria-controls="@Model.Instruments[i]">
+                            @Model.Instruments[i]
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="@Model.Instruments[i]" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        @for (int j = 0; j < Model.names[i].Length; j++)
+                        {
+                        <div class="form-group">
+                            <label style="padding:10px;">@Model.names[i][j]:</label>
+                            <input id="numberPicker" style="width:20%" type="number" name="results[@count][0]" min="0" max="10" value="0">
+                            <label style="padding:10px;">Edition:</label>
+                            <input id="textbox" style="width:20%" type="text" name="results[@count][1]" value="Default" />
+                            <label style="padding:10px;">Rating:</label>
+                            <input id="numberPicker" style="width:20%" type="number" name="results[@count][2]" min="0" max="5" value="0" />
+
+                            @{count++;}
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <input type="submit" class="btn btn-info btn-md" style="width: 180px;" value="Save" />
+</form>

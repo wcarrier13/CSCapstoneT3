@@ -16,51 +16,35 @@ namespace Lizst.Controllers
             _context = context;
         }
 
-        //REFACTOR
+        //Finds all musicians that have something checked out.
         public IActionResult Index()
         {
-            List<MusicianAndPieces> msAndPs = new List<MusicianAndPieces>();
-            IEnumerable<CheckedOut> checkedOut = _context.CheckedOut.ToList();
-            foreach(CheckedOut co in checkedOut)
-            {
-                Musician musician = _context.Musician.Find(co.MusicianId);
-                Piece piece = _context.Piece.Find(co.PartId);
-                try
-                {
-                    MusicianAndPieces mAndPs = msAndPs.Find(m => m.Musician == musician);
-                    List<Piece> pieces = mAndPs.Pieces.ToList();
-                    pieces.Add(piece);
-                    mAndPs.Pieces = pieces.ToArray();
-                }
-                catch
-                {
-                    MusicianAndPieces mAndPs = new MusicianAndPieces { Musician = musician, Pieces = new Piece[] { piece } };
-                    msAndPs.Add(mAndPs);
-                }
-            }
-            return View(msAndPs);
+            IEnumerable<Musician> musicians = from m in _context.Musician
+                                              where _context.CheckedOut.Any(e => e.MusicianId == m.MusicianId)
+                                              select m;
+            return View(musicians);
         }
 
+        //Finds all pieces that are checked out by a given musician.
         public IActionResult Musician(int id)
         {
             //Find everything checked out by a given musician.
             CheckedOut[] checkedOut = (from co in _context.CheckedOut
-                                                 where co.MusicianId == id
-                                                 select co).ToArray();
+                                       where co.MusicianId == id
+                                       select co).ToArray();
 
             //Find all the piece information.
             Piece[] pieces = new Piece[checkedOut.Count()];
-            for(int i = 0; i < checkedOut.Count(); i++)
+            for (int i = 0; i < checkedOut.Count(); i++)
             {
                 pieces[i] = _context.Piece.Find(checkedOut[i].PartId);
             }
 
             //Find all of the score information.
             Score[] scores = new Score[pieces.Count()];
-            for(int i = 0; i < pieces.Count(); i++)
+            for (int i = 0; i < pieces.Count(); i++)
             {
                 scores[i] = _context.Score.Find(pieces[i].ScoreId);
-                //System.Diagnostics.Debug.WriteLine("\n\n" + scores[i].Title + "\n\n");
             }
 
             //Create a new object storing all of the information.

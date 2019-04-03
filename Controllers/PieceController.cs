@@ -58,6 +58,14 @@ namespace Lizst.Controllers
             return View(piece);
         }
 
+        public async Task<IActionResult> AddToScore(int p, int s)
+        {
+            ScorePieces scorePiece = new ScorePieces { ScoreId = s, PieceId = p };
+            await _context.ScorePieces.AddAsync(scorePiece);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", new { id = s });
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPiece(int id, string button, [Bind("ScoreId", "PieceId", "NumberOfParts")] Piece piece)

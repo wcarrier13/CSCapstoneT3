@@ -1,0 +1,54 @@
+﻿@model CheckOutSelect
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h1 style="padding-top:10px; padding-bottom:10px;">Checkout</h1>
+<form asp-action="Confirm" method="post">
+    @for (int k = 0; k < Model.Musicians.Count(); k++)
+    {//For every musician, create a table containing both the score and a selector for which part to assign.
+        Musician m = Model.Musicians[k];
+        <h3>@m.MusicianName</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Part</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Scores.Count(); i++)
+                {//For every score create a row in the table that displays the name and the piece selector.
+                    Score s = Model.Scores[i];
+                    List<Piece> pieces = Model.Pieces[i];
+                    int def = Model.Defaults[k, i];
+
+                    <tr>
+                        <td>@s.Title</td>
+                        <td>
+                            @{ //For every piece in the score, add it to the selector.
+                            }
+                            <select name="musician @m.MusicianId score @s.ScoreId" class="form-control">
+                                @for (int j = 0; j < pieces.Count(); j++)
+                                {
+                                    @if (j == def)
+                                    {
+                                        <option value="@pieces[j].PieceId" selected="selected">@pieces[j].Instrument</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@pieces[j].PieceId">@pieces[j].Instrument</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <div class="text-center">
+        <input type="submit" name="add" class="btn btn-info btn-md" style="width: 180px;" value="Confirm" />
+    </div>
+</form>

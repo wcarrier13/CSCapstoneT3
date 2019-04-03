@@ -1,0 +1,54 @@
+﻿@model MusicianAndPieces
+
+@{
+    ViewData["Title"] = "Check In";
+}
+
+<h1 style="padding-top:10px; padding-bottom:10px;">Check In</h1>
+<div class="card border-info">
+    <h3 class="card-header bg-info" style="color:white;">@Model.Musician.MusicianName</h3>
+    <div class="card-body">
+        <form asp-action="confirm" style="padding-top:20px; padding-bottom:20px;">
+            <input type="hidden" name="musician" value="@Model.Musician.MusicianId" />
+            <table  class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Check In</th>
+                        <th>Score</th>
+                        <th>Part</th>
+                        <th>Condition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Scores.Length; i++)
+                    {
+                        <tr>
+                            <td style="width:200px; padding-left:20px">
+                                <input type="checkbox" name="Piece @Model.Pieces[i].PieceId" value="@Model.Pieces[i].PieceId"/>
+                            </td>
+                            <td>
+                                @Model.Scores[i].Title
+                            </td>
+                            <td>
+                                @Model.Pieces[i].Instrument
+                            </td>
+                            <td>
+                                <select name="condition @Model.Pieces[i].PieceId" class="form-control" id="condition">
+                                    <option>Excellent</option>
+                                    <option>Good</option>
+                                    <option>Fair</option>
+                                    <option>Poor</option>
+                                    <option>Aweful</option>
+                                </select>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div style="padding-top:20px" class="text-center">
+                <input style="width:150px;" class="btn btn-info" type="submit" value="Confirm" />
+            </div>
+        </form>
+        </div>
+    </div>
+
