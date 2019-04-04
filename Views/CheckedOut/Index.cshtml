@@ -4,6 +4,7 @@
 }
 
 <h1 style="padding-top:10px; padding-bottom:10px;">Checked Out Pieces</h1>
+<p>For more details on which pieces are checked out for each musician select the pieces checked out button for that musician.</p>
 
 <table class="table table-striped">
     <thead>
@@ -36,7 +37,7 @@
                     @m.Email
                 </td>
                 <td>
-                    <a class="btn btn-info btn-sm" style="width:120px" asp-action="Musician" asp-route-id="@m.MusicianId">Details</a>
+                    <a class="btn btn-info btn-sm" style="float:right;"  asp-action="Musician" asp-route-id="@m.MusicianId">Pieces Checked Out</a>
                 </td>
             </tr>
         }
