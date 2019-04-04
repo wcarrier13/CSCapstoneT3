@@ -31,7 +31,7 @@ namespace Lizst.Controllers
         public IActionResult AddToCart(int id)
         {
             Score score = _context.Score.Find(id);
-            if(score == null)
+            if (score == null)
             {
                 return NotFound();
             }
@@ -49,7 +49,7 @@ namespace Lizst.Controllers
         public IActionResult RemoveFromCart(int id)
         {
             Score score = ShoppingCart.Single(s => s.ScoreId == id);
-            if(score == null)
+            if (score == null)
             {
                 return NotFound();
             }
@@ -71,7 +71,7 @@ namespace Lizst.Controllers
         public IActionResult Select(int id)
         {
             Ensemble ensemble = _context.Ensemble.Find(id);
-            if(ensemble == null)
+            if (ensemble == null)
             {
                 return NotFound();
             }
@@ -80,7 +80,7 @@ namespace Lizst.Controllers
 
             //Find all musicians that are in the selected ensemble.
             outSelect.AddAllMusicians(from musician in _context.Musician
-                                      where _context.EnsemblePlayers.Any( e=>e.EnsembleId == id && e.MusicianId == musician.MusicianId)
+                                      where _context.EnsemblePlayers.Any(e => e.EnsembleId == id && e.MusicianId == musician.MusicianId)
                                       select musician);
 
             //Find all scores that are being checked out.
@@ -92,31 +92,36 @@ namespace Lizst.Controllers
                                    select piece);
 
             outSelect.MatchMusicians();
-            
+
             return View(outSelect);
         }
 
         // GET: Cart/Confirm
         // Officially checks out the elements of the cart to the selected ensemble,
         // creating a new record of a piece being checked out.
-        public async Task<IActionResult> Confirm()
+        public async Task<IActionResult> CheckOut()
         {
             IEnumerable<string> keys = Request.Form.Keys;
-            foreach(String s in keys)
+            foreach (String s in keys)
             {
                 string regex = "musician [0-9][0-9]* score [0-9][0-9]*";
                 Match m = Regex.Match(s, regex);
-                if(m.Success)
+                if (m.Success)
                 {
                     string[] split = s.Split(" ");
                     int musician = Convert.ToInt32(split[1]);
-                    int pieceId = Convert.ToInt32( Request.Form[s]);
+                    int pieceId = Convert.ToInt32(Request.Form[s]);
                     CheckedOut co = new CheckedOut { MusicianId = musician, PartId = pieceId };
                     _context.CheckedOut.Add(co);
                 }
             }
             ShoppingCart.Clear();
             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Confirm));
+        }
+
+        public IActionResult Confirm()
+        {
             return View();
         }
     }

@@ -5,7 +5,7 @@
 }
 
 <h1 style="padding-top:10px; padding-bottom:10px;">Checkout</h1>
-<form asp-action="Confirm" method="post">
+<form asp-action="CheckOut" method="post">
     @for (int k = 0; k < Model.Musicians.Count(); k++)
     {//For every musician, create a table containing both the score and a selector for which part to assign.
         Musician m = Model.Musicians[k];

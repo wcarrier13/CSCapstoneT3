@@ -46,10 +46,26 @@ namespace Lizst.Controllers
         //Then returns to the index page with the ensemble being passed.
         public async Task<IActionResult> AddTo(int mus, int ens)
         {
+            Musician m = _context.Musician.Find(mus);
+            Ensemble e = _context.Ensemble.Find(ens);
+            if(m == null || e == null)
+            {
+                return NotFound();
+            }
+            EnsemblePlayers ep = _context.EnsemblePlayers.Find(ens, mus);
+            if(ep != null)
+            {
+                return RedirectToAction( "AlreadyIn", new { mus = m.MusicianName, ens = e.EnsembleName });
+            }
             EnsemblePlayers ensemblePlayer = new EnsemblePlayers { EnsembleId = ens, MusicianId = mus };
             await _context.EnsemblePlayers.AddAsync(ensemblePlayer);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", new { id = ens });
+        }
+
+        public IActionResult AlreadyIn(string mus, string ens)
+        {
+            return View(new string[] { mus, ens });
         }
 
         //GET: Musician/AddMusician
