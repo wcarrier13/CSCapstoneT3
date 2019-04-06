@@ -41,6 +41,10 @@ namespace Lizst.Controllers
         }
 
 
+
+
+
+
         public async Task<IActionResult> Submit()
         {
 
@@ -88,6 +92,15 @@ namespace Lizst.Controllers
                     if (Convert.ToInt32(numberOfParts) > 0)
                     {
                         Piece piece = new Piece { Instrument = instrument, NumberofParts = Convert.ToInt32(numberOfParts), Edition = edition, ScoreId = id };
+                        var addToTotal = await _context.Score.FindAsync(id);
+                        if (addToTotal.NumberOfParts != 0)
+                        {
+                            addToTotal.NumberOfParts += Convert.ToInt32(numberOfParts);
+                        }
+                        else
+                        {
+                            addToTotal.NumberOfParts = Convert.ToInt32(numberOfParts);
+                        }
                         await _context.Piece.AddAsync(piece);
                         await _context.SaveChangesAsync();
                     }
