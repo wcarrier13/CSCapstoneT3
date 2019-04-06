@@ -104,7 +104,14 @@ namespace Lizst.Controllers
                     if (button.Equals("Delete"))
                     {
                         var toDelete = await _context.Score.FindAsync(id);
-
+                        foreach (Piece piece in _context.Piece)
+                        {
+                            if (piece.ScoreId == id)
+                            {
+                                var pieceDelete = await _context.Piece.FindAsync(piece.PieceId);
+                                _context.Piece.Remove(pieceDelete);
+                            }
+                        }
                         _context.Score.Remove(toDelete);
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Index));
@@ -139,6 +146,14 @@ namespace Lizst.Controllers
         //Simply delete a score by id.
         public async Task<IActionResult> Delete(int id)
         {
+            foreach (Piece piece in _context.Piece)
+            {
+                if (piece.ScoreId == id)
+                {
+                    var pieceDelete = await _context.Piece.FindAsync(piece.PieceId);
+                    _context.Piece.Remove(pieceDelete);
+                }
+            }
             var toDelete = await _context.Score.FindAsync(id);
             _context.Remove(toDelete);
             await _context.SaveChangesAsync();
