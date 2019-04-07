@@ -59,7 +59,7 @@ namespace Lizst.Controllers
         //Given an ensemble id, return a list of all musicians who play in that ensemble.
         public IActionResult Musicians(int id)
         {
-            //Nested query. Select any musician whose id is in an ensemble player record where the ensemble id for that record matches id.
+            //Nested query. Select any musician whose id is in an ensemble player record where the ensemble id for that record matches the id supplied.
             IEnumerable<Musician> musicians = from musician in _context.Musician
                                               where (from ensemblePlayer in _context.EnsemblePlayers
                                                      where ensemblePlayer.EnsembleId == id

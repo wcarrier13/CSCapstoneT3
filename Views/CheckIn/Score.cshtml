@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Score>
+
+@{
+    ViewData["Title"] = "Score";
+}
+
+<h1>Score</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Select</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Score s in Model)
+        {
+            <tr>
+                <td>@s.Title</td>
+                <td>
+                    <a asp-action="ScoreCheck" asp-route-id="@s.ScoreId">Select</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

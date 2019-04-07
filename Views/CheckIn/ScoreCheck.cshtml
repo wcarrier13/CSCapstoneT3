@@ -1,0 +1,50 @@
+﻿@model  CheckInModel
+@{
+    ViewData["Title"] = Model.ScoreTitle +" Check In";
+}
+
+<h1>Check in for @Model.ScoreTitle</h1>
+<form asp-action="checkInScore" style="padding-top:20px; padding-bottom:20px;">
+    <input type="hidden" name="id" value="@Model.id" />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Musician
+                </th>
+                <th>
+                    Piece
+                </th>
+                <th>
+                    Condition
+                </th>
+                <th>
+                    Select
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Musicians.Count(); i++)
+            {
+                @foreach (Piece p in Model.Pieces[i])
+                {
+                    <tr>
+                        <td>@Model.Musicians[i].MusicianName</td>
+                        <td>@p.Instrument</td>
+                        <td>
+                            <select name="condition @p.PieceId @Model.Musicians[i].MusicianId" class="form-control" id="condition">
+                                <option>Excellent</option>
+                                <option>Good</option>
+                                <option>Fair</option>
+                                <option>Poor</option>
+                                <option>Aweful</option>
+                            </select>
+                        </td>
+                        <td><input type="checkbox" name="Checkin @p.PieceId @Model.Musicians[i].MusicianId" value="checkin" /></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <input type="submit" value="Check in" />
+</form>
