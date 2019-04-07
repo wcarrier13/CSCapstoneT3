@@ -3,11 +3,10 @@
 @{
     ViewData["Title"] = "Add Score";
 }
-
-<form asp-action="Submit" style="padding-top:20px; padding-bottom:20px;">
+<h1 style="padding-bottom:20px; padding-top:20px;">Add Score</h1>
+<form asp-action="Submit" style="padding-bottom:20px;">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <fieldset>
-        <legend><b>Add Score</b></legend>
         <div class="form-group">
             <label asp-for="Title">Title: </label>
             <input asp-for="Title" class="form-control" />
@@ -44,7 +43,7 @@
         </div>
     </fieldset>
 
-  
+
 
     <div class="text-center">
         <input type="submit" class="btn btn-info btn-md" style="width: 180px;" value="Add Pieces" />

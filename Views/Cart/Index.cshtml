@@ -4,54 +4,56 @@
     ViewData["Title"] = "Shopping Cart";
 }
 
-<h1 style="padding-top:10px; padding-bottom:10px;">Shopping Cart</h1>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <td>
-                ID
-            </td>
-            <td>
-                Title
-            </td>
-            <td>
-                Composer
-            </td>
-            <td>
-                Number of Parts
-            </td>
-            <td>
-
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Lizst.Models.Score score in Model)
-        {
+<h1 style="padding-top:15px; padding-bottom:10px;">Shopping Cart</h1>
+@if (Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
             <tr>
                 <td>
-                    @score.ScoreId
+                    ID
                 </td>
                 <td>
-                    @score.Title
+                    Title
                 </td>
                 <td>
-                    @score.Composer
+                    Composer
                 </td>
                 <td>
-                    @score.NumberOfParts
+                    Number of Parts
                 </td>
-                <td>
-                    <a class="btn btn-info" asp-action="RemoveFromCart" asp-route-id="@score.ScoreId">Remove</a>
-                </td>
+                <td></td>
             </tr>
-        }
-    </tbody>
-</table>
-<div style="padding-top:10px;" class="text-center">
-    @if (Model.Any())
-    {
+        </thead>
+        <tbody>
+            @foreach (Lizst.Models.Score score in Model)
+            {
+                <tr>
+                    <td>
+                        @score.ScoreId
+                    </td>
+                    <td>
+                        @score.Title
+                    </td>
+                    <td>
+                        @score.Composer
+                    </td>
+                    <td>
+                        @score.NumberOfParts
+                    </td>
+                    <td>
+                        <a class="btn btn-info" asp-action="RemoveFromCart" asp-route-id="@score.ScoreId">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div style="padding-top:10px;" class="text-center">
         <a style="width:170px" class="btn btn-info" asp-action="SelectEnsemble">Select Ensemble</a>
-    }
-</div>
+    </div>
+}
+else{
+    <div style="padding-top:90px;" class="text-center">
+        <h2 style="padding-top:30px; padding-bottom:30px;">Your cart is empty!</h2>
+    </div>
+}
