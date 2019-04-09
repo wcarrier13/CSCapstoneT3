@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Lizst.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Lizst.Models;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Lizst.Controllers
 {
@@ -102,24 +102,95 @@ namespace Lizst.Controllers
         public async Task<IActionResult> CheckOut()
         {
             IEnumerable<string> keys = Request.Form.Keys;
+            List<CheckedOut> toCheckOut = new List<CheckedOut>();
+            Dictionary<int, int> piecesAvailable = new Dictionary<int, int>();
+            Dictionary<int, int> piecesToCheckOut = new Dictionary<int, int>();
+
+            //Go through every musician we are checking out to, and add
+            //any piece that we have selected for them to check out.
+            //If availablie, check out the piece.
             foreach (String s in keys)
             {
                 string regex = "musician [0-9][0-9]* score [0-9][0-9]*";
                 Match m = Regex.Match(s, regex);
+                //Found a musician, save their piece.
                 if (m.Success)
                 {
                     string[] split = s.Split(" ");
                     int musician = Convert.ToInt32(split[1]);
                     int pieceId = Convert.ToInt32(Request.Form[s]);
-                    CheckedOut co = new CheckedOut { MusicianId = musician, PartId = pieceId };
-                    _context.CheckedOut.Add(co);
+
+                    //As we find new pieces, add it to the list and calculate the
+                    //number still available to check out. Then keep track of the
+                    //number we need to perform the check out.
+                    if (!piecesAvailable.ContainsKey(pieceId))
+                    {
+                        Piece p = _context.Piece.Find(pieceId);
+                        int available = p.NumberofParts;
+                        IEnumerable<CheckedOut> outs = from co in _context.CheckedOut
+                                                       where co.PartId == pieceId
+                                                       select co;
+                        available -= outs.Count();
+                        piecesAvailable.Add(pieceId, available);
+                        piecesToCheckOut.Add(pieceId, 1);
+                    }
+                    else
+                    {
+                        piecesToCheckOut[pieceId]++;
+                    }
+                    //Store the record.
+                    toCheckOut.Add(new CheckedOut { MusicianId = musician, PartId = pieceId });
                 }
             }
+
+            //Find any piece that we do not have enough of available to perform check out.
+            IEnumerable<int> pieces = piecesToCheckOut.Keys;
+            Cart.unavailable = new List<Piece>();
+            foreach(int piece in pieces)
+            {
+                if (piecesToCheckOut[piece] > piecesAvailable[piece])
+                {
+
+                    Cart.unavailable.Add(_context.Piece.Find(piece));
+                }
+            }
+
+            //If there are any pieces we cannot check out, redirect to an
+            //error giving a few details.
+            if (Cart.unavailable.Any())
+            {
+                return RedirectToAction("CheckOutError");
+            }
+
+            //Everything succeeded, officially perform the check out action.
+            foreach(CheckedOut co in toCheckOut)
+            {
+                if(_context.CheckedOut.Any(e => e.MusicianId == co.MusicianId && e.PartId == co.PartId))
+                {
+                    continue;
+                }
+                _context.CheckedOut.Add(co);
+            }
+
+            //Empty the cart, save changes.
             ShoppingCart.Clear();
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Confirm));
         }
 
+        public IActionResult CheckOutError()
+        {
+            //Find the score of any piece that did not have enough to be checked out.
+            List<Score> scores = new List<Score>();
+            foreach(Piece p in Cart.unavailable)
+            {
+                scores.Add(_context.Score.Find(p.ScoreId));
+            }
+            ScoresAndPieces SsAndPs = new ScoresAndPieces { Scores = scores, Pieces = Cart.unavailable };
+            return View(SsAndPs);
+        }
+
+        //Check out succeeded, let the user know.
         public IActionResult Confirm()
         {
             return View();

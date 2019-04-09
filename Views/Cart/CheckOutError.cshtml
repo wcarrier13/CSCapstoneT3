@@ -1,0 +1,28 @@
+﻿@model ScoresAndPieces
+@{
+    ViewData["Title"] = "Check Out Error";
+}
+
+<h1>Check Out Error</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Unavailable Piece</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Pieces.Count(); i++)
+        {
+            <tr>
+                <td>
+                    @Model.Pieces[i].Instrument
+                </td>
+                <td>
+                    @Model.Scores[i].Title
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

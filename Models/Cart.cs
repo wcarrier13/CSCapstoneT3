@@ -13,6 +13,8 @@ namespace Lizst.Models
         //public static Ensemble Ensemble;
         public static IEnumerable<MusicianAndPieces> MusiciansAndPieces;
 
+        public static List<Piece> unavailable;
+
         public static ICollection<Score> GetCart()
         {
             return ShoppingCart;
