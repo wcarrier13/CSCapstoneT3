@@ -109,6 +109,7 @@ namespace Lizst.Controllers
             //Go through every musician we are checking out to, and add
             //any piece that we have selected for them to check out.
             //If availablie, check out the piece.
+            System.Diagnostics.Debug.WriteLine("\n\n");
             foreach (String s in keys)
             {
                 string regex = "musician [0-9][0-9]* score [0-9][0-9]*";
@@ -118,7 +119,14 @@ namespace Lizst.Controllers
                 {
                     string[] split = s.Split(" ");
                     int musician = Convert.ToInt32(split[1]);
-                    int pieceId = Convert.ToInt32(Request.Form[s]);
+                    int pieceId = -1;
+                    String pieceStr = Request.Form[s];
+                    System.Diagnostics.Debug.WriteLine("piece " + pieceStr);
+                    if(pieceStr == null || pieceStr.Equals("Nothing"))
+                    {
+                        continue;
+                    }
+                    pieceId = Convert.ToInt32(pieceStr);
 
                     //As we find new pieces, add it to the list and calculate the
                     //number still available to check out. Then keep track of the
@@ -155,6 +163,9 @@ namespace Lizst.Controllers
                 }
             }
 
+
+            System.Diagnostics.Debug.WriteLine("\n\n");
+
             //If there are any pieces we cannot check out, redirect to an
             //error giving a few details.
             if (Cart.unavailable.Any())
@@ -165,7 +176,12 @@ namespace Lizst.Controllers
             //Everything succeeded, officially perform the check out action.
             foreach(CheckedOut co in toCheckOut)
             {
-                if(_context.CheckedOut.Any(e => e.MusicianId == co.MusicianId && e.PartId == co.PartId))
+                //Not great, but _context.CheckedOut.Any( ... ) threw a runtime error.
+                IEnumerable<CheckedOut> checkedOuts = from c in _context.CheckedOut
+                                               where c.MusicianId == co.MusicianId
+                                               && c.PartId == co.PartId
+                                               select c;
+                if(checkedOuts.Any())
                 {
                     continue;
                 }
