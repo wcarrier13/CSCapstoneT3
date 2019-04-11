@@ -11,6 +11,7 @@
     <Content Remove="Views\ScorePieces\NewFolder\**" />
     <EmbeddedResource Remove="Views\ScorePieces\NewFolder\**" />
     <None Remove="Views\ScorePieces\NewFolder\**" />
+    <Content Remove="Views\Home\Index %28copy%29.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,14 +1,35 @@
-﻿@model  CheckInModel
+﻿@model CheckInModel
 @{
-    ViewData["Title"] = Model.ScoreTitle +" Check In";
+    ViewData["Title"] = Model.ScoreTitle + " Check In";
 }
+<h1 style="padding-top:20px; padding-bottom:20px;">Check in for @Model.ScoreTitle</h1>
 
-<h1>Check in for @Model.ScoreTitle</h1>
-<form asp-action="checkInScore" style="padding-top:20px; padding-bottom:20px;">
+
+<script type="text/javascript" language="javascript">
+    function checkAll(o) {
+          var boxes = document.getElementsByTagName("input");
+          for (var x = 0; x < boxes.length; x++) {
+            var obj = boxes[x];
+            if (obj.type == "checkbox") {
+              if (obj.name != "Checkin")
+                obj.checked = o.checked;
+            }
+          }
+        }
+</script>
+
+<div style="padding-bottom:10px">
+    <input id="checkAll" type="checkbox" onclick="javascript:checkAll(this)" />
+    <label for="checkAll">Check/Uncheck All</label>
+</div>
+<form asp-action="checkInScore">
     <input type="hidden" name="id" value="@Model.id" />
     <table class="table table-striped">
         <thead>
             <tr>
+                <th>
+                    Select
+                </th>
                 <th>
                     Musician
                 </th>
@@ -18,9 +39,6 @@
                 <th>
                     Condition
                 </th>
-                <th>
-                    Select
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +47,9 @@
                 @foreach (Piece p in Model.Pieces[i])
                 {
                     <tr>
+                        <td style="width:200px; padding-left:20px">
+                            <input type="checkbox" name="Checkin @p.PieceId @Model.Musicians[i].MusicianId" value="checkin" />
+                        </td>
                         <td>@Model.Musicians[i].MusicianName</td>
                         <td>@p.Instrument</td>
                         <td>
@@ -40,11 +61,13 @@
                                 <option>Aweful</option>
                             </select>
                         </td>
-                        <td><input type="checkbox" name="Checkin @p.PieceId @Model.Musicians[i].MusicianId" value="checkin" /></td>
+
                     </tr>
                 }
             }
         </tbody>
     </table>
-    <input type="submit" value="Check in" />
+    <div style="padding-top:20px" class="text-center">
+        <input style="width:150px;" class="btn btn-info" type="submit" value="Check in" />
+    </div>
 </form>
