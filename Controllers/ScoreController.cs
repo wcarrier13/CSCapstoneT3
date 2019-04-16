@@ -65,7 +65,7 @@ namespace Lizst.Controllers
             {
                 _context.Score.Add(score);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "ScorePieces", new { id = score.ScoreId });
+                return RedirectToAction("AddPieces", "ScorePieces", new { id = score.ScoreId });
             }
             return View(score);
         }
@@ -87,6 +87,7 @@ namespace Lizst.Controllers
 
             SearchModel sm = new SearchModel { Score = score, Search = search, Genre = genre };
 
+            //return RedirectToAction("EditScorePiece", "ScorePieces");
             return View(sm);
         }
 
@@ -136,11 +137,13 @@ namespace Lizst.Controllers
                         throw;
                     }
                 }
-
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("EditScorePiece", "ScorePieces", new { id = score.ScoreId });
+                //return RedirectToAction(nameof(Index));
             }
-            SearchModel sm = new SearchModel { Score = score, Search = search, Genre = genre };
-            return View(sm);
+            //SearchModel sm = new SearchModel { Score = score, Search = search, Genre = genre };
+            //return View(sm);
+            return RedirectToAction("EditScorePiece", "ScorePieces", new { id = score.ScoreId });
+
         }
 
         //Simply delete a score by id.

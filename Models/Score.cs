@@ -9,6 +9,8 @@ namespace Lizst.Models
 {
     public class Score
     {
+
+
         public int ScoreId { get; set; }
         public string Title { get; set; }
         public string Composer { get; set; }
@@ -18,20 +20,8 @@ namespace Lizst.Models
         public string SecondaryClassification { get; set; }
         public string InStock { get; set; }
         public string Notes { get; set; }
-        public ICollection<ScorePieces> Pieces { get; } = new List<ScorePieces>();
-
-        public void AddPiece(Piece piece, LizstContext context)
-        {
-            // New database record for the link.
-            ScorePieces pair = new ScorePieces
-            {
-                ScoreId = ScoreId,
-                PieceId = piece.PieceId
-            };
-            Pieces.Add(pair);
-            context.ScorePieces.Add(pair);
-            context.SaveChanges();
-        }
+        //public ICollection<Piece> Pieces { get; } = new List<Piece>();
+        //public IDictionary<string, Piece> IndexedPieces = new Dictionary<string, Piece>();
     }
 
 

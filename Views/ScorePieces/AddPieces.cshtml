@@ -1,6 +1,6 @@
 ﻿@model Lizst.Models.ScorePieces
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "AddPieces";
 }
 @{ 
     int count = 0;
@@ -10,23 +10,23 @@
 <form asp-action="Submit" style="padding-bottom:20px;">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="accordion" style="padding-top:20px;padding-bottom:20px;" id="accordionExample">
-        @for (int i = 0; i < Model.Instruments.Count(); i++)
+        @for (int i = 0; i < ScorePieces.Instruments.Count(); i++)
         {
             <div class="card">
-                <div class="card-header" id="head @Model.Instruments[i]">
+                <div class="card-header" id="head @ScorePieces.Instruments[i]">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" style="color:#17a2b8;" type="button" data-toggle="collapse" data-target="#@Model.Instruments[i]" aria-expanded="false" aria-controls="@Model.Instruments[i]">
-                            @Model.Instruments[i]
+                        <button class="btn btn-link collapsed" style="color:#17a2b8;" type="button" data-toggle="collapse" data-target="#@ScorePieces.Instruments[i]" aria-expanded="false" aria-controls="@ScorePieces.Instruments[i]">
+                            @ScorePieces.Instruments[i]
                         </button>
                     </h5>
                 </div>
 
-                <div id="@Model.Instruments[i]" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div id="@ScorePieces.Instruments[i]" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
-                        @for (int j = 0; j < Model.names[i].Length; j++)
+                        @for (int j = 0; j < ScorePieces.names[i].Length; j++)
                         {
                             <div class="form-group">
-                                <label style="padding:10px;">@Model.names[i][j]:</label>
+                                <label style="padding:10px;">@ScorePieces.names[i][j]:</label>
                                 <input id="numberPicker" style="width:20%" type="number" name="results[@count][0]" min="0" max="10" value="0">
                                 <label style="padding:10px;">Edition:</label>
                                 <input id="textbox" style="width:20%" type="text" name="results[@count][1]" value="Default" />
