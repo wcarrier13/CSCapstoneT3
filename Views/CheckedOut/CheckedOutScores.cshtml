@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Score>
+
+@{
+    ViewData["Title"] = "Scores Out";
+}
+
+<h1 style="padding-top:10px;">Check in Scores</h1>
+<p>Please select the score that is being returned.</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Composer</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Score s in Model)
+        {
+            <tr>
+                <td>@s.ScoreId</td>
+                <td>@s.Title</td>
+                <td>@s.Composer</td>
+                <td>
+                    <a style="width:140px; float:right" class="btn btn-info btn-sm" asp-action="CheckedOutByScore" asp-route-id="@s.ScoreId">Select</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

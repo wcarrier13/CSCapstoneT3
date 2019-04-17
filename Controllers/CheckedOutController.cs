@@ -52,5 +52,44 @@ namespace Lizst.Controllers
 
             return View(mAndPs);
         }
+
+        public IActionResult CheckedOutScores()
+        {
+            //Nested query, select any score with at least on piece checked out.
+            IEnumerable<Score> scores = from s in _context.Score
+                                        where (from p in _context.Piece
+                                               where _context.CheckedOut.Any(e => e.PartId == p.PieceId)
+                                               select p).Any(e => e.ScoreId == s.ScoreId)
+                                        select s;
+            return View(scores);
+        }
+
+        public IActionResult CheckedOutByScore(int id)
+        {
+            Score s = _context.Score.Find(id);
+            CheckInModel check = new CheckInModel(s.Title, id);
+
+            //Select any piece from the desired score that is checked out.
+            IEnumerable<Piece> pieces = from p in _context.Piece
+                                        where _context.CheckedOut.Any
+                                            (e => e.PartId == p.PieceId)
+                                            && p.ScoreId == id
+                                        select p;
+
+            foreach (Piece p in pieces)
+            {
+                //Select any musician with a piece in the score currently checked out.
+                IEnumerable<Musician> musicians = from m in _context.Musician
+                                                  where _context.CheckedOut.Any(e => e.MusicianId == m.MusicianId && e.PartId == p.PieceId)
+                                                  select m;
+                foreach (Musician m in musicians)
+                {
+                    check.AddMusician(m);
+                    check.AddPiece(p, m.MusicianId);
+                }
+            }
+
+            return View(check);
+        }
     }
 }

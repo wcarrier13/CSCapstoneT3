@@ -1,0 +1,29 @@
+﻿@model CheckInModel
+@{
+    ViewData["Title"] = Model.ScoreTitle + " Pieces out";
+}
+<h1 style="padding-top:20px; padding-bottom:20px;">Check in for @Model.ScoreTitle</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Musician
+            </th>
+            <th>
+                Piece
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Musicians.Count(); i++)
+        {
+            @foreach (Piece p in Model.Pieces[i])
+            {
+                <tr>
+                    <td>@Model.Musicians[i].MusicianName</td>
+                    <td>@p.Instrument</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
