@@ -1,4 +1,5 @@
-﻿@model SearchModel
+﻿@model Lizst.Models.SearchModel
+
 
 @{
     ViewData["Title"] = "Details";
@@ -8,18 +9,60 @@
 <div class="card border-info">
     <h3 class="card-header bg-info" style="color:white;">@Model.Score.Title</h3>
     <div class="card-body">
+        <h5>Score ID:</h5>
+        <p class="card-text">@Model.Score.ScoreId</p>
+        <h5>Title:</h5>
+        <p class="card-text">@Model.Score.Title</p>
         <h5>Composer:</h5>
         <p class="card-text">@Model.Score.Composer</p>
+        <h5>In Stock:</h5>
+        <p class="card-text">@Model.Score.InStock</p>
         <h5>Genre:</h5>
         <p class="card-text">@Model.Score.Genre</p>
         <h5>Number of Parts:</h5>
         <p class="card-text">@Model.Score.NumberOfParts</p>
+        <h5>Publisher:</h5>
+        <p class="card-text">@Model.Score.Publisher</p>
+        <h5>Secondary Classification:</h5>
+        <p class="card-text">@Model.Score.SecondaryClassification</p>
         <h5>Notes:</h5>
         <p class="card-text">@Model.Score.Notes</p>
-
-        <div class="text-center">
-            <a style="width:120px;" asp-action="EditScore" asp-route-id="@Model.Score.ScoreId"  asp-route-search="@Model.Search" asp-route-genre="@Model.Genre" class="btn btn-info">Edit</a>
-            <a style="width:120px;" class="btn btn-info" asp-action="Index" asp-route-search="@Model.Search" asp-route-genre="@Model.Genre">Back to List</a>
-        </div>
     </div>
+</div>
+<div style="padding-bottom:40px;">
+
+</div>
+<div class="card border-info">
+    <h3 class="card-header bg-info" style="color:white;">Pieces</h3>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Instrument
+                    </th>
+                    <th>
+                        Number of Parts
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+<div style="padding-top:30px;" class="text-center">
+    <a style="width:120px;" asp-action="EditScore" asp-route-id="@Model.Score.ScoreId" class="btn btn-info">Edit</a>
+    <a style="width:120px;" class="btn btn-info" asp-action="Index">Back to List</a>
 </div>
