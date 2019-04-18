@@ -59,9 +59,7 @@ namespace Lizst.Controllers
             }
 
             //Build array of pieces that attach to the score
-
-            IEnumerable<Piece> pieces = Score.Pieces;
-                //from p in _context.Piece where p.ScoreId == scorepiece.ScoreId select p;
+            IEnumerable<Piece> pieces = from p in _context.Piece where p.ScoreId == scorepiece.ScoreId select p;
             Piece[][] ps = new Piece[ScorePieces.Instruments.Length][];
             
             for (int i =0; i < ps.Length; i++)
