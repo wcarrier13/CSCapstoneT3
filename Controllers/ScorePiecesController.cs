@@ -124,6 +124,7 @@ namespace Lizst.Controllers
             string rating;
             string instrument = "";
             //int scoreid = Convert.ToInt32(sid);
+            var addToTotal = await _context.Score.FindAsync(id);
 
             //for every instrument inputted, grab the number of parts, edition, and rating
             //The keys come in in groups of 3, so modulus function is used to split
@@ -148,14 +149,14 @@ namespace Lizst.Controllers
                 if (count % 3 == 2)
                 {
                     rating = Request.Form[k];
-                    var addToTotal = await _context.Score.FindAsync(id);
+                    
                     
                     //If there is one or more parts per piece, create a new piece object
                     if (Convert.ToInt32(numberOfParts) > 0)
                     {
                         Piece piece = new Piece { Instrument = instrument, NumberofParts = Convert.ToInt32(numberOfParts), Edition = edition, ScoreId = id };
 
-
+                        Score.Pieces.Add(piece);
                         //Add total number of parts per piece to the score
                         if (addToTotal.NumberOfParts != 0)
                         {

@@ -3,6 +3,8 @@
 
 @{
     ViewData["Title"] = "Details";
+    float rating;
+    string resultString;
 }
 
 <h1 style="padding-bottom:20px; padding-top:20px;">Details</h1>
@@ -37,6 +39,7 @@
     <div class="card-body">
         <table class="table table-striped">
             <thead>
+                
                 <tr>
                     <th>
                         Instrument
@@ -44,16 +47,54 @@
                     <th>
                         Number of Parts
                     </th>
-
+                    <th>
+                        Rating
+                    </th>
                 </tr>
+                
             </thead>
             <tbody>
-
+                @for (int i = 0; i < Score.Pieces.Count; i++)
+                {
                 <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
+                    <td>
+                        @Score.Pieces[i].Instrument
+                    </td>
+                    <td>
+                        @Score.Pieces[i].NumberofParts
+                    </td>
+                    
+                        @{rating = Score.Pieces[i].AggregateRating;}
+                        @if (rating >= 0 && rating < 1)
+                        {
+                            resultString = "Aweful";
+                        }
+                        else if (rating >=1 && rating <2)
+                        {
+                            resultString = "Poor";
+                        }
+                        else if (rating >= 2 && rating < 3)
+                        {
+                            resultString = "Fair";
+                        }
+                        else if (rating >= 3 && rating < 4)
+                        {
+                            resultString = "Good";
+                        }
+                        else if (rating >= 4 && rating <= 5)
+                        {
+                            resultString = "Excellent";
+                        }
+                        else
+                        {
+                            resultString = "Unknown";
+                        }
 
+                     <td>
+                         @resultString
+                    </td>
+                </tr>
+                            }
             </tbody>
         </table>
 
