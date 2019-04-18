@@ -25,7 +25,7 @@ namespace Lizst.Models
 
         public int ScoreId { get; set; }
         public int PieceId { get; set; }
-        //public static IDictionary<string, Piece> IndexedSPieces;
+        public static IDictionary<string, Piece> IndexedSPieces;
         //public IDictionary<string, Piece> IndexedPieces = new Dictionary<string, Piece>();
     }
 
