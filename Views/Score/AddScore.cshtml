@@ -4,9 +4,9 @@
     ViewData["Title"] = "Add Score";
 }
 <h1 style="padding-bottom:20px; padding-top:20px;">Add Score</h1>
-<form asp-action="Submit" style="padding-bottom:20px;">
+<form asp-action="Submit">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <fieldset>
+    <fieldset style="padding-bottom:20px;">
         <div class="form-group">
             <label asp-for="Title">Title: </label>
             <input asp-for="Title" class="form-control" />
@@ -41,7 +41,12 @@
             <input asp-for="SecondaryClassification" class="form-control" />
             <span asp-validation-for="SecondaryClassification" class="text-danger"></span>
         </div>
-    </fieldset>
+        <div class="form-group">
+            <label asp-for="Notes">Notes: </label>
+            <textarea class="form-control" asp-for="Notes" rows="3"></textarea>
+            <span asp-validation-for="Notes" class="text-danger"></span>
+        </div>
+    </fieldset >
 
 
 

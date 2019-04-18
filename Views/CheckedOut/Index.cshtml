@@ -4,42 +4,51 @@
 }
 
 <h1 style="padding-top:10px; padding-bottom:10px;">Checked Out Pieces</h1>
-<p>For more details on which pieces are checked out for each musician select the pieces checked out button for that musician.</p>
+@if (Model.Any())
+{
+    <p>For more details on which pieces are checked out for each musician select the pieces checked out button for that musician.</p>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                Musician ID
-            </th>
-            <th>
-                Musician
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(Musician m in Model)
-        {
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>
-                    @m.MusicianId
-                </td>
-                <td>
-                    @m.MusicianName
-                </td>
-                <td>
-                    @m.Email
-                </td>
-                <td>
-                    <a class="btn btn-info btn-sm" style="float:right;"  asp-action="Musician" asp-route-id="@m.MusicianId">Pieces Checked Out</a>
-                </td>
+                <th>
+                    Musician ID
+                </th>
+                <th>
+                    Musician
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (Musician m in Model)
+            {
+                <tr>
+                    <td>
+                        @m.MusicianId
+                    </td>
+                    <td>
+                        @m.MusicianName
+                    </td>
+                    <td>
+                        @m.Email
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-sm" style="float:right;" asp-action="Musician" asp-route-id="@m.MusicianId">Pieces Checked Out</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div style="padding-top:90px;" class="text-center">
+        <h2 style="padding-top:30px; padding-bottom:30px;">There are no pieces currently checked out.</h2>
+    </div>
+}

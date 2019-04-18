@@ -4,10 +4,10 @@
     ViewData["Title"] = "Edit Score";
 }
 
-<form action="/Score/Index" method="post">
+<form  style="padding-top:20px" action="/Score/Index" method="post">
     <input type="hidden" name="search" value="@Model.Search" />
     <input type="hidden" name="genre" value="@Model.Genre" />
-    <button class="btn" type="submit">Return to results</button>
+    <button class="btn btn-info" type="submit">Return to results</button>
 </form>
 
 <form asp-action="EditScore" style="padding-top:20px; padding-bottom:20px;" method="post">
@@ -47,6 +47,11 @@
             <label asp-for="Score.SecondaryClassification">Secondary Classification: </label>
             <input asp-for="Score.SecondaryClassification" class="form-control" />
             <span asp-validation-for="Score.SecondaryClassification" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Score.Notes">Notes: </label>
+            <textarea class="form-control" asp-for="Score.Notes" rows="3"></textarea>
+            <span asp-validation-for="Score.Notes" class="text-danger"></span>
         </div>
     </fieldset>
     
