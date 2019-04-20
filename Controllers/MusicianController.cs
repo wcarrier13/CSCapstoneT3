@@ -121,6 +121,12 @@ namespace Lizst.Controllers
                     if (button.Equals("Delete"))
                     {
                         var toDelete = await _context.Musician.FindAsync(id);
+                        IEnumerable<EnsemblePlayers> eps = _context.EnsemblePlayers
+        .Where(s => s.MusicianId == id).ToList();
+                        foreach (EnsemblePlayers ep in eps)
+                        {
+                            _context.EnsemblePlayers.Remove(ep);
+                        }
                         _context.Musician.Remove(toDelete);
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Index));
@@ -156,6 +162,12 @@ namespace Lizst.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var toDelete = await _context.Musician.FindAsync(id);
+            IEnumerable<EnsemblePlayers> eps = _context.EnsemblePlayers
+        .Where(s => s.MusicianId == id).ToList();
+            foreach (EnsemblePlayers ep in eps)
+            {
+                _context.EnsemblePlayers.Remove(ep);
+            }
             _context.Remove(toDelete);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
