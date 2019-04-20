@@ -29,15 +29,69 @@
                             {
                                 { ScoreID = Model[i][j].ScoreId; }
 
-                                <div class="form-group">
-                                    <label style="padding:10px;">@Model[i][j].Instrument:</label>
-                                    <input id="numberPicker" style="width:20%" type="number" name="results[@count][0]" min="0" max="10" value="@Model[i][j].NumberofParts"/>
-                                    <label style="padding:10px;">Edition:</label>
-                                    <input id="textbox" style="width:20%" type="text" name="results[@count][1]" value="@Model[i][j].Edition" />
-                                    <label style="padding:10px;">Rating:</label>
-                                    <input id="numberPicker" style="width:20%" type="number" name="results[@count][2]" min="0" max="5" value="@Model[i][j].AggregateRating" />
-                                    @{count++;}
-                                </div>
+                        <div class="form-group">
+                            <label style="padding:10px;">@Model[i][j].Instrument:</label>
+                            <input id="numberPicker" style="width:20%" type="number" name="results[@count][0]" min="0" max="10" value="@Model[i][j].NumberofParts" />
+                            <label style="padding:10px;">Edition:</label>
+                            <input id="textbox" style="width:20%" type="text" name="results[@count][1]" value="@Model[i][j].Edition" />
+                            <label style="padding:10px;">Rating:</label>
+                            <select name="results[@count][2]">
+                                @if (Model[i][j].AggregateRating <= 5 && Model[i][j].AggregateRating > 4)
+                                {
+                                    <option selected="selected">Excellent</option>
+                                    <option>Good</option>
+                                    <option>Fair</option>
+                                    <option>Poor</option>
+                                    <option>Aweful</option>
+                                }
+                                else if (Model[i][j].AggregateRating <= 4 && Model[i][j].AggregateRating > 3)
+                                {
+                                    <option>Excellent</option>
+                                    <option selected="selected">Good</option>
+                                    <option>Fair</option>
+                                    <option>Poor</option>
+                                    <option>Aweful</option>
+                                    <option>Unknown</option>
+                                }
+                                else if (Model[i][j].AggregateRating <= 3 && Model[i][j].AggregateRating > 2)
+                                {
+                                    <option>Excellent</option>
+                                    <option>Good</option>
+                                    <option selected="selected">Fair</option>
+                                    <option>Poor</option>
+                                    <option>Aweful</option>
+                                    <option>Unknown</option>
+                                }
+                                else if (Model[i][j].AggregateRating <= 2 && Model[i][j].AggregateRating > 1)
+                                {
+                                    <option>Excellent</option>
+                                    <option>Good</option>
+                                    <option>Fair</option>
+                                    <option selected="selected">Poor</option>
+                                    <option>Aweful</option>
+                                    <option>Unknown</option>
+                                }
+                                else if (Model[i][j].AggregateRating <= 1 && Model[i][j].AggregateRating > 0)
+                                {
+                                    <option>Excellent</option>
+                                    <option>Good</option>
+                                    <option>Fair</option>
+                                    <option>Poor</option>
+                                    <option selected="selected">Aweful</option>
+                                    <option>Unknown</option>
+                                }
+                                else
+                                {
+                                    <option>Excellent</option>
+                                    <option>Good</option>
+                                    <option>Fair</option>
+                                    <option>Poor</option>
+                                    <option>Aweful</option>
+                                    <option selected="selected">Unknown</option>
+                                }
+                            </select>
+                            @{count++;}
+                        </div>
                             }
                             else
                             {
@@ -47,9 +101,17 @@
                                     <label style="padding:10px;">Edition:</label>
                                     <input id="textbox" style="width:20%" type="text" name="results[@count][1]" value="Default"/>
                                     <label style="padding:10px;">Rating:</label>
-                                    <input id="textbox" style="width:20%" type="number" name="results[@count][2]" min="0" max="5" value="0" />
-                                    @{count++;}
-                                </div>
+                                    <select name="results[@count][2]">
+                                            <option>Excellent</option>
+                                            <option>Good</option>
+                                            <option>Fair</option>
+                                            <option>Poor</option>
+                                            <option>Aweful</option>
+                                            <option selected="selected">Unknown</option>
+                                        
+                                    </select>
+                                        @{count++;}
+</div>
                             }
                         }
                     </div>

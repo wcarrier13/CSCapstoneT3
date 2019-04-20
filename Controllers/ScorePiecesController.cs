@@ -121,7 +121,8 @@ namespace Lizst.Controllers
             int count = 0;
             string numberOfParts = "";
             string edition = "";
-            string rating;
+            string rating = "";
+            int r = 0;
             string instrument = "";
             //int scoreid = Convert.ToInt32(sid);
             var addToTotal = await _context.Score.FindAsync(id);
@@ -148,13 +149,38 @@ namespace Lizst.Controllers
                 }
                 if (count % 3 == 2)
                 {
+                    //Converting word ratings from input into number ratings
                     rating = Request.Form[k];
+                    if (rating == "Excellent")
+                    {
+                        r = 5;
+                    }
+                    else if (rating == "Good")
+                    {
+                        r = 4;
+                    }
+                    else if (rating == "Fair")
+                    {
+                        r = 3;
+                    }
+                    else if (rating == "Poor")
+                    {
+                        r = 2;
+                    }
+                    else if (rating == "Aweful")
+                    {
+                        r = 1;
+                    }
+                    else
+                    {
+                        r = 0;
+                    }
                     
                     
                     //If there is one or more parts per piece, create a new piece object
                     if (Convert.ToInt32(numberOfParts) > 0)
                     {
-                        Piece piece = new Piece { Instrument = instrument, NumberofParts = Convert.ToInt32(numberOfParts), Edition = edition, ScoreId = id };
+                        Piece piece = new Piece { Instrument = instrument, NumberofParts = Convert.ToInt32(numberOfParts), Edition = edition, ScoreId = id, AggregateRating = r };
 
                         Score.Pieces.Add(piece);
                         //Add total number of parts per piece to the score

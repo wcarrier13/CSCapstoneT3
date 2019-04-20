@@ -2,11 +2,10 @@
 @{
     ViewData["Title"] = "AddPieces";
 }
-@{ 
+@{
     int count = 0;
 }
-
-<h1 style="padding-bottom:10px; padding-top:20px;" >Add Pieces</h1>
+<h1 style="padding-bottom:10px; padding-top:20px;">Add Pieces</h1>
 <form asp-action="Submit" style="padding-bottom:20px;">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="accordion" style="padding-top:20px;padding-bottom:20px;" id="accordionExample">
@@ -20,7 +19,6 @@
                         </button>
                     </h5>
                 </div>
-
                 <div id="@ScorePieces.Instruments[i]" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
                         @for (int j = 0; j < ScorePieces.names[i].Length; j++)
@@ -31,8 +29,15 @@
                                 <label style="padding:10px;">Edition:</label>
                                 <input id="textbox" style="width:20%" type="text" name="results[@count][1]" value="Default" />
                                 <label style="padding:10px;">Rating:</label>
-                                <input id="numberPicker" style="width:20%" type="number" name="results[@count][2]" min="0" max="5" value="0" />
-
+                                <select id ="results[@count][2]" name="results[@count][2]">
+                                    <option>Excellent</option>
+                                    <option>Good</option>
+                                    <option>Fair</option>
+                                    <option>Poor</option>
+                                    <option>Aweful</option>
+                                    <option selected ="selected">Unknown</option>
+                                </select>
+                               
                                 @{count++;}
                             </div>
                         }
@@ -45,5 +50,5 @@
         <input type="hidden" value="@Model.ScoreId" name="sid" />
         <input type="submit" class="btn btn-info btn-md" style="width: 180px;" value="Save" />
     </div>
-   
+
 </form>
