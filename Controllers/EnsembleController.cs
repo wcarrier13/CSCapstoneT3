@@ -121,6 +121,16 @@ namespace Lizst.Controllers
                 {
                     var toDelete = await _context.Ensemble.FindAsync(id);
                     _context.Remove(toDelete);
+                    IEnumerable<EnsemblePlayers> eps = _context.EnsemblePlayers
+        .Where(s => s.EnsembleId == id).ToList();
+                    foreach (EnsemblePlayers ep in eps)
+                    {
+                        System.Diagnostics.Debug.WriteLine("DELETING");
+                        System.Diagnostics.Debug.WriteLine(ep);
+                        _context.EnsemblePlayers.Remove(ep);
+                        await _context.SaveChangesAsync();
+                        System.Diagnostics.Debug.WriteLine("AFTER DELETE");
+                    }
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
@@ -156,6 +166,16 @@ namespace Lizst.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var toDelete = await _context.Ensemble.FindAsync(id);
+            IEnumerable<EnsemblePlayers> eps = _context.EnsemblePlayers
+        .Where(s => s.EnsembleId == id).ToList();
+            foreach (EnsemblePlayers ep in eps)
+            {
+                System.Diagnostics.Debug.WriteLine("DELETING");
+                System.Diagnostics.Debug.WriteLine(ep);
+                _context.EnsemblePlayers.Remove(ep);
+                await _context.SaveChangesAsync();
+                System.Diagnostics.Debug.WriteLine("AFTER DELETE");
+            }
             _context.Remove(toDelete);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
