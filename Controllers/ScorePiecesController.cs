@@ -12,7 +12,7 @@ namespace Lizst.Controllers
     {
        
         //List flattened array of instrument names
-        //Will change this to the ScorePieces names if time
+        //Having issues with getting the index in scorePieces - leaving redundant code here
         public  String[] names = { "Flute 1", "Flute 2", "Flute 3", "Flute 4"
             ,"Piccolo 1", "Piccolo 2" , "Clarinet 1", "Clarinet 2", "Clarinet 3" ,
              "Oboe 1", "Oboe 2", "Oboe 3" , "Horn 1", "Horn 2", "Horn 3", "Horn 4" ,
@@ -59,7 +59,9 @@ namespace Lizst.Controllers
             }
 
             //Build array of pieces that attach to the score
-            IEnumerable<Piece> pieces = from p in _context.Piece where p.ScoreId == scorepiece.ScoreId select p;
+            IEnumerable<Piece> pieces = _context.Piece
+        .Where(s => s.ScoreId == id).ToList();
+            //IEnumerable<Piece> pieces = from p in _context.Piece where p.ScoreId == scorepiece.ScoreId select p;
             Piece[][] ps = new Piece[ScorePieces.Instruments.Length][];
             
             for (int i =0; i < ps.Length; i++)
@@ -113,9 +115,6 @@ namespace Lizst.Controllers
             //Finds every name for an input field. In the html we have <input ... name = "results[count]".../>
             IEnumerable<String> keys = Request.Form.Keys;
             int id = Convert.ToInt32(Request.Form["sid"]);
-            //ScorePieces spAdd = await _context.ScorePieces.FindAsync(id);
-            //IDictionary<string, Piece> IndexedPieces = new Dictionary<string, Piece>();
-            //ScorePieces.IndexedSPieces = new Dictionary<string, Piece>();
             //Print everything for verification.
             System.Diagnostics.Debug.WriteLine("\n\n");
             int count = 0;
@@ -124,7 +123,6 @@ namespace Lizst.Controllers
             string rating = "";
             int r = 0;
             string instrument = "";
-            //int scoreid = Convert.ToInt32(sid);
             var addToTotal = await _context.Score.FindAsync(id);
 
             //for every instrument inputted, grab the number of parts, edition, and rating
@@ -194,11 +192,6 @@ namespace Lizst.Controllers
                         }
                         await _context.Piece.AddAsync(piece);
                         await _context.SaveChangesAsync();
-                    }
-                    else
-                    {
-                        //leaving this right now in case I change the add pieces implementation
-                        //addToTotal.IndexedPieces.Add(instrument, null);
                     }
                 }
    
