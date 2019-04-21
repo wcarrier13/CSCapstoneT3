@@ -52,17 +52,17 @@
                 
             </thead>
             <tbody>
-                @for (int i = 0; i < Score.Pieces.Count; i++)
+                @for (int i = 0; i < @Model.Score.Pieces.Count; i++)
                 {
                 <tr>
                     <td>
-                        @Score.Pieces[i].Instrument
+                        @Model.Score.Pieces[i].Instrument
                     </td>
                     <td>
-                        @Score.Pieces[i].NumberofParts
+                        @Model.Score.Pieces[i].NumberofParts
                     </td>
                     
-                        @{rating = Score.Pieces[i].AggregateRating;}
+                        @{rating = @Model.Score.Pieces[i].AggregateRating;}
                         @if (rating >= 0 && rating < 1)
                         {
                             resultString = "Aweful";

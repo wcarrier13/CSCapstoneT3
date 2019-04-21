@@ -10,6 +10,7 @@ namespace Lizst.Models
         public String Search;
         public String Genre;
         public Score Score;
+        public IEnumerable<Piece> sps;
         public IEnumerable<Score> Results;
     }
 }

@@ -123,7 +123,7 @@ namespace Lizst.Controllers
             string rating = "";
             int r = 0;
             string instrument = "";
-            var addToTotal = await _context.Score.FindAsync(id);
+           
 
 
             //for every instrument inputted, grab the number of parts, edition, and rating
@@ -181,16 +181,18 @@ namespace Lizst.Controllers
                     {
                         
                         Piece piece = new Piece { Instrument = instrument, NumberofParts = Convert.ToInt32(numberOfParts), Edition = edition, ScoreId = id, AggregateRating = r };
-
-                        addToTotal.Pieces.Add(piece);
+                        var addToTotal = await _context.Score.FindAsync(id);
+                        //addToTotal.Pieces.Add(piece);
                         //Add total number of parts per piece to the score
                         if (addToTotal.NumberOfParts != 0)
                         {
                             addToTotal.NumberOfParts += Convert.ToInt32(numberOfParts);
+                            await _context.SaveChangesAsync();
                         }
                         else
                         {
                             addToTotal.NumberOfParts = Convert.ToInt32(numberOfParts);
+                            await _context.SaveChangesAsync();
                         }
                         await _context.Piece.AddAsync(piece);
                         await _context.SaveChangesAsync();

@@ -168,11 +168,19 @@ namespace Lizst.Controllers
         public async Task<IActionResult> Details(int id, string search, string genre)
         {
             Score score = await _context.Score.FindAsync(id);
+            
             if (score == null)
             {
                 return NotFound();
             }
             SearchModel sm = new SearchModel { Score = score, Search = search, Genre = genre };
+         
+         
+            IEnumerable<Piece> pieces = _context.Piece
+        .Where(s => s.ScoreId == id).ToList();
+           
+                sm.sps = pieces;
+
             return View(sm);
         }
 
