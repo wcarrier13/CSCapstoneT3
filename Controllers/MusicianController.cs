@@ -83,9 +83,16 @@ namespace Lizst.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Musician.Add(musician);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (musician.MusicianName != null)
+                {
+                    _context.Musician.Add(musician);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return View();
+                }
             }
             return View(musician);
         }
@@ -100,6 +107,7 @@ namespace Lizst.Controllers
             }
 
             var musician = await _context.Musician.FindAsync(id);
+            
             if(musician == null)
             {
                 return NotFound();
@@ -136,6 +144,10 @@ namespace Lizst.Controllers
                 //Attempt to update the record.
                 try
                 {
+                    if (musician.MusicianName == null)
+                    {
+                        return View();
+                    }
                     musician.MusicianId = id;
                     _context.Update(musician);
                     await _context.SaveChangesAsync();

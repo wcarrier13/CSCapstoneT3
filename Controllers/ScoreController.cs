@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Lizst.Models;
 
@@ -138,12 +136,8 @@ namespace Lizst.Controllers
                     }
                 }
                 return RedirectToAction("EditScorePiece", "ScorePieces", new { id = score.ScoreId });
-                //return RedirectToAction(nameof(Index));
-            }
-            //SearchModel sm = new SearchModel { Score = score, Search = search, Genre = genre };
-            //return View(sm);
+            }      
             return RedirectToAction("EditScorePiece", "ScorePieces", new { id = score.ScoreId });
-
         }
 
         //Simply delete a score by id.
