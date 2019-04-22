@@ -2,72 +2,82 @@
 @{
     ViewData["Title"] = Model.ScoreTitle + " Check In";
 }
-<h1 style="padding-top:20px; padding-bottom:20px;">Check in for @Model.ScoreTitle</h1>
 
 
-<script type="text/javascript" language="javascript">
-    function checkAll(o) {
-          var boxes = document.getElementsByTagName("input");
-          for (var x = 0; x < boxes.length; x++) {
-            var obj = boxes[x];
-            if (obj.type == "checkbox") {
-              if (obj.name != "Checkin")
-                obj.checked = o.checked;
-            }
-          }
-        }
-</script>
-
-<div style="padding-bottom:10px">
-    <input id="checkAll" type="checkbox" onclick="javascript:checkAll(this)" />
-    <label for="checkAll">Check/Uncheck All</label>
-</div>
-<form asp-action="checkInScore">
-    <input type="hidden" name="id" value="@Model.id" />
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    Select
-                </th>
-                <th>
-                    Musician
-                </th>
-                <th>
-                    Piece
-                </th>
-                <th>
-                    Condition
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.Musicians.Count(); i++)
-            {
-                @foreach (Piece p in Model.Pieces[i])
-                {
-                    <tr>
-                        <td style="width:200px; padding-left:20px">
-                            <input type="checkbox" name="Checkin @p.PieceId @Model.Musicians[i].MusicianId" value="checkin" />
-                        </td>
-                        <td>@Model.Musicians[i].MusicianName</td>
-                        <td>@p.Instrument</td>
-                        <td>
-                            <select name="condition @p.PieceId @Model.Musicians[i].MusicianId" class="form-control" id="condition">
-                                <option>Excellent</option>
-                                <option>Good</option>
-                                <option>Fair</option>
-                                <option>Poor</option>
-                                <option>Awful</option>
-                            </select>
-                        </td>
-
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
-    <div style="padding-top:20px" class="text-center">
-        <input style="width:150px;" class="btn btn-info" type="submit" value="Check in" />
+@if (Model.Musicians.Count() == 0)
+{
+    <div style="padding-top:90px;" class="text-center">
+        <h3 style="padding-top:30px; padding-bottom:30px;">All pieces have been returned for this score.</h3>
+        <a class="btn btn-lg btn-info" style="width:170px" asp-controller="Home" asp-action="Index">Return Home</a>
     </div>
-</form>
+}
+
+else
+{
+    <h1 style="padding-top:20px; padding-bottom:20px;">Check in for @Model.ScoreTitle</h1>
+
+    <script type="text/javascript" language="javascript">function checkAll(o) {
+              var boxes = document.getElementsByTagName("input");
+              for (var x = 0; x < boxes.length; x++) {
+                var obj = boxes[x];
+                if (obj.type == "checkbox") {
+                  if (obj.name != "Checkin")
+                    obj.checked = o.checked;
+                }
+              }
+            }</script>
+
+    <div style="padding-bottom:10px">
+        <input id="checkAll" type="checkbox" onclick="javascript:checkAll(this)" />
+        <label for="checkAll">Check/Uncheck All</label>
+    </div>
+    <form asp-action="checkInScore">
+        <input type="hidden" name="id" value="@Model.id" />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Select
+                    </th>
+                    <th>
+                        Musician
+                    </th>
+                    <th>
+                        Piece
+                    </th>
+                    <th>
+                        Condition
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Musicians.Count(); i++)
+                {
+                    @foreach (Piece p in Model.Pieces[i])
+                    {
+                        <tr>
+                            <td style="width:200px; padding-left:20px">
+                                <input type="checkbox" name="Checkin @p.PieceId @Model.Musicians[i].MusicianId" value="checkin" />
+                            </td>
+                            <td>@Model.Musicians[i].MusicianName</td>
+                            <td>@p.Instrument</td>
+                            <td>
+                                <select name="condition @p.PieceId @Model.Musicians[i].MusicianId" class="form-control" id="condition">
+                                    <option>Excellent</option>
+                                    <option>Good</option>
+                                    <option>Fair</option>
+                                    <option>Poor</option>
+                                    <option>Aweful</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div style="padding-top:20px" class="text-center">
+            <input style="width:150px;" class="btn btn-info" type="submit" value="Check in" />
+        </div>
+    </form>
+}
