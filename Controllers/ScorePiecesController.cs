@@ -166,7 +166,7 @@ namespace Lizst.Controllers
                     {
                         r = 2;
                     }
-                    else if (rating == "Aweful")
+                    else if (rating == "Awful")
                     {
                         r = 1;
                     }

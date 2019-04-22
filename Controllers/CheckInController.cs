@@ -172,7 +172,7 @@ namespace Lizst.Controllers
             {
                 rating = 2;
             }
-            else if (cond.Equals("Aweful"))
+            else if (cond.Equals("Awful"))
             {
                 rating = 1;
             }
