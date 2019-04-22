@@ -103,6 +103,9 @@ namespace Lizst.Controllers
                     if (button.Equals("Delete"))
                     {
                         var toDelete = await _context.Score.FindAsync(id);
+                        var toDeleteFromCart = Cart.ShoppingCart.FirstOrDefault(e => e.ScoreId == id);
+                        Cart.ShoppingCart.Remove(toDeleteFromCart);
+
                         foreach (Piece piece in _context.Piece)
                         {
                             if (piece.ScoreId == id)
@@ -111,6 +114,7 @@ namespace Lizst.Controllers
                                 _context.Piece.Remove(pieceDelete);
                             }
                         }
+                        
                         _context.Score.Remove(toDelete);
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Index));
@@ -152,6 +156,10 @@ namespace Lizst.Controllers
                 }
             }
             var toDelete = await _context.Score.FindAsync(id);
+
+            var toDeleteFromCart = Cart.ShoppingCart.FirstOrDefault(e => e.ScoreId == id);
+            Cart.ShoppingCart.Remove(toDeleteFromCart);
+            
             _context.Remove(toDelete);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
