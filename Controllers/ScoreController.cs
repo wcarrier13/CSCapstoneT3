@@ -111,7 +111,14 @@ namespace Lizst.Controllers
                             if (piece.ScoreId == id)
                             {
                                 var pieceDelete = await _context.Piece.FindAsync(piece.PieceId);
+                                IEnumerable<CheckedOut> coDelete = from co in _context.CheckedOut where co.PartId == piece.PieceId select co;
+
+                                foreach (CheckedOut cod in coDelete)
+                                {
+                                    _context.CheckedOut.Remove(cod);
+                                }
                                 _context.Piece.Remove(pieceDelete);
+
                             }
                         }
                         
@@ -152,12 +159,23 @@ namespace Lizst.Controllers
                 if (piece.ScoreId == id)
                 {
                     var pieceDelete = await _context.Piece.FindAsync(piece.PieceId);
+                    
+                  
+                    IEnumerable<CheckedOut> coDelete = from co in _context.CheckedOut where co.PartId == piece.PieceId select co;
+                    
+                    foreach(CheckedOut cod in coDelete)
+                    {
+                        _context.CheckedOut.Remove(cod);
+                    }
+
                     _context.Piece.Remove(pieceDelete);
+
                 }
             }
             var toDelete = await _context.Score.FindAsync(id);
 
             var toDeleteFromCart = Cart.ShoppingCart.FirstOrDefault(e => e.ScoreId == id);
+            
             Cart.ShoppingCart.Remove(toDeleteFromCart);
             
             _context.Remove(toDelete);
