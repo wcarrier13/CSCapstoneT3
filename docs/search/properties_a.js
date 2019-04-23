@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['score',['Score',['../class_lizst_1_1_models_1_1_lizst_context.html#a758a5c3cce37a033dffba6fa82c1ea8d',1,'Lizst::Models::LizstContext']]],
-  ['scoreid',['ScoreId',['../class_lizst_1_1_models_1_1_piece.html#a5d366319d7c89dbe703231c1cdaf5377',1,'Lizst.Models.Piece.ScoreId()'],['../class_lizst_1_1_models_1_1_score.html#a749785856a6ce8d4b38ce5c1ff2ca4a5',1,'Lizst.Models.Score.ScoreId()']]],
-  ['scores',['scores',['../class_lizst_1_1_models_1_1_score_d_b_context.html#ae0a4efb2ce1a10db3ba3fd85265b7f9b',1,'Lizst::Models::ScoreDBContext']]],
-  ['secondaryclassification',['SecondaryClassification',['../class_lizst_1_1_models_1_1_score.html#aa6f65abd4bd6b3aadcf344a16b3460cd',1,'Lizst::Models::Score']]],
-  ['studentid',['StudentId',['../class_lizst_1_1_models_1_1_musician.html#a55f1f0dd2b4c0437813f87e1af8a6f4c',1,'Lizst::Models::Musician']]]
+  ['part',['Part',['../class_lizst_1_1_models_1_1_musician.html#a07f5924927b662fd45433b51a81c405f',1,'Lizst::Models::Musician']]],
+  ['partid',['PartId',['../class_lizst_1_1_models_1_1_checked_out.html#aa749956eb67ae72638971518b3f4e2b2',1,'Lizst::Models::CheckedOut']]],
+  ['piece',['Piece',['../class_lizst_1_1_models_1_1_lizst_context.html#a51dddeffd749dc6950b1d122b96c9b22',1,'Lizst.Models.LizstContext.Piece()'],['../class_lizst_1_1_models_1_1_piece_d_b_context.html#a55d0163006ea7c583aebaeccd89bb961',1,'Lizst.Models.PieceDBContext.Piece()']]],
+  ['pieceid',['PieceId',['../class_lizst_1_1_models_1_1_piece.html#aa1d385d50c5b6137ebff8004e2f2167c',1,'Lizst.Models.Piece.PieceId()'],['../class_lizst_1_1_models_1_1_score_pieces.html#aa7abf3c40903d42931c386255cc076b8',1,'Lizst.Models.ScorePieces.PieceId()'],['../class_lizst_1_1_models_1_1_test.html#a699a7bc1479848e70ff3d1f6f6d1d13f',1,'Lizst.Models.Test.PieceId()']]],
+  ['pieces',['Pieces',['../class_lizst_1_1_models_1_1_score.html#af5816150c2f521ef2f89c9928b238480',1,'Lizst::Models::Score']]],
+  ['publisher',['Publisher',['../class_lizst_1_1_models_1_1_score.html#ace5bba65cfd84cf913ab7cc06b26b16f',1,'Lizst::Models::Score']]]
 ];

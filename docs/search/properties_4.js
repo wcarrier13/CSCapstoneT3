@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['instock',['InStock',['../class_lizst_1_1_models_1_1_score.html#a693123d99299051dc63d5e3f818a0865',1,'Lizst::Models::Score']]]
+  ['genre',['Genre',['../class_lizst_1_1_models_1_1_score.html#aa75d77de7a6fb54ff5e18609607c6785',1,'Lizst::Models::Score']]]
 ];

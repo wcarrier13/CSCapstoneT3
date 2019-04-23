@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['score_2ecs',['Score.cs',['../_score_8cs.html',1,'']]],
-  ['scorecontroller_2ecs',['ScoreController.cs',['../_score_controller_8cs.html',1,'']]],
-  ['search_2ecs',['Search.cs',['../_search_8cs.html',1,'']]],
-  ['startup_2ecs',['Startup.cs',['../_startup_8cs.html',1,'']]]
+  ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
+  ['removefromcarttest_2ecs',['RemoveFromCartTest.cs',['../_remove_from_cart_test_8cs.html',1,'']]]
 ];

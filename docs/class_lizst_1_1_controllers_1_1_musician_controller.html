@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.15"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Capstone Lizst: Lizst.Controllers.MusicianController Class Reference</title>
+<title>Lizst: Lizst.Controllers.MusicianController Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Capstone Lizst
+   <div id="projectname">Lizst
    </div>
   </td>
  </tr>
@@ -103,8 +103,12 @@ Inheritance diagram for Lizst.Controllers.MusicianController:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adee0966059bf2440187607b9392916d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lizst_1_1_controllers_1_1_musician_controller.html#adee0966059bf2440187607b9392916d3">MusicianController</a> (<a class="el" href="class_lizst_1_1_models_1_1_lizst_context.html">LizstContext</a> context)</td></tr>
 <tr class="separator:adee0966059bf2440187607b9392916d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad59ab2b623a0a08dd579603b9d567a3f"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lizst_1_1_controllers_1_1_musician_controller.html#ad59ab2b623a0a08dd579603b9d567a3f">Index</a> ()</td></tr>
-<tr class="separator:ad59ab2b623a0a08dd579603b9d567a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cf02d8ef510d9828e8b6f1087922fa6"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lizst_1_1_controllers_1_1_musician_controller.html#a8cf02d8ef510d9828e8b6f1087922fa6">Index</a> (int? id)</td></tr>
+<tr class="separator:a8cf02d8ef510d9828e8b6f1087922fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a319c1c03abc67cc864374a1460e5608b"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lizst_1_1_controllers_1_1_musician_controller.html#a319c1c03abc67cc864374a1460e5608b">AddTo</a> (int mus, int ens)</td></tr>
+<tr class="separator:a319c1c03abc67cc864374a1460e5608b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a755cc9fb0052f6c3b63202b0dbbb3a5b"><td class="memItemLeft" align="right" valign="top">IActionResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lizst_1_1_controllers_1_1_musician_controller.html#a755cc9fb0052f6c3b63202b0dbbb3a5b">AlreadyIn</a> (string mus, string ens)</td></tr>
+<tr class="separator:a755cc9fb0052f6c3b63202b0dbbb3a5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acba048605e697218a6f49f80e6db9467"><td class="memItemLeft" align="right" valign="top">IActionResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lizst_1_1_controllers_1_1_musician_controller.html#acba048605e697218a6f49f80e6db9467">AddMusician</a> ()</td></tr>
 <tr class="separator:acba048605e697218a6f49f80e6db9467"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc308021354f46090cea9cc8f2d99c20"><td class="memItemLeft" align="right" valign="top">async Task&lt; IActionResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lizst_1_1_controllers_1_1_musician_controller.html#acc308021354f46090cea9cc8f2d99c20">AddMusician</a> (<a class="el" href="class_lizst_1_1_models_1_1_musician.html">Musician</a> musician)</td></tr>
@@ -167,6 +171,62 @@ Public Member Functions</h2></td></tr>
           <td class="paramtype"><a class="el" href="class_lizst_1_1_models_1_1_musician.html">Musician</a>&#160;</td>
           <td class="paramname"><em>musician</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a319c1c03abc67cc864374a1460e5608b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a319c1c03abc67cc864374a1460e5608b">&#9670;&nbsp;</a></span>AddTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;IActionResult&gt; Lizst.Controllers.MusicianController.AddTo </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ens</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a755cc9fb0052f6c3b63202b0dbbb3a5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a755cc9fb0052f6c3b63202b0dbbb3a5b">&#9670;&nbsp;</a></span>AlreadyIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IActionResult Lizst.Controllers.MusicianController.AlreadyIn </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>mus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>ens</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -261,8 +321,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad59ab2b623a0a08dd579603b9d567a3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad59ab2b623a0a08dd579603b9d567a3f">&#9670;&nbsp;</a></span>Index()</h2>
+<a id="a8cf02d8ef510d9828e8b6f1087922fa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cf02d8ef510d9828e8b6f1087922fa6">&#9670;&nbsp;</a></span>Index()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -270,7 +330,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">async Task&lt;IActionResult&gt; Lizst.Controllers.MusicianController.Index </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int?&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -279,7 +340,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Controllers/<a class="el" href="_musician_controller_8cs.html">MusicianController.cs</a></li>
+<li>/Users/whitneycarrier/Capstone/Controllers/<a class="el" href="_musician_controller_8cs.html">MusicianController.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

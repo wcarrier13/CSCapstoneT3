@@ -23,9 +23,9 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "Capstone Lizst", "index.html", [
-    [ "CSCapstoneT3", "md__r_e_a_d_m_e.html", null ],
-    [ "The MIT License (MIT)", "md_wwwroot_lib_jquery-validation__l_i_c_e_n_s_e.html", null ],
+  [ "Lizst", "index.html", [
+    [ "CSCapstoneT3", "md___users_whitneycarrier__capstone__r_e_a_d_m_e.html", null ],
+    [ "The MIT License (MIT)", "md___users_whitneycarrier__capstone_wwwroot_lib_jquery-validation__l_i_c_e_n_s_e.html", null ],
     [ "Packages", "namespaces.html", [
       [ "Packages", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -34,10 +34,10 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Properties", "functions_prop.html", null ]
+        [ "Properties", "functions_prop.html", "functions_prop" ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -49,7 +49,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "20190209180500___initial_create_8_designer_8cs.html",
-"class_lizst_1_1_models_1_1_piece.html"
+"class_asp_net_core_1_1_views___ensemble___details.html#aa0ca0ff8083205fd3be6cb4f34edcd82",
+"class_lizst_1_1_controllers_1_1_musician_controller.html#acc308021354f46090cea9cc8f2d99c20",
+"dir_e15ed1dd86d1526c152490e648c8a128.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
