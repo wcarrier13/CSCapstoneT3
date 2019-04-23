@@ -20,8 +20,9 @@ namespace Lizst.Models
         public string SecondaryClassification { get; set; }
         public string InStock { get; set; }
         public string Notes { get; set; }
+        //User defined ScoreId
+        public int sid { get; set; }
         public List<Piece> Pieces { get; set; } = new List<Piece>();
-        //public IDictionary<string, Piece> IndexedPieces = new Dictionary<string, Piece>();
     }
 
 
