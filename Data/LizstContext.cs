@@ -25,7 +25,7 @@ namespace Lizst.Models
                 .HasKey(ep => new { ep.EnsembleId, ep.MusicianId });
 
             modelBuilder.Entity<ScorePieces>()
-                .HasKey(ep => new { ep.ScoreId});
+                .HasKey(ep => new { ep.PieceId});
 
             modelBuilder.Entity<CheckedOut>()
                 .HasKey(ep => new {ep.MusicianId, ep.PartId });

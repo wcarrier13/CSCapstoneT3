@@ -51,12 +51,12 @@ namespace Lizst.Controllers
             }
 
             //Find scorepiece with corresponding scoreid
-            var scorepiece = await _context.ScorePieces.FindAsync(id);
+            //var scorepiece = await _context.ScorePieces.FirstOrDefault(e=> e.ScoreId =id);
 
-            if (scorepiece == null)
-            {
-                return NotFound();
-            }
+            //if (scorepiece == null)
+            //{
+                //return NotFound();
+            //}
 
             //Build array of pieces that attach to the score
             IEnumerable<Piece> pieces = _context.Piece
@@ -135,6 +135,7 @@ namespace Lizst.Controllers
                     if (count / 3 != names.Length)
                     {
                         instrument = names[(count / 3)];
+                        
                     }
                     else
                     {
@@ -174,28 +175,58 @@ namespace Lizst.Controllers
                     {
                         r = 0;
                     }
-                    
-                    
+
+                    Piece p = _context.Piece.FirstOrDefault(e => e.ScoreId == id && e.Instrument.Equals(instrument));
+                    Boolean changed = false;
+
                     //If there is one or more parts per piece, create a new piece object
                     if (Convert.ToInt32(numberOfParts) > 0)
                     {
-                        
-                        Piece piece = new Piece { Instrument = instrument, NumberofParts = Convert.ToInt32(numberOfParts), Edition = edition, ScoreId = id, AggregateRating = r };
-                        var addToTotal = await _context.Score.FindAsync(id);
-                        //addToTotal.Pieces.Add(piece);
-                        //Add total number of parts per piece to the score
-                        if (addToTotal.NumberOfParts != 0)
+                        if (p == null)
                         {
-                            addToTotal.NumberOfParts += Convert.ToInt32(numberOfParts);
-                            await _context.SaveChangesAsync();
+                            p = new Piece { Instrument = instrument, NumberofParts = Convert.ToInt32(numberOfParts), Edition = edition, ScoreId = id, AggregateRating = r };
+                            await _context.Piece.AddAsync(p);
                         }
                         else
                         {
-                            addToTotal.NumberOfParts = Convert.ToInt32(numberOfParts);
-                            await _context.SaveChangesAsync();
+                            int nofP = Convert.ToInt32(numberOfParts);
+                            if (!instrument.Equals(p.Instrument))
+                            {
+                                p.Instrument = instrument;
+                                changed = true;
+                            }
+                            if (!edition.Equals(p.Edition))
+                            {
+                                p.Edition = edition;
+                                changed = true;
+                            }
+                            if (nofP != p.NumberofParts)
+                            {
+                                p.NumberofParts = nofP;
+                                changed = true;
+                            }                             
+
                         }
-                        await _context.Piece.AddAsync(piece);
-                        await _context.SaveChangesAsync();
+                            var addToTotal = await _context.Score.FindAsync(id);
+                           
+                            //Add total number of parts per piece to the score
+                            if (addToTotal.NumberOfParts != 0)
+                            {
+                                addToTotal.NumberOfParts += Convert.ToInt32(numberOfParts);
+                                //await _context.SaveChangesAsync();
+                            }
+                            else
+                            {
+                                addToTotal.NumberOfParts = Convert.ToInt32(numberOfParts);
+                                //await _context.SaveChangesAsync();
+                            }
+                        if (changed)
+                        {
+                            _context.Update(p);
+                        }
+
+                            
+                        
                     }
                 }
    
@@ -207,7 +238,7 @@ namespace Lizst.Controllers
                 count++;
             }
             System.Diagnostics.Debug.WriteLine("\n\n");
-
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Score");
         }
 

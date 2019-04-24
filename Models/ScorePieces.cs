@@ -24,8 +24,7 @@ namespace Lizst.Models
             new String[]{ "Piano", "Celesta", "Pipe Organ", "Harpsichord", "Accordion", "Claviharp", "Other Keyboard"}, new String[]{ "Violin 1", "Violin 2", "Violin 3" },new String[]{ "Harp", "Viola", "Cello", "Double Bass", "Other String" }  };
         public int ScoreId { get; set; }
         public int PieceId { get; set; }
-        //public static IDictionary<string, Piece> IndexedSPieces;
-        //public IDictionary<string, Piece> IndexedPieces = new Dictionary<string, Piece>();
+  
     }
 
     public class ScorePiecesDBContext : DbContext
