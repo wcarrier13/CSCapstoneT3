@@ -93,7 +93,7 @@ namespace Lizst.Controllers
         // Revised version of score has been posted. Update the database.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditScore(int id, string search, string genre, string button, [Bind("ScoreId", "Title", "Composer", "Genre", "NumberOfParts", "Notes", "sid")] Score score)
+        public async Task<IActionResult> EditScore(int id, string search, string genre, string button, [Bind("ScoreId", "Title", "Composer", "Publisher", "SecondaryClassification", "InStock", "Genre", "NumberOfParts", "Notes", "sid")] Score score)
         {
             if (ModelState.IsValid)
             {
