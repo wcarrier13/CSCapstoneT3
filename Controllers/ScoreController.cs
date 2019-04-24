@@ -93,7 +93,7 @@ namespace Lizst.Controllers
         // Revised version of score has been posted. Update the database.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditScore(int id, string search, string genre, string button, [Bind("ScoreId", "Title", "Composer", "Genre", "NumberOfParts", "Notes")] Score score)
+        public async Task<IActionResult> EditScore(int id, string search, string genre, string button, [Bind("ScoreId", "Title", "Composer", "Genre", "NumberOfParts", "Notes", "sid")] Score score)
         {
             if (ModelState.IsValid)
             {
@@ -112,13 +112,14 @@ namespace Lizst.Controllers
                             {
                                 var pieceDelete = await _context.Piece.FindAsync(piece.PieceId);
                                 IEnumerable<CheckedOut> coDelete = from co in _context.CheckedOut where co.PartId == piece.PieceId select co;
-
-                                foreach (CheckedOut cod in coDelete)
-                                {
-                                    _context.CheckedOut.Remove(cod);
-                                }
+                    
+                    foreach(CheckedOut cod in coDelete)
+                    {
+                        _context.CheckedOut.Remove(cod);
+                    }
                                 _context.Piece.Remove(pieceDelete);
-
+                                
+                                
                             }
                         }
                         
