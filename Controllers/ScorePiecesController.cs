@@ -63,6 +63,7 @@ namespace Lizst.Controllers
         .Where(s => s.ScoreId == id).ToList();
             //IEnumerable<Piece> pieces = from p in _context.Piece where p.ScoreId == scorepiece.ScoreId select p;
             Piece[][] ps = new Piece[ScorePieces.Instruments.Length][];
+            System.Diagnostics.Debug.WriteLine("\n\n"+ps.Length + "  " + ps[0].Length+"\n\n");
             
             for (int i =0; i < ps.Length; i++)
             {
