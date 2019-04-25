@@ -113,10 +113,10 @@ namespace Lizst.Controllers
                                 var pieceDelete = await _context.Piece.FindAsync(piece.PieceId);
                                 IEnumerable<CheckedOut> coDelete = from co in _context.CheckedOut where co.PartId == piece.PieceId select co;
                     
-                    foreach(CheckedOut cod in coDelete)
-                    {
-                        _context.CheckedOut.Remove(cod);
-                    }
+                                foreach(CheckedOut cod in coDelete)
+                                {
+                                    _context.CheckedOut.Remove(cod);
+                                }
                                 _context.Piece.Remove(pieceDelete);
                                 
                                 
