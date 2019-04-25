@@ -39,6 +39,15 @@ namespace Lizst.Models
                 select score;
             scores = scores.Concat(byClass);
 
+            //Search by sid
+            try
+            {
+                int maybeSid = Convert.ToInt32(search.Trim());
+                Score found = context.Score.FirstOrDefault(s => s.sid == maybeSid);
+                scores = scores.Append(found);
+            } //Assume that if this failed it is because the user search by something other than sid.
+            catch { }
+
             //No scores found, lower strictness to fuzzy string matching.
             if (!scores.Any())
             {
@@ -47,6 +56,10 @@ namespace Lizst.Models
                     from score in context.Score
                     where FuzzyTitles(pieces, score)
                     select score;
+                IEnumerable<Score> fuzzyComposer = from score in context.Score
+                                                   where FuzzyComposer(pieces, score)
+                                                   select score;
+                scores.Concat(fuzzyComposer);
             }
             return scores;
         }
@@ -62,6 +75,32 @@ namespace Lizst.Models
                 foreach (String str2 in search)
                 {
                     if(Compare(str1, str2) < StringDistance)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public static Boolean Sanity(int s, int ms)
+        {
+            System.Diagnostics.Debug.WriteLine(s + "  " + ms);
+            return s == ms;
+        }
+
+        // Goes through the array of search terms and the array of composer terms.
+        // If any pair have a Levenshtein distance of less than StringDistance,
+        // this will return true
+        public static Boolean FuzzyComposer(String[] search, Score score)
+        {
+            String[] comp = score.Composer.Split(" ");
+            foreach (String str1 in comp)
+            {
+                foreach (String str2 in search)
+                {
+                    if (Compare(str1, str2) < StringDistance)
                     {
                         return true;
                     }
